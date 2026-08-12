@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Sparkles, Star, Quote, ShieldCheck, ArrowLeft, ArrowRight } from "lucide-react";
+import Link from "next/link";
+import { Sparkles, Star, Quote, ArrowLeft, ArrowRight } from "lucide-react";
 
 interface Testimonial {
   id: string;
@@ -26,7 +27,7 @@ const testimonials: Testimonial[] = [
     rating: 5,
     tourName: "Cherry Blossoms of Kyoto",
     quote:
-      "Flyora curated an absolute dream itinerary for Kyoto. Every boutique tea house, hidden garden, and private guide was top-notch. It truly felt like a bespoke luxury trip without the hassle.",
+      "Flyora curated an absolute dream itinerary for Kyoto. Every boutique tea house, hidden garden, and private guide was top-notch.",
     highlight: "An absolute dream itinerary!",
   },
   {
@@ -38,7 +39,7 @@ const testimonials: Testimonial[] = [
     rating: 5,
     tourName: "Santorini Coastal Escape",
     quote:
-      "From the private sunset yacht cruise in Oia to cliffside wine tastings, everything was handled seamlessly. We didn't have to stress about a single detail on our honeymoon.",
+      "From the private sunset yacht cruise in Oia to cliffside wine tastings, everything was handled seamlessly without a single stress.",
     highlight: "Seamless and stress-free honeymoon!",
   },
   {
@@ -50,7 +51,7 @@ const testimonials: Testimonial[] = [
     rating: 5,
     tourName: "Marrakech & Sahara Journey",
     quote:
-      "Camping under the Sahara stars and driving through the Atlas mountains was unforgettable. Flyora's local guides were incredibly knowledgeable and authentic.",
+      "Camping under the Sahara stars and driving through the Atlas mountains was unforgettable. Flyora's local guides were genuine experts.",
     highlight: "Unforgettable local experiences!",
   },
   {
@@ -58,20 +59,20 @@ const testimonials: Testimonial[] = [
     name: "Sophia Chen",
     role: "Solo Traveler",
     location: "Singapore",
-    avatar: "https://images.unsplash.com/photo-1517841905240-472988babdf9?q=80&w=400&auto=format&fit=crop",
+    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop",
     rating: 5,
-    tourName: "Maldives Island Getaway",
+    tourName: "Swiss Alps Express",
     quote:
-      "As a solo female traveler, safety and seamless organization are my top priorities. Flyora provided 24/7 concierge support and made me feel completely cared for.",
-    highlight: "Flawless organization & safety!",
+      "The Glacier Express seat allocation and Zermatt chalet booking were flawless. 10/10 level of luxury travel coordination.",
+    highlight: "Flawless luxury coordination!",
   },
 ];
 
 const stats = [
-  { value: "4.95", label: "Average Rating", subtext: "Based on 3,500+ reviews" },
-  { value: "15K+", label: "Happy Travelers", subtext: "Across 80+ countries" },
-  { value: "98%", label: "Satisfaction Rate", subtext: "Repeat & recommended" },
-  { value: "24/7", label: "Local Support", subtext: "Always by your side" },
+  { value: "99.4%", label: "Satisfaction Rate", subtext: "Based on 1,200+ reviews" },
+  { value: "50k+", label: "Happy Travelers", subtext: "Across 70 countries" },
+  { value: "4.95", label: "Average Star Rating", subtext: "Out of 5 stars" },
+  { value: "15+", label: "Years Experience", subtext: "Luxury travel curation" },
 ];
 
 export default function Testimonials() {
@@ -86,26 +87,26 @@ export default function Testimonials() {
   };
 
   return (
-    <section className="relative overflow-hidden bg-white px-6 py-20 sm:px-10 sm:py-28 lg:px-16">
+    <section className="relative overflow-hidden bg-white px-6 py-20 sm:px-10 sm:py-28 lg:px-16 border-b border-slate-100">
       <div className="mx-auto w-full max-w-[1600px]">
         {/* Header */}
         <div className="mx-auto max-w-3xl text-center">
-          <div className="mx-auto mb-4 flex w-fit items-center gap-2 rounded-full bg-amber-50 px-4 py-1.5 text-xs font-medium text-neutral-700">
-            <Sparkles size={13} className="text-amber-500" fill="currentColor" />
+          <div className="mx-auto mb-4 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-4 py-1.5 text-xs font-semibold text-[#EA2C2A] border border-[#EA2C2A]/20">
+            <Sparkles size={13} className="text-[#EA2C2A]" fill="currentColor" />
             Traveler Voices
-            <Sparkles size={13} className="text-amber-500" fill="currentColor" />
+            <Sparkles size={13} className="text-[#EA2C2A]" fill="currentColor" />
           </div>
 
           <h2
-            className="text-4xl leading-tight text-neutral-900 sm:text-5xl lg:text-6xl"
+            className="text-4xl leading-tight text-[#262A67] sm:text-5xl lg:text-6xl"
             style={{ fontFamily: "var(--font-playfair)", fontWeight: 700 }}
           >
-            Stories <span className="italic font-medium">From</span> Our
+            Stories <span className="italic font-medium text-[#EA2C2A]">From</span> Our
             <br />
             Global Explorers
           </h2>
 
-          <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-neutral-500 sm:text-base">
+          <p className="mx-auto mt-4 max-w-lg text-sm leading-relaxed text-slate-600 sm:text-base">
             Read real feedback and genuine experiences shared by adventurers who trusted Flyora to craft their dream journeys.
           </p>
         </div>
@@ -115,18 +116,18 @@ export default function Testimonials() {
           {stats.map((stat, idx) => (
             <div
               key={idx}
-              className="flex flex-col items-center justify-center rounded-2xl bg-neutral-50 p-6 text-center border border-neutral-100"
+              className="flex flex-col items-center justify-center rounded-2xl bg-[#EEF2FF]/60 p-6 text-center border border-[#C7D2FE]/60"
             >
               <div
-                className="text-3xl font-extrabold text-neutral-900 sm:text-4xl"
+                className="text-3xl font-extrabold text-[#262A67] sm:text-4xl"
                 style={{ fontFamily: "var(--font-playfair)" }}
               >
                 {stat.value}
               </div>
-              <div className="mt-1 text-xs font-semibold text-neutral-800 sm:text-sm">
+              <div className="mt-1 text-xs font-bold text-[#262A67] sm:text-sm">
                 {stat.label}
               </div>
-              <div className="mt-0.5 text-[11px] text-neutral-400">
+              <div className="mt-0.5 text-[11px] text-slate-500 font-medium">
                 {stat.subtext}
               </div>
             </div>
@@ -141,114 +142,79 @@ export default function Testimonials() {
               onClick={() => setActiveIndex(idx)}
               className={`group cursor-pointer relative flex flex-col justify-between rounded-3xl p-6 sm:p-8 transition-all duration-300 ${
                 activeIndex === idx
-                  ? "bg-neutral-900 text-white shadow-xl scale-[1.02]"
-                  : "bg-neutral-50 text-neutral-900 border border-neutral-200/80 hover:bg-neutral-100/80"
+                  ? "bg-[#262A67] text-white shadow-xl scale-[1.02]"
+                  : "bg-slate-50 text-slate-900 border border-slate-200/90 hover:bg-white hover:border-[#EA2C2A]/50"
               }`}
             >
-              {/* Quote icon & Rating stars */}
               <div>
-                <div className="flex items-center justify-between">
+                <div className="flex items-center justify-between mb-3">
                   <Quote
                     size={28}
-                    className={activeIndex === idx ? "text-amber-300" : "text-amber-500/70"}
+                    className={activeIndex === idx ? "text-[#EA2C2A]" : "text-[#EA2C2A]/70"}
                   />
                   <div className="flex items-center gap-1">
                     {Array.from({ length: item.rating }).map((_, i) => (
                       <Star
                         key={i}
                         size={14}
-                        className="text-amber-400"
-                        fill="currentColor"
+                        className="fill-[#EA2C2A] text-[#EA2C2A]"
                       />
                     ))}
                   </div>
                 </div>
 
-                <p
-                  className={`mt-4 text-xs font-semibold uppercase tracking-wider ${
-                    activeIndex === idx ? "text-amber-200" : "text-amber-600"
+                <span
+                  className={`inline-block rounded-full px-3 py-1 text-[11px] font-bold mb-4 ${
+                    activeIndex === idx
+                      ? "bg-white/15 text-white"
+                      : "bg-[#EEF2FF] text-[#262A67]"
                   }`}
                 >
-                  "{item.highlight}"
-                </p>
+                  {item.tourName}
+                </span>
 
                 <p
-                  className={`mt-3 text-sm leading-relaxed ${
-                    activeIndex === idx ? "text-neutral-300" : "text-neutral-600"
+                  className={`text-sm leading-relaxed ${
+                    activeIndex === idx ? "text-slate-200" : "text-slate-600"
                   }`}
                 >
-                  {item.quote}
+                  "{item.quote}"
                 </p>
               </div>
 
-              {/* Author Footer */}
-              <div className="mt-8 border-t border-dashed border-neutral-300/40 pt-4">
-                <div className="flex items-center gap-3">
-                  <div className="relative h-11 w-11 shrink-0 overflow-hidden rounded-full border-2 border-amber-300">
-                    <Image
-                      src={item.avatar}
-                      alt={item.name}
-                      fill
-                      className="object-cover"
-                    />
-                  </div>
-
-                  <div className="flex-1 min-w-0">
-                    <div className="flex items-center gap-1.5">
-                      <h4 className="truncate text-sm font-bold">{item.name}</h4>
-                      <ShieldCheck size={14} className="text-emerald-500 shrink-0" />
-                    </div>
-                    <p
-                      className={`truncate text-xs ${
-                        activeIndex === idx ? "text-neutral-400" : "text-neutral-500"
-                      }`}
-                    >
-                      {item.role} • {item.location}
-                    </p>
-                    <span
-                      className={`mt-1 inline-block rounded-full px-2 py-0.5 text-[10px] font-medium ${
-                        activeIndex === idx
-                          ? "bg-neutral-800 text-amber-200"
-                          : "bg-neutral-200 text-neutral-700"
-                      }`}
-                    >
-                      {item.tourName}
-                    </span>
-                  </div>
+              <div className="mt-6 flex items-center gap-3 pt-4 border-t border-slate-200/20">
+                <div className="relative h-10 w-10 overflow-hidden rounded-full border border-[#EA2C2A]/40 shrink-0">
+                  <Image
+                    src={item.avatar}
+                    alt={item.name}
+                    fill
+                    className="object-cover"
+                  />
+                </div>
+                <div>
+                  <h4 className="text-sm font-bold leading-none">{item.name}</h4>
+                  <p
+                    className={`mt-1 text-[11px] ${
+                      activeIndex === idx ? "text-slate-300" : "text-slate-500"
+                    }`}
+                  >
+                    {item.location}
+                  </p>
                 </div>
               </div>
             </div>
           ))}
         </div>
 
-        {/* Carousel controls */}
-        <div className="mt-12 flex items-center justify-center gap-4">
-          <button
-            onClick={handlePrev}
-            aria-label="Previous testimonial"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-800 transition hover:bg-neutral-100 hover:border-neutral-400"
+        {/* Action button */}
+        <div className="mt-12 text-center">
+          <Link
+            href="/stories"
+            className="inline-flex items-center gap-2 rounded-full bg-[#EA2C2A] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#C82120] shadow-md uppercase tracking-wider"
           >
-            <ArrowLeft size={18} />
-          </button>
-          <div className="flex gap-2">
-            {testimonials.map((_, i) => (
-              <button
-                key={i}
-                aria-label={`Go to slide ${i + 1}`}
-                onClick={() => setActiveIndex(i)}
-                className={`h-2.5 rounded-full transition-all ${
-                  activeIndex === i ? "w-8 bg-neutral-900" : "w-2.5 bg-neutral-300"
-                }`}
-              />
-            ))}
-          </div>
-          <button
-            onClick={handleNext}
-            aria-label="Next testimonial"
-            className="flex h-11 w-11 items-center justify-center rounded-full border border-neutral-300 bg-white text-neutral-800 transition hover:bg-neutral-100 hover:border-neutral-400"
-          >
-            <ArrowRight size={18} />
-          </button>
+            <span>Read All Traveler Stories</span>
+            <ArrowRight size={15} />
+          </Link>
         </div>
       </div>
     </section>

@@ -24,14 +24,14 @@ export default function Header({ transparent = false }: HeaderProps) {
         className={`sticky top-0 z-40 w-full transition-all duration-300 ${
           transparent
             ? "bg-transparent text-white"
-            : "bg-neutral-950/90 backdrop-blur-md border-b border-neutral-800/80 text-white"
+            : "bg-white/95 backdrop-blur-md border-b border-slate-200/80 text-slate-900 shadow-xs"
         }`}
       >
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 sm:px-10">
           {/* Menu Trigger */}
           <button
             onClick={() => setMenuOpen(true)}
-            className="flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-semibold text-white backdrop-blur transition hover:bg-white/20 sm:text-sm"
+            className="flex items-center gap-2 rounded-full bg-[#EEF2FF] px-4 py-2 text-xs font-semibold text-[#262A67] transition hover:bg-[#E0E7FF] sm:text-sm border border-[#C7D2FE]"
           >
             <LayoutGrid size={15} strokeWidth={2.2} />
             <span>Menu</span>
@@ -39,27 +39,27 @@ export default function Header({ transparent = false }: HeaderProps) {
 
           {/* Logo */}
           <Link href="/" className="flex items-center gap-1 group">
-            <span className={`${caveat.className} text-3xl font-bold tracking-wide text-amber-300 sm:text-4xl`}>
+            <span className={`${caveat.className} text-3xl font-bold tracking-wide text-[#262A67] sm:text-4xl`}>
               Flyora
             </span>
-            <Sparkles size={16} className="text-amber-400 -translate-y-1.5 transition-transform group-hover:rotate-12" fill="currentColor" />
+            <Sparkles size={16} className="text-[#EA2C2A] -translate-y-1.5 transition-transform group-hover:rotate-12" fill="currentColor" />
           </Link>
 
           {/* Quick Nav Links for Desktop */}
-          <nav className="hidden lg:flex items-center gap-7 text-xs font-medium uppercase tracking-wider text-neutral-300">
-            <Link href="/tours" className="hover:text-amber-300 transition">
+          <nav className="hidden lg:flex items-center gap-7 text-xs font-bold uppercase tracking-wider text-[#262A67]">
+            <Link href="/tours" className="hover:text-[#EA2C2A] transition">
               Tours
             </Link>
-            <Link href="/locations" className="hover:text-amber-300 transition">
+            <Link href="/locations" className="hover:text-[#EA2C2A] transition">
               Destinations
             </Link>
-            <Link href="/services" className="hover:text-amber-300 transition">
+            <Link href="/services" className="hover:text-[#EA2C2A] transition">
               Services
             </Link>
-            <Link href="/stories" className="hover:text-amber-300 transition">
+            <Link href="/stories" className="hover:text-[#EA2C2A] transition">
               Stories
             </Link>
-            <Link href="/about" className="hover:text-amber-300 transition">
+            <Link href="/about" className="hover:text-[#EA2C2A] transition">
               About
             </Link>
           </nav>
@@ -67,7 +67,7 @@ export default function Header({ transparent = false }: HeaderProps) {
           {/* Plan a Trip CTA */}
           <Link
             href="/customize"
-            className="flex items-center gap-2 rounded-full bg-gradient-to-r from-amber-400 to-amber-500 px-4 py-2 text-xs font-bold text-neutral-950 shadow-md transition hover:from-amber-300 hover:to-amber-400 sm:px-5 sm:py-2.5 sm:text-sm"
+            className="flex items-center gap-2 rounded-full bg-[#EA2C2A] px-4 py-2 text-xs font-bold text-white shadow-md transition hover:bg-[#C82120] sm:px-5 sm:py-2.5 sm:text-sm"
           >
             <span>Plan a Trip</span>
             <ArrowUpRight size={15} strokeWidth={2.5} />

@@ -4,7 +4,7 @@ import { useState, useEffect, Suspense } from "react";
 import { useSearchParams } from "next/navigation";
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import { Sparkles, Calendar, Users, DollarSign, Compass, Send, CheckCircle2, PhoneCall } from "lucide-react";
+import { Sparkles, Calendar, DollarSign, Compass, Send, CheckCircle2 } from "lucide-react";
 import { Caveat } from "next/font/google";
 
 const caveat = Caveat({
@@ -23,7 +23,7 @@ function CustomizeFormContent() {
     preferredDestination: initialDest,
     startDate: "",
     endDate: "",
-    budgetPerPerson: "2000-3000",
+    budgetPerPerson: "2000-3500",
     adultsCount: 2,
     childrenCount: 0,
     travelStyle: "Luxury",
@@ -72,43 +72,43 @@ function CustomizeFormContent() {
   return (
     <div className="mx-auto max-w-4xl">
       {submitted ? (
-        <div className="rounded-3xl bg-neutral-900 border border-amber-400/40 p-12 text-center shadow-2xl space-y-6">
-          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-amber-400/10 text-amber-300">
+        <div className="rounded-3xl bg-[#FEF2F2] border border-[#EA2C2A]/30 p-12 text-center shadow-xl space-y-6">
+          <div className="mx-auto flex h-20 w-20 items-center justify-center rounded-full bg-[#EA2C2A] text-white">
             <CheckCircle2 size={48} />
           </div>
-          <h2 className="text-3xl sm:text-4xl font-bold text-white" style={{ fontFamily: "var(--font-playfair)" }}>
+          <h2 className="text-3xl sm:text-4xl font-bold text-[#262A67]" style={{ fontFamily: "var(--font-playfair)" }}>
             Trip Proposal Request Received!
           </h2>
-          <p className="text-neutral-300 text-base max-w-lg mx-auto leading-relaxed">
-            Thank you, <span className="text-amber-300 font-semibold">{formData.customerName}</span>. Our destination concierge will review your preferences and craft a customized itinerary within <span className="text-white font-bold">2 to 4 hours</span>.
+          <p className="text-slate-700 text-base max-w-lg mx-auto leading-relaxed">
+            Thank you, <span className="text-[#EA2C2A] font-bold">{formData.customerName}</span>. Our destination concierge will review your preferences and craft a customized itinerary within <span className="text-[#262A67] font-bold">2 to 4 hours</span>.
           </p>
-          <div className="pt-4 border-t border-neutral-800 flex justify-center gap-4">
+          <div className="pt-4 border-t border-[#EA2C2A]/20 flex justify-center gap-4">
             <button
               onClick={() => setSubmitted(false)}
-              className="rounded-full bg-neutral-800 px-6 py-2.5 text-xs font-semibold text-white hover:bg-neutral-700 transition"
+              className="rounded-full bg-[#262A67] px-6 py-2.5 text-xs font-bold text-white hover:bg-[#1A1D4A] transition"
             >
               Submit Another Request
             </button>
           </div>
         </div>
       ) : (
-        <form onSubmit={handleSubmit} className="rounded-3xl bg-neutral-900 border border-neutral-800 p-8 sm:p-12 shadow-2xl space-y-8">
+        <form onSubmit={handleSubmit} className="rounded-3xl bg-slate-50 border border-slate-200 p-8 sm:p-12 shadow-xl space-y-8">
           {errorMsg && (
-            <div className="rounded-2xl bg-rose-500/10 border border-rose-500/30 p-4 text-xs text-rose-300">
+            <div className="rounded-2xl bg-rose-50 border border-rose-200 p-4 text-xs text-rose-700 font-medium">
               {errorMsg}
             </div>
           )}
 
           {/* Step 1: Destination & Contact */}
           <div className="space-y-6">
-            <h3 className="text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-3">
-              <Compass className="text-amber-400" size={20} />
+            <h3 className="text-xl font-bold text-[#262A67] flex items-center gap-2 border-b border-slate-200 pb-3">
+              <Compass className="text-[#EA2C2A]" size={20} />
               1. Personal Information & Destination
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">Full Name *</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Full Name *</label>
                 <input
                   type="text"
                   name="customerName"
@@ -116,12 +116,12 @@ function CustomizeFormContent() {
                   value={formData.customerName}
                   onChange={handleChange}
                   placeholder="e.g. Alexandra Smith"
-                  className="w-full rounded-xl bg-neutral-950 border border-neutral-800 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#EA2C2A] focus:outline-none shadow-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">Email Address *</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Email Address *</label>
                 <input
                   type="email"
                   name="email"
@@ -129,12 +129,12 @@ function CustomizeFormContent() {
                   value={formData.email}
                   onChange={handleChange}
                   placeholder="e.g. alex@example.com"
-                  className="w-full rounded-xl bg-neutral-950 border border-neutral-800 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#EA2C2A] focus:outline-none shadow-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">Phone / WhatsApp *</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Phone / WhatsApp *</label>
                 <input
                   type="tel"
                   name="phone"
@@ -142,19 +142,19 @@ function CustomizeFormContent() {
                   value={formData.phone}
                   onChange={handleChange}
                   placeholder="e.g. +1 (555) 019-2834"
-                  className="w-full rounded-xl bg-neutral-950 border border-neutral-800 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#EA2C2A] focus:outline-none shadow-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">Preferred Destination</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Preferred Destination</label>
                 <input
                   type="text"
                   name="preferredDestination"
                   value={formData.preferredDestination}
                   onChange={handleChange}
                   placeholder="e.g. Kyoto, Santorini, Swiss Alps, Multi-country"
-                  className="w-full rounded-xl bg-neutral-950 border border-neutral-800 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#EA2C2A] focus:outline-none shadow-xs"
                 />
               </div>
             </div>
@@ -162,55 +162,55 @@ function CustomizeFormContent() {
 
           {/* Step 2: Travel Dates & Group */}
           <div className="space-y-6">
-            <h3 className="text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-3">
-              <Calendar className="text-amber-400" size={20} />
+            <h3 className="text-xl font-bold text-[#262A67] flex items-center gap-2 border-b border-slate-200 pb-3">
+              <Calendar className="text-[#EA2C2A]" size={20} />
               2. Dates & Group Size
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">Departure Date</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Departure Date</label>
                 <input
                   type="date"
                   name="startDate"
                   value={formData.startDate}
                   onChange={handleChange}
-                  className="w-full rounded-xl bg-neutral-950 border border-neutral-800 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#EA2C2A] focus:outline-none shadow-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">Return Date</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Return Date</label>
                 <input
                   type="date"
                   name="endDate"
                   value={formData.endDate}
                   onChange={handleChange}
-                  className="w-full rounded-xl bg-neutral-950 border border-neutral-800 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#EA2C2A] focus:outline-none shadow-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">Adults (12+ yrs)</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Adults (12+ yrs)</label>
                 <input
                   type="number"
                   name="adultsCount"
                   min={1}
                   value={formData.adultsCount}
                   onChange={handleChange}
-                  className="w-full rounded-xl bg-neutral-950 border border-neutral-800 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#EA2C2A] focus:outline-none shadow-xs"
                 />
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">Children (&lt; 12 yrs)</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Children (&lt; 12 yrs)</label>
                 <input
                   type="number"
                   name="childrenCount"
                   min={0}
                   value={formData.childrenCount}
                   onChange={handleChange}
-                  className="w-full rounded-xl bg-neutral-950 border border-neutral-800 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#EA2C2A] focus:outline-none shadow-xs"
                 />
               </div>
             </div>
@@ -218,19 +218,19 @@ function CustomizeFormContent() {
 
           {/* Step 3: Style & Budget */}
           <div className="space-y-6">
-            <h3 className="text-xl font-bold text-white flex items-center gap-2 border-b border-neutral-800 pb-3">
-              <DollarSign className="text-amber-400" size={20} />
+            <h3 className="text-xl font-bold text-[#262A67] flex items-center gap-2 border-b border-slate-200 pb-3">
+              <DollarSign className="text-[#EA2C2A]" size={20} />
               3. Travel Style & Budget
             </h3>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">Travel Style</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Travel Style</label>
                 <select
                   name="travelStyle"
                   value={formData.travelStyle}
                   onChange={handleChange}
-                  className="w-full rounded-xl bg-neutral-950 border border-neutral-800 px-4 py-3 text-sm text-white focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:border-[#EA2C2A] focus:outline-none shadow-xs"
                 >
                   <option value="Luxury">Luxury & 5-Star Resorts</option>
                   <option value="Honeymoon">Honeymoon & Romantic</option>
@@ -242,12 +242,12 @@ function CustomizeFormContent() {
               </div>
 
               <div>
-                <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">Estimated Budget Per Person</label>
+                <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Estimated Budget Per Person</label>
                 <select
                   name="budgetPerPerson"
                   value={formData.budgetPerPerson}
                   onChange={handleChange}
-                  className="w-full rounded-xl bg-neutral-950 border border-neutral-800 px-4 py-3 text-sm text-white focus:border-amber-400 focus:outline-none"
+                  className="w-full rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm text-slate-900 focus:border-[#EA2C2A] focus:outline-none shadow-xs"
                 >
                   <option value="1000-2000">$1,000 - $2,000 USD</option>
                   <option value="2000-3500">$2,000 - $3,500 USD</option>
@@ -258,14 +258,14 @@ function CustomizeFormContent() {
             </div>
 
             <div>
-              <label className="block text-xs font-semibold uppercase tracking-wider text-neutral-400 mb-2">Special Requests or Preferences</label>
+              <label className="block text-xs font-bold uppercase tracking-wider text-slate-500 mb-2">Special Requests or Preferences</label>
               <textarea
                 name="specialNotes"
                 rows={4}
                 value={formData.specialNotes}
                 onChange={handleChange}
                 placeholder="Specify preferred airlines, dietary restrictions, room upgrades, or specific activities you want included..."
-                className="w-full rounded-xl bg-neutral-950 border border-neutral-800 px-4 py-3 text-sm text-white placeholder:text-neutral-500 focus:border-amber-400 focus:outline-none resize-none"
+                className="w-full rounded-xl bg-white border border-slate-200 px-4 py-3 text-sm text-slate-900 placeholder:text-slate-400 focus:border-[#EA2C2A] focus:outline-none resize-none shadow-xs"
               ></textarea>
             </div>
           </div>
@@ -273,7 +273,7 @@ function CustomizeFormContent() {
           <button
             type="submit"
             disabled={submitting}
-            className="w-full rounded-xl bg-gradient-to-r from-amber-400 to-amber-500 py-4 text-base font-bold text-neutral-950 transition hover:from-amber-300 hover:to-amber-400 shadow-xl flex items-center justify-center gap-2"
+            className="w-full rounded-xl bg-[#EA2C2A] py-4 text-base font-bold text-white transition hover:bg-[#C82120] shadow-lg flex items-center justify-center gap-2"
           >
             {submitting ? (
               <span>Submitting Proposal Request...</span>
@@ -292,35 +292,35 @@ function CustomizeFormContent() {
 
 export default function CustomizePage() {
   return (
-    <div className="min-h-screen bg-neutral-950 text-white flex flex-col font-sans">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans">
       <Header />
 
       {/* Hero Header */}
-      <section className="relative py-20 px-6 sm:px-10 lg:px-16 overflow-hidden bg-neutral-900 border-b border-neutral-800">
-        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-amber-500/10 blur-[150px] rounded-full" />
+      <section className="relative py-20 px-6 sm:px-10 lg:px-16 overflow-hidden bg-[#EEF2FF]/40 border-b border-[#C7D2FE]/60">
+        <div className="pointer-events-none absolute -top-40 left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-[#EA2C2A]/10 blur-[150px] rounded-full" />
         
         <div className="relative mx-auto max-w-[1600px] text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-amber-400/10 px-4 py-1.5 text-xs font-semibold text-amber-300 border border-amber-400/20 mb-4">
-            <Sparkles size={14} fill="currentColor" />
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#FEF2F2] px-4 py-1.5 text-xs font-semibold text-[#EA2C2A] border border-[#EA2C2A]/20 mb-4">
+            <Sparkles size={14} className="text-[#EA2C2A]" fill="currentColor" />
             Tailor-Made Experience
           </div>
           <h1
-            className="text-4xl font-extrabold sm:text-6xl text-white tracking-tight"
+            className="text-4xl font-extrabold sm:text-6xl text-[#262A67] tracking-tight"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Design Your <br />
-            <span className={`${caveat.className} text-amber-300 font-normal text-5xl sm:text-7xl`}>
+            <span className={`${caveat.className} text-[#EA2C2A] font-normal text-5xl sm:text-7xl`}>
               Bespoke Journey
             </span>
           </h1>
-          <p className="mt-4 max-w-xl mx-auto text-sm sm:text-base text-neutral-400 leading-relaxed">
+          <p className="mt-4 max-w-xl mx-auto text-sm sm:text-base text-slate-600 leading-relaxed">
             Tell us your travel dreams, dates, and budget. Our local travel designers will craft an exclusive, personalized itinerary just for you.
           </p>
         </div>
       </section>
 
-      <main className="flex-1 py-16 px-6 sm:px-10 lg:px-16">
-        <Suspense fallback={<div className="text-center text-neutral-400">Loading form...</div>}>
+      <main className="flex-1 py-16 px-6 sm:px-10 lg:px-16 bg-white">
+        <Suspense fallback={<div className="text-center text-slate-500">Loading form...</div>}>
           <CustomizeFormContent />
         </Suspense>
       </main>

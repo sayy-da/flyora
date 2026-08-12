@@ -32,34 +32,40 @@ const socials = [
 ];
 
 export default function Navbar({ onClose }: NavbarProps) {
-
   return (
-    <div className="fixed inset-0 z-50 bg-neutral-950/98 text-white">
-      {/* Faint background glow, echoes the hero photo behind the menu */}
-      <div className="pointer-events-none absolute inset-0 bg-linear-to-br from-neutral-800/40 via-transparent to-transparent" />
+    <div className="fixed inset-0 z-50 bg-[#262A67]/98 text-white backdrop-blur-md">
+      {/* Background glow highlights */}
+      <div className="pointer-events-none absolute top-0 right-0 w-96 h-96 bg-[#EA2C2A]/20 blur-[130px] rounded-full" />
+      <div className="pointer-events-none absolute bottom-0 left-0 w-96 h-96 bg-white/10 blur-[140px] rounded-full" />
 
-      {/* --------------------------- Top bar --------------------------- */}
-      <div className="relative z-10 flex items-center gap-3 px-6 pt-6 sm:px-10 sm:pt-8">
-        <div className="flex h-11 w-11 items-center justify-center rounded-full bg-white">
-          <Layers size={18} className="text-neutral-900" strokeWidth={2} />
-        </div>
+      {/* Top bar */}
+      <div className="relative z-10 flex items-center justify-between px-6 pt-6 sm:px-10 sm:pt-8 max-w-[1600px] mx-auto">
+        <Link href="/" onClick={onClose} className="flex items-center gap-1">
+          <span className={`${caveat.className} text-4xl font-bold tracking-wide text-white`}>
+            Flyora
+          </span>
+          <Sparkles size={18} className="text-[#EA2C2A]" fill="currentColor" />
+        </Link>
+
         <button
           onClick={onClose}
-          className="text-lg font-medium text-white/90 transition hover:text-white"
+          className="flex items-center gap-2 rounded-full bg-white/10 px-5 py-2 text-sm font-semibold text-white transition hover:bg-[#EA2C2A] border border-white/20"
         >
-          Close
+          <XIcon size={18} />
+          <span>Close</span>
         </button>
       </div>
 
-      {/* ------------------------- Menu panel ------------------------- */}
-      <div className="relative z-10 mx-6 mt-10 rounded-[28px] border border-dashed border-white/20 p-8 sm:mx-10 sm:mt-14 sm:p-10 md:max-w-2xl">
-        <nav className="grid grid-cols-2 gap-y-6 gap-x-8">
+      {/* Menu panel */}
+      <div className="relative z-10 mx-auto mt-10 max-w-3xl rounded-[32px] border border-white/15 bg-white/5 p-8 backdrop-blur-xl sm:mt-14 sm:p-12">
+        <nav className="grid grid-cols-1 sm:grid-cols-2 gap-y-6 gap-x-12">
           {primaryLinks.map((link) => (
             <Link
               key={link.label}
               href={link.href}
               onClick={onClose}
-              className="text-3xl font-medium text-white/90 transition hover:text-amber-300 sm:text-4xl"
+              className="text-3xl font-bold text-white transition hover:text-[#EA2C2A] sm:text-4xl"
+              style={{ fontFamily: "var(--font-playfair)" }}
             >
               {link.label}
             </Link>
@@ -69,18 +75,19 @@ export default function Navbar({ onClose }: NavbarProps) {
               key={link.label}
               href={link.href}
               onClick={onClose}
-              className="text-3xl font-medium text-white/60 transition hover:text-amber-200 sm:text-4xl"
+              className="text-3xl font-bold text-white/70 transition hover:text-[#EA2C2A] sm:text-4xl"
+              style={{ fontFamily: "var(--font-playfair)" }}
             >
               {link.label}
             </Link>
           ))}
         </nav>
 
-        <div className="my-8 border-t border-dashed border-white/20" />
+        <div className="my-8 border-t border-white/15" />
 
         <div className="flex flex-col justify-between gap-6 sm:flex-row sm:items-center">
-          <div className="space-y-1.5 text-sm text-white/80 sm:text-base">
-            <p>support@yourbrand.com</p>
+          <div className="space-y-1 text-sm text-white/80">
+            <p>support@flyora.com</p>
             <p>+1 (202) 555 0147</p>
           </div>
 
@@ -92,7 +99,7 @@ export default function Navbar({ onClose }: NavbarProps) {
                 aria-label={label}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-neutral-900 transition hover:bg-white/85"
+                className="flex h-10 w-10 items-center justify-center rounded-full bg-white text-[#262A67] transition hover:bg-[#EA2C2A] hover:text-white"
               >
                 <Icon size={16} strokeWidth={2} />
               </a>
@@ -100,8 +107,6 @@ export default function Navbar({ onClose }: NavbarProps) {
           </div>
         </div>
       </div>
-
-     
     </div>
   );
 }

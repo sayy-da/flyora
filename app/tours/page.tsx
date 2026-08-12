@@ -1,9 +1,9 @@
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
-import { getTours, getCategories, TourPackage } from "@/sanity/lib/fetchData";
+import { getTours, getCategories } from "@/sanity/lib/fetchData";
 import Image from "next/image";
 import Link from "next/link";
-import { Sparkles, Calendar, Tag, ArrowUpRight, CheckCircle2, ShieldCheck } from "lucide-react";
+import { Sparkles, Calendar, Tag, ArrowUpRight, CheckCircle2 } from "lucide-react";
 import { Caveat } from "next/font/google";
 
 const caveat = Caveat({
@@ -21,41 +21,41 @@ export default async function ToursPage() {
   const categories = await getCategories();
 
   return (
-    <div className="min-h-screen bg-neutral-950 text-white flex flex-col font-sans">
+    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans">
       <Header />
 
       {/* Hero Banner */}
-      <section className="relative py-20 px-6 sm:px-10 lg:px-16 overflow-hidden bg-neutral-900 border-b border-neutral-800">
-        <div className="pointer-events-none absolute -top-40 right-0 w-[500px] h-[500px] bg-amber-500/10 blur-[140px] rounded-full" />
+      <section className="relative py-20 px-6 sm:px-10 lg:px-16 overflow-hidden bg-[#EEF2FF]/40 border-b border-[#C7D2FE]/60">
+        <div className="pointer-events-none absolute -top-40 right-0 w-[500px] h-[500px] bg-[#EA2C2A]/10 blur-[140px] rounded-full" />
         
         <div className="relative mx-auto max-w-[1600px] text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-amber-400/10 px-4 py-1.5 text-xs font-semibold text-amber-300 border border-amber-400/20 mb-4">
-            <Sparkles size={14} fill="currentColor" />
+          <div className="inline-flex items-center gap-2 rounded-full bg-[#FEF2F2] px-4 py-1.5 text-xs font-semibold text-[#EA2C2A] border border-[#EA2C2A]/20 mb-4">
+            <Sparkles size={14} className="text-[#EA2C2A]" fill="currentColor" />
             Curated Experiences
           </div>
           <h1
-            className="text-4xl font-extrabold sm:text-6xl text-white tracking-tight"
+            className="text-4xl font-extrabold sm:text-6xl text-[#262A67] tracking-tight"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Explore Extraordinary <br />
-            <span className={`${caveat.className} text-amber-300 font-normal text-5xl sm:text-7xl`}>
+            <span className={`${caveat.className} text-[#EA2C2A] font-normal text-5xl sm:text-7xl`}>
               Tour Packages
             </span>
           </h1>
-          <p className="mt-4 max-w-xl mx-auto text-sm sm:text-base text-neutral-400 leading-relaxed">
+          <p className="mt-4 max-w-xl mx-auto text-sm sm:text-base text-slate-600 leading-relaxed">
             Handcrafted group and private journeys designed for discerning travelers. Select a preset itinerary or customize every detail.
           </p>
         </div>
       </section>
 
       {/* Categories & Filter Bar */}
-      <section className="py-8 px-6 sm:px-10 lg:px-16 border-b border-neutral-800/60 bg-neutral-950/80 sticky top-[73px] z-30 backdrop-blur-md">
+      <section className="py-6 px-6 sm:px-10 lg:px-16 border-b border-slate-200 bg-white/90 sticky top-[73px] z-30 backdrop-blur-md">
         <div className="mx-auto max-w-[1600px] flex items-center justify-between gap-4 overflow-x-auto no-scrollbar">
           <div className="flex items-center gap-2 shrink-0">
-            <span className="text-xs font-bold uppercase tracking-wider text-neutral-400 mr-2">Categories:</span>
+            <span className="text-xs font-bold uppercase tracking-wider text-slate-400 mr-2">Categories:</span>
             <Link
               href="/tours"
-              className="rounded-full bg-amber-400 px-4 py-1.5 text-xs font-bold text-neutral-950 transition"
+              className="rounded-full bg-[#262A67] px-4 py-1.5 text-xs font-bold text-white transition shadow-xs"
             >
               All Tours ({tours.length})
             </Link>
@@ -63,7 +63,7 @@ export default async function ToursPage() {
               <Link
                 key={cat._id}
                 href={`/categories/${cat.slug}`}
-                className="rounded-full bg-neutral-900 border border-neutral-800 px-4 py-1.5 text-xs font-medium text-neutral-300 transition hover:border-amber-400/50 hover:text-white"
+                className="rounded-full bg-slate-100 border border-slate-200 px-4 py-1.5 text-xs font-semibold text-slate-700 transition hover:border-[#EA2C2A] hover:bg-white hover:text-[#EA2C2A]"
               >
                 {cat.name}
               </Link>
@@ -71,24 +71,24 @@ export default async function ToursPage() {
           </div>
 
           <div className="shrink-0 hidden sm:block">
-            <span className="text-xs text-neutral-400 font-medium">
-              Showing <span className="text-white font-bold">{tours.length}</span> luxury tours
+            <span className="text-xs text-slate-500 font-medium">
+              Showing <span className="text-[#262A67] font-bold">{tours.length}</span> luxury tours
             </span>
           </div>
         </div>
       </section>
 
       {/* Tour List Grid */}
-      <main className="flex-1 py-16 px-6 sm:px-10 lg:px-16">
+      <main className="flex-1 py-16 px-6 sm:px-10 lg:px-16 bg-white">
         <div className="mx-auto max-w-[1600px]">
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             {tours.map((tour) => (
               <article
                 key={tour._id}
-                className="group relative flex flex-col rounded-3xl bg-neutral-900 border border-neutral-800 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-amber-400/40 hover:shadow-2xl hover:shadow-amber-500/10"
+                className="group relative flex flex-col rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-2 hover:border-[#262A67]/40 hover:shadow-xl"
               >
                 {/* Image Cover */}
-                <div className="relative h-64 w-full overflow-hidden bg-neutral-800">
+                <div className="relative h-64 w-full overflow-hidden bg-slate-100">
                   <Image
                     src={tour.coverImage}
                     alt={tour.title}
@@ -96,26 +96,26 @@ export default async function ToursPage() {
                     sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
-                  <div className="absolute inset-0 bg-gradient-to-t from-neutral-950 via-neutral-950/20 to-transparent opacity-80" />
+                  <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
                   
                   {/* Badges */}
                   <div className="absolute top-4 left-4 flex flex-wrap gap-2">
                     {tour.tag && (
-                      <span className="inline-flex items-center gap-1 rounded-full bg-amber-400 px-3 py-1 text-xs font-bold text-neutral-950 shadow-md">
+                      <span className="inline-flex items-center gap-1 rounded-full bg-[#EA2C2A] px-3 py-1 text-xs font-bold text-white shadow-md">
                         <Tag size={12} />
                         {tour.tag}
                       </span>
                     )}
                     {tour.categoryName && (
-                      <span className="rounded-full bg-neutral-950/80 backdrop-blur-md px-3 py-1 text-xs font-medium text-amber-200 border border-amber-400/30">
+                      <span className="rounded-full bg-white/95 backdrop-blur-md px-3 py-1 text-xs font-bold text-[#262A67] border border-slate-200">
                         {tour.categoryName}
                       </span>
                     )}
                   </div>
 
                   {/* Duration Badge */}
-                  <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-neutral-950/90 backdrop-blur-md px-3 py-1 text-xs font-semibold text-white">
-                    <Calendar size={13} className="text-amber-400" />
+                  <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-md px-3 py-1 text-xs font-semibold text-[#262A67] shadow-sm">
+                    <Calendar size={13} className="text-[#EA2C2A]" />
                     {tour.duration?.days} Days / {tour.duration?.nights} Nights
                   </div>
                 </div>
@@ -123,26 +123,26 @@ export default async function ToursPage() {
                 {/* Content Body */}
                 <div className="flex flex-1 flex-col p-6 sm:p-7">
                   {tour.destinationName && (
-                    <span className="text-xs font-bold uppercase tracking-wider text-amber-400 mb-1">
+                    <span className="text-xs font-bold uppercase tracking-wider text-[#EA2C2A] mb-1">
                       {tour.destinationName}
                     </span>
                   )}
                   <h2
-                    className="text-2xl font-bold text-white group-hover:text-amber-300 transition-colors line-clamp-1 mb-2"
+                    className="text-2xl font-bold text-[#262A67] group-hover:text-[#EA2C2A] transition-colors line-clamp-1 mb-2"
                     style={{ fontFamily: "var(--font-playfair)" }}
                   >
                     <Link href={`/tours/${tour.slug}`}>{tour.title}</Link>
                   </h2>
-                  <p className="text-sm text-neutral-400 line-clamp-2 leading-relaxed mb-6">
+                  <p className="text-sm text-slate-600 line-clamp-2 leading-relaxed mb-6">
                     {tour.overview}
                   </p>
 
                   {/* Included Highlights */}
                   {tour.includedServices && tour.includedServices.length > 0 && (
-                    <div className="mb-6 space-y-1.5 border-t border-neutral-800/80 pt-4">
+                    <div className="mb-6 space-y-1.5 border-t border-slate-100 pt-4">
                       {tour.includedServices.slice(0, 3).map((item, i) => (
-                        <div key={i} className="flex items-center gap-2 text-xs text-neutral-300">
-                          <CheckCircle2 size={13} className="text-amber-400 shrink-0" />
+                        <div key={i} className="flex items-center gap-2 text-xs text-slate-700">
+                          <CheckCircle2 size={13} className="text-[#EA2C2A] shrink-0" />
                           <span className="truncate">{item}</span>
                         </div>
                       ))}
@@ -150,25 +150,25 @@ export default async function ToursPage() {
                   )}
 
                   {/* Footer Price & Action */}
-                  <div className="mt-auto flex items-center justify-between pt-4 border-t border-neutral-800">
+                  <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100">
                     <div>
-                      <span className="text-xs text-neutral-400 uppercase tracking-wider block">Starting from</span>
+                      <span className="text-xs text-slate-400 uppercase tracking-wider block font-semibold">Starting from</span>
                       <div className="flex items-baseline gap-2">
                         {tour.discountPrice ? (
                           <>
-                            <span className="text-2xl font-black text-amber-300">${tour.discountPrice}</span>
-                            <span className="text-sm text-neutral-500 line-through">${tour.price}</span>
+                            <span className="text-2xl font-black text-[#262A67]">${tour.discountPrice}</span>
+                            <span className="text-sm text-slate-400 line-through">${tour.price}</span>
                           </>
                         ) : (
-                          <span className="text-2xl font-black text-amber-300">${tour.price}</span>
+                          <span className="text-2xl font-black text-[#262A67]">${tour.price}</span>
                         )}
-                        <span className="text-xs text-neutral-400 font-normal">/ person</span>
+                        <span className="text-xs text-slate-500 font-medium">/ person</span>
                       </div>
                     </div>
 
                     <Link
                       href={`/tours/${tour.slug}`}
-                      className="flex h-11 w-11 items-center justify-center rounded-full bg-amber-400 text-neutral-950 transition-transform duration-300 hover:scale-110 hover:bg-amber-300 shadow-lg"
+                      className="flex h-11 w-11 items-center justify-center rounded-full bg-[#EA2C2A] text-white transition-transform duration-300 hover:scale-110 hover:bg-[#C82120] shadow-md"
                       aria-label="View Tour Details"
                     >
                       <ArrowUpRight size={18} strokeWidth={2.5} />

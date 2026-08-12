@@ -2,7 +2,8 @@
 
 import { useState } from "react";
 import Image from "next/image";
-import { Sparkles, ArrowUpRight, Star, MapPin, Heart } from "lucide-react";
+import Link from "next/link";
+import { Sparkles, ArrowUpRight, Star, Heart } from "lucide-react";
 
 interface Destination {
   id: string;
@@ -58,25 +59,25 @@ const destinations: Destination[] = [
     category: "Tropical",
     tag: "Island Escape",
     image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?q=80&w=1000&auto=format&fit=crop",
-    rating: 4.89,
+    rating: 4.88,
     reviewsCount: 410,
-    toursCount: "35 Tours",
+    toursCount: "32 Tours",
     priceFrom: "$1,250",
-    description: "Emerald rice terraces, spiritual water temples, and serene tropical coastlines.",
+    description: "Emerald rice terraces, spiritual water temples, and vibrant coastal retreats.",
   },
   {
-    id: "alps",
+    id: "swiss-alps",
     name: "Swiss Alps",
     country: "Switzerland",
     flag: "🇨🇭",
     category: "Europe",
-    tag: "Mountain High",
+    tag: "Alpine Luxury",
     image: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1000&auto=format&fit=crop",
-    rating: 4.98,
+    rating: 4.97,
     reviewsCount: 195,
     toursCount: "15 Tours",
-    priceFrom: "$2,950",
-    description: "Majestic glacier peaks, scenic mountain railways, and serene alpine paths.",
+    priceFrom: "$3,400",
+    description: "Majestic Matterhorn views, luxury mountain chalets, and scenic alpine express trains.",
   },
   {
     id: "marrakech",
@@ -84,9 +85,9 @@ const destinations: Destination[] = [
     country: "Morocco",
     flag: "🇲🇦",
     category: "Africa",
-    tag: "Exotic Wonder",
+    tag: "Exotic Heritage",
     image: "https://images.unsplash.com/photo-1597212618440-806262de4f6b?q=80&w=1000&auto=format&fit=crop",
-    rating: 4.87,
+    rating: 4.86,
     reviewsCount: 240,
     toursCount: "20 Tours",
     priceFrom: "$1,550",
@@ -122,28 +123,28 @@ export default function PopularDestinations() {
       : destinations.filter((dest) => dest.category === activeCategory);
 
   return (
-    <section className="relative overflow-hidden bg-neutral-50 px-6 py-20 sm:px-10 sm:py-28 lg:px-16">
+    <section className="relative overflow-hidden bg-[#EEF2FF]/40 px-6 py-20 sm:px-10 sm:py-28 lg:px-16 border-t border-b border-[#C7D2FE]/40">
       <div className="mx-auto w-full max-w-[1600px]">
         {/* Section Header */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <div className="mb-4 flex w-fit items-center gap-2 rounded-full bg-amber-100/80 px-4 py-1.5 text-xs font-medium text-neutral-800">
-              <Sparkles size={13} className="text-amber-500" fill="currentColor" />
+            <div className="mb-4 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-4 py-1.5 text-xs font-semibold text-[#EA2C2A] border border-[#EA2C2A]/20">
+              <Sparkles size={13} className="text-[#EA2C2A]" fill="currentColor" />
               Popular Destinations
-              <Sparkles size={13} className="text-amber-500" fill="currentColor" />
+              <Sparkles size={13} className="text-[#EA2C2A]" fill="currentColor" />
             </div>
             <h2
-              className="text-4xl leading-tight text-neutral-900 sm:text-5xl lg:text-6xl"
+              className="text-4xl leading-tight text-[#262A67] sm:text-5xl lg:text-6xl"
               style={{ fontFamily: "var(--font-playfair)", fontWeight: 700 }}
             >
-              Explore Most <span className="italic font-medium">Popular</span>
+              Explore Most <span className="italic font-medium text-[#EA2C2A]">Popular</span>
               <br />
               Destinations Worldwide
             </h2>
           </div>
 
           <div className="flex flex-col gap-4 lg:items-end">
-            <p className="max-w-md text-sm leading-relaxed text-neutral-500 lg:text-right">
+            <p className="max-w-md text-sm leading-relaxed text-slate-600 lg:text-right">
               From historic ancient cities to pristine tropical paradises, explore handpicked destinations designed for extraordinary memories.
             </p>
             {/* Category Filter Tabs */}
@@ -156,8 +157,8 @@ export default function PopularDestinations() {
                     onClick={() => setActiveCategory(category)}
                     className={`rounded-full px-4 py-2 text-xs font-semibold transition-all sm:text-sm ${
                       isActive
-                        ? "bg-neutral-900 text-white shadow-md"
-                        : "bg-white text-neutral-600 hover:bg-neutral-200/70 border border-neutral-200/60"
+                        ? "bg-[#262A67] text-white shadow-md"
+                        : "bg-white text-slate-700 hover:bg-[#EEF2FF] border border-slate-200"
                     }`}
                   >
                     {category}
@@ -173,10 +174,10 @@ export default function PopularDestinations() {
           {filteredDestinations.map((item) => (
             <div
               key={item.id}
-              className="group relative flex flex-col overflow-hidden rounded-3xl bg-white border border-neutral-200/80 shadow-sm transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl"
+              className="group relative flex flex-col overflow-hidden rounded-3xl bg-white border border-slate-200/90 shadow-xs transition-all duration-300 hover:-translate-y-1.5 hover:shadow-xl hover:border-[#262A67]/40"
             >
               {/* Image Container */}
-              <div className="relative aspect-[16/11] w-full overflow-hidden bg-neutral-100">
+              <div className="relative aspect-[16/11] w-full overflow-hidden bg-slate-100">
                 <Image
                   src={item.image}
                   alt={item.name}
@@ -184,11 +185,11 @@ export default function PopularDestinations() {
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                   className="object-cover transition-transform duration-700 group-hover:scale-105"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/40 via-transparent to-transparent opacity-80" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent opacity-80" />
 
                 {/* Top Badges */}
                 <div className="absolute top-4 left-4 right-4 flex items-center justify-between">
-                  <span className="rounded-full bg-white/95 px-3 py-1 text-xs font-semibold text-neutral-800 shadow-sm backdrop-blur">
+                  <span className="rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-[#262A67] shadow-sm backdrop-blur border border-slate-100">
                     {item.tag}
                   </span>
 
@@ -198,76 +199,70 @@ export default function PopularDestinations() {
                       toggleFavorite(item.id);
                     }}
                     aria-label="Add to favorites"
-                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-neutral-800 backdrop-blur transition hover:bg-white hover:scale-110"
+                    className="flex h-9 w-9 items-center justify-center rounded-full bg-white/90 text-slate-700 shadow-sm backdrop-blur transition hover:scale-110 hover:text-[#EA2C2A]"
                   >
                     <Heart
                       size={16}
-                      className={favorites[item.id] ? "fill-rose-500 text-rose-500" : "text-neutral-700"}
+                      className={favorites[item.id] ? "fill-[#EA2C2A] text-[#EA2C2A]" : ""}
                     />
                   </button>
                 </div>
 
-                {/* Bottom Overlay Info on Image */}
-                <div className="absolute bottom-3 left-4 right-4 flex items-center justify-between text-white">
-                  <div className="flex items-center gap-1.5 rounded-full bg-black/50 px-3 py-1 text-xs backdrop-blur">
-                    <MapPin size={13} className="text-amber-300" />
-                    <span>{item.country}</span>
-                    <span>{item.flag}</span>
+                {/* Bottom Overlay Title */}
+                <div className="absolute bottom-4 left-4 right-4 flex items-end justify-between text-white">
+                  <div>
+                    <div className="flex items-center gap-1.5 text-xs font-semibold text-slate-200">
+                      <span>{item.flag}</span>
+                      <span>{item.country}</span>
+                    </div>
+                    <h3
+                      className="text-2xl font-bold tracking-tight text-white group-hover:text-[#EA2C2A] transition-colors"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      {item.name}
+                    </h3>
                   </div>
-                  <div className="flex items-center gap-1 rounded-full bg-amber-400 px-2.5 py-1 text-xs font-bold text-neutral-900">
-                    <Star size={12} fill="currentColor" strokeWidth={0} />
+
+                  <div className="flex items-center gap-1 rounded-full bg-white/90 px-2.5 py-1 text-xs font-bold text-[#262A67] backdrop-blur">
+                    <Star size={12} className="fill-[#EA2C2A] text-[#EA2C2A]" />
                     <span>{item.rating}</span>
-                    <span className="text-[10px] opacity-80">({item.reviewsCount})</span>
                   </div>
                 </div>
               </div>
 
               {/* Card Body */}
               <div className="flex flex-1 flex-col justify-between p-6">
-                <div>
-                  <div className="flex items-center justify-between">
-                    <h3
-                      className="text-2xl font-bold text-neutral-900"
-                      style={{ fontFamily: "var(--font-playfair)" }}
-                    >
-                      {item.name}
-                    </h3>
-                    <span className="rounded-full bg-neutral-100 px-3 py-1 text-xs font-medium text-neutral-600">
+                <p className="text-sm leading-relaxed text-slate-600 line-clamp-2">
+                  {item.description}
+                </p>
+
+                <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
+                  <div>
+                    <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
+                      Starting from
+                    </span>
+                    <p className="text-xl font-extrabold text-[#262A67]">
+                      {item.priceFrom}
+                      <span className="text-xs font-normal text-slate-500"> / person</span>
+                    </p>
+                  </div>
+
+                  <div className="flex items-center gap-3">
+                    <span className="rounded-full bg-[#EEF2FF] px-3 py-1 text-xs font-bold text-[#262A67]">
                       {item.toursCount}
                     </span>
+                    <Link
+                      href={`/locations/${item.id}`}
+                      className="flex h-10 w-10 items-center justify-center rounded-full bg-[#EA2C2A] text-white transition-transform duration-300 group-hover:scale-110 hover:bg-[#C82120] shadow-md"
+                      aria-label={`Explore ${item.name}`}
+                    >
+                      <ArrowUpRight size={17} strokeWidth={2.5} />
+                    </Link>
                   </div>
-                  <p className="mt-3 text-sm leading-relaxed text-neutral-500">
-                    {item.description}
-                  </p>
-                </div>
-
-                <div className="mt-6 flex items-center justify-between border-t border-dashed border-neutral-200 pt-4">
-                  <div>
-                    <span className="text-xs text-neutral-400 block">Starting from</span>
-                    <span className="text-lg font-bold text-neutral-900">{item.priceFrom}</span>
-                    <span className="text-xs font-normal text-neutral-400"> / person</span>
-                  </div>
-
-                  <button className="flex items-center gap-2 rounded-full bg-neutral-900 px-4 py-2 text-xs font-medium text-white transition hover:bg-neutral-800">
-                    Explore
-                    <span className="flex h-5 w-5 items-center justify-center rounded-full bg-white text-neutral-900">
-                      <ArrowUpRight size={12} strokeWidth={2.5} />
-                    </span>
-                  </button>
                 </div>
               </div>
             </div>
           ))}
-        </div>
-
-        {/* Section Footer CTA */}
-        <div className="mt-16 text-center">
-          <button className="inline-flex items-center gap-3 rounded-full bg-white border border-neutral-300 px-7 py-3.5 text-sm font-semibold text-neutral-900 shadow-sm transition hover:bg-neutral-100 hover:shadow-md">
-            View All 80+ Destinations
-            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-neutral-900 text-white">
-              <ArrowUpRight size={14} strokeWidth={2.5} />
-            </span>
-          </button>
         </div>
       </div>
     </section>
