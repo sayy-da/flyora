@@ -38,11 +38,30 @@ export default function Header({ transparent = false }: HeaderProps) {
           </button>
 
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-1 group">
-            <span className={`${caveat.className} text-3xl font-bold tracking-wide text-[#262A67] sm:text-4xl`}>
-              Flyora
+          <Link href="/" className="select-none flex flex-col items-center group">
+            <div className="flex items-center gap-2">
+              <svg
+                width="24"
+                height="20"
+                viewBox="0 0 32 28"
+                fill="none"
+                xmlns="http://www.w3.org/2000/svg"
+                className="shrink-0 transition-transform group-hover:-translate-y-0.5"
+              >
+                <path d="M 2 24 L 16 3 L 16 26 Z" fill={transparent ? "#FFFFFF" : "#0F172A"} />
+                <path d="M 16 3 L 30 24 L 20 18 Z" fill="#EA2C2A" />
+              </svg>
+              <span
+                className={`text-2xl sm:text-3xl font-extrabold tracking-tight font-sans ${
+                  transparent ? "text-white" : "text-[#0F172A]"
+                }`}
+              >
+                flyora
+              </span>
+            </div>
+            <span className="text-[7.5px] font-bold tracking-[0.28em] text-[#EA2C2A] uppercase -mt-0.5">
+              JOURNEYS BEYOND
             </span>
-            <Sparkles size={16} className="text-[#EA2C2A] -translate-y-1.5 transition-transform group-hover:rotate-12" fill="currentColor" />
           </Link>
 
           {/* Quick Nav Links for Desktop */}
