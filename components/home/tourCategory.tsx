@@ -6,65 +6,115 @@ import { useState } from "react";
 import { Sparkles, ArrowUpRight } from "lucide-react";
 
 const categories = [
-  { label: "Cultural Heritage", slug: "cultural", image: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?auto=format&fit=crop&w=800&q=80" },
-  { label: "Honeymoon & Luxury", slug: "honeymoon", image: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?auto=format&fit=crop&w=800&q=80" },
-  { label: "Nature & Wildlife", slug: "nature", image: "https://images.unsplash.com/photo-1537996194471-e657df975ab4?auto=format&fit=crop&w=800&q=80" },
+  {
+    label: "Nature",
+    slug: "nature",
+    image:
+      "https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    label: "Adventure",
+    slug: "adventure",
+    image:
+      "https://images.unsplash.com/photo-1504280390367-361c6d9f38f4?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    label: "Honeymoon",
+    slug: "honeymoon",
+    image:
+      "https://images.unsplash.com/photo-1518199266791-5375a83190b7?auto=format&fit=crop&w=800&q=80",
+  },
 ];
 
 export default function TourCategories() {
+  const [active, setActive] = useState(2);
+
   return (
-    <section className="relative overflow-hidden bg-white px-6 py-24 sm:py-32 border-b border-slate-100">
+    <section className="relative overflow-hidden bg-white px-6 pt-14 pb-24 sm:pt-20 sm:pb-32">
+      {/* Decorative postcard — top left */}
+      <div className="pointer-events-none absolute left-6 top-16 hidden -rotate-12 sm:block lg:left-20 lg:top-20">
+        <Image
+          src="/images/japan-stamp.png"
+          alt=""
+          width={200}
+          height={120}
+          className="drop-shadow-xl"
+        />
+      </div>
+
+      {/* Decorative postcard — top right */}
+      <div className="pointer-events-none absolute right-6 top-16 hidden rotate-12 sm:block lg:right-20 lg:top-20">
+        <Image
+          src="/images/paris-stamp.png"
+          alt=""
+          width={150}
+          height={100}
+          className="drop-shadow-xl"
+        />
+      </div>
+
       {/* Heading */}
-      <div className="mx-auto max-w-3xl text-center">
+      <div className="mx-auto max-w-2xl text-center">
         <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#EA2C2A] border border-[#EA2C2A]/20">
-          <Sparkles size={14} className="text-[#EA2C2A]" fill="currentColor" />
+         <img src="/images/flowericon.png" alt="" />
           Tour Categories
-          <Sparkles size={14} className="text-[#EA2C2A]" fill="currentColor" />
+          <img src="/images/flowericon.png" alt="" />
         </div>
 
         <h2
-          className="text-4xl leading-tight text-[#262A67] sm:text-6xl"
+          className="text-4xl leading-tight text-[#1B1B2F] sm:text-5xl"
           style={{ fontFamily: "var(--font-playfair)", fontWeight: 700 }}
         >
-          Discover <span className="italic font-medium text-[#EA2C2A]">Adventures</span>
+          Discover <span className="italic font-medium">Adventures</span>
           <br />
-          That Fit Your Style
+          That Fit You
         </h2>
-        <p className="mt-4 text-sm sm:text-base text-slate-600 max-w-lg mx-auto">
-          Explore curated tours categorized by your passion — from romantic coastal villas to cultural heritage sanctuaries.
-        </p>
       </div>
 
       {/* Category cards */}
-      <div className="mx-auto mt-16 flex max-w-5xl flex-col sm:flex-row items-center justify-center gap-8 sm:gap-12">
+      <div className="mx-auto mt-16 flex max-w-4xl flex-col items-center justify-center gap-10 sm:flex-row sm:gap-8">
         {categories.map((cat) => (
-          <Link key={cat.label} href={`/categories/${cat.slug}`} className="group flex flex-col items-center">
-            <div className="relative aspect-[3/4] w-48 sm:w-60 overflow-hidden rounded-3xl shadow-lg border-2 border-transparent transition-all duration-500 group-hover:border-[#EA2C2A] group-hover:shadow-2xl group-hover:-translate-y-2">
+          <Link
+            key={cat.label}
+            href={`/categories/${cat.slug}`}
+            className="group flex flex-col items-center gap-4"
+          >
+            <div className="relative aspect-[3/4] w-44 sm:w-56 overflow-hidden rounded-[999px] shadow-md transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
               <Image
                 src={cat.image}
                 alt={cat.label}
                 fill
                 className="object-cover transition-transform duration-700 group-hover:scale-110"
               />
-              <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
-              <div className="absolute bottom-4 left-4 right-4 flex items-center justify-between text-white">
-                <span className="text-sm font-bold">{cat.label}</span>
-                <div className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EA2C2A] text-white">
-                  <ArrowUpRight size={14} strokeWidth={2.5} />
-                </div>
-              </div>
             </div>
+            <span className="text-base font-bold text-[#1B1B2F]">{cat.label}</span>
           </Link>
         ))}
       </div>
 
-      <div className="mt-12 text-center">
+      {/* Carousel dots */}
+      <div className="mt-8 flex items-center justify-center gap-2">
+        {[0, 1, 2, 3, 4].map((i) => (
+          <button
+            key={i}
+            onClick={() => setActive(i)}
+            aria-label={`Go to slide ${i + 1}`}
+            className={`h-1.5 rounded-full transition-all duration-300 ${i === active ? "w-5 bg-[#1B1B2F]" : "w-1.5 bg-[#1B1B2F]/20"
+              }`}
+          />
+        ))}
+      </div>
+
+      {/* CTA */}
+      <div className="mt-8 text-center">
         <Link
           href="/categories"
-          className="inline-flex items-center gap-2 rounded-full bg-[#262A67] px-6 py-3 text-xs font-bold text-white transition hover:bg-[#1A1D4A] shadow-md uppercase tracking-wider"
+          className="inline-flex items-center gap-3 rounded-full bg-[#1B1B2F] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition hover:bg-[#EA2C2A]"
         >
           <span>View All Categories</span>
-          <ArrowUpRight size={15} />
+          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+            <ArrowUpRight size={15} />
+          </span>
         </Link>
       </div>
     </section>
