@@ -82,11 +82,14 @@ export default function TourPackages() {
             </p>
             <Link
               href="/tours"
-              className="flex items-center gap-2 whitespace-nowrap rounded-full bg-[#EA2C2A] px-5 py-2.5 text-sm font-bold text-white transition hover:bg-[#C82120] shadow-md"
+              className="btn-hover-slide flex items-center gap-2 whitespace-nowrap rounded-full bg-[#EA2C2A] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#C82120] shadow-md"
             >
-              <span>View All Tours</span>
+              <span className="btn-text-wrapper">
+                <span className="btn-text">View All Tours</span>
+                <span className="btn-text-clone">View All Tours</span>
+              </span>
               <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-[#EA2C2A]">
-                <ArrowUpRight size={13} strokeWidth={2.5} />
+                <ArrowUpRight size={13} strokeWidth={2.5} className="btn-arrow" />
               </span>
             </Link>
           </div>

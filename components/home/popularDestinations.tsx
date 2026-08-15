@@ -205,14 +205,16 @@ export default function PopularDestinations() {
                 ))}
               </div>
 
-              {/* View All Button */}
               <div className="mt-12 flex items-center justify-center">
                 <Link
                   href="/destinations"
-                  className="group inline-flex items-center gap-2 rounded-full bg-[#262A67] px-8 py-3 text-sm font-semibold text-white transition-all duration-300 hover:bg-[#262A67]/90 hover:shadow-lg"
+                  className="btn-hover-slide group inline-flex items-center gap-2 rounded-full bg-[#262A67] px-8 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#262A67]/90 hover:shadow-lg"
                 >
-                  View All Destinations
-                  <ArrowUpRight size={16} className="transition-transform group-hover:translate-x-1 group-hover:-translate-y-1" />
+                  <span className="btn-text-wrapper">
+                    <span className="btn-text">View All Destinations</span>
+                    <span className="btn-text-clone">View All Destinations</span>
+                  </span>
+                  <ArrowUpRight size={16} className="btn-arrow" />
                 </Link>
               </div>
             </>

@@ -67,3 +67,48 @@ body {
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
+
+/* ─── Slide-up text hover animation for CTA buttons ─── */
+.btn-hover-slide {
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-hover-slide .btn-text-wrapper {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  position: relative;
+  overflow: hidden;
+}
+
+.btn-hover-slide .btn-text {
+  display: inline-block;
+  transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.btn-hover-slide:hover .btn-text {
+  transform: translateY(-130%);
+}
+
+.btn-hover-slide .btn-text-clone {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: inline-block;
+  transform: translateY(130%);
+  transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.btn-hover-slide:hover .btn-text-clone {
+  transform: translateY(0);
+}
+
+/* Arrow icon rotation on hover */
+.btn-hover-slide .btn-arrow {
+  transition: transform 0.45s cubic-bezier(0.77, 0, 0.175, 1);
+}
+
+.btn-hover-slide:hover .btn-arrow {
+  transform: rotate(45deg);
+}

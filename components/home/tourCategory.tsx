@@ -72,24 +72,45 @@ export default function TourCategories() {
       </div>
 
       {/* Category cards */}
-      <div className="mx-auto mt-16 flex max-w-4xl flex-col items-center justify-center gap-10 sm:flex-row sm:gap-8">
-        {categories.map((cat) => (
-          <Link
-            key={cat.label}
-            href={`/categories/${cat.slug}`}
-            className="group flex flex-col items-center gap-4"
-          >
-            <div className="relative aspect-[3/4] w-44 sm:w-56 overflow-hidden rounded-[999px] shadow-md transition-all duration-500 group-hover:shadow-2xl group-hover:-translate-y-2">
-              <Image
-                src={cat.image}
-                alt={cat.label}
-                fill
-                className="object-cover transition-transform duration-700 group-hover:scale-110"
-              />
-            </div>
-            <span className="text-base font-bold text-[#1B1B2F]">{cat.label}</span>
-          </Link>
-        ))}
+      <div className="mx-auto mt-16 flex max-w-4xl flex-col items-center justify-center gap-10 sm:flex-row sm:items-center sm:gap-6 lg:gap-10">
+        {categories.map((cat, index) => {
+          const isCenter = index === 1;
+          return (
+            <Link
+              key={cat.label}
+              href={`/categories/${cat.slug}`}
+              className="group flex flex-col items-center gap-4"
+            >
+              <div
+                className={`relative overflow-hidden rounded-[999px] shadow-md transition-all duration-500 group-hover:shadow-2xl ${
+                  isCenter
+                    ? "aspect-[3/4.5] w-48 sm:w-60 lg:w-64"
+                    : "aspect-[3/4] w-40 sm:w-52 lg:w-56"
+                }`}
+              >
+                <Image
+                  src={cat.image}
+                  alt={cat.label}
+                  fill
+                  className="object-cover transition-transform duration-700 group-hover:scale-110"
+                />
+                {/* Hover overlay with arrow */}
+                <div className="absolute inset-0 flex items-center justify-center bg-white/40 backdrop-blur-sm opacity-0 transition-all duration-500 group-hover:opacity-100">
+                  <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white shadow-lg transition-transform duration-500 scale-75 group-hover:scale-100">
+                    <ArrowUpRight size={20} strokeWidth={2} className="text-[#1B1B2F]" />
+                  </span>
+                </div>
+              </div>
+              <span
+                className={`font-bold text-[#1B1B2F] transition-colors duration-300 group-hover:text-[#EA2C2A] ${
+                  isCenter ? "text-lg" : "text-base"
+                }`}
+              >
+                {cat.label}
+              </span>
+            </Link>
+          );
+        })}
       </div>
 
       {/* Carousel dots */}
@@ -109,11 +130,14 @@ export default function TourCategories() {
       <div className="mt-8 text-center">
         <Link
           href="/categories"
-          className="inline-flex items-center gap-3 rounded-full bg-[#1B1B2F] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition hover:bg-[#EA2C2A]"
+          className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#1B1B2F] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#EA2C2A]"
         >
-          <span>View All Categories</span>
+          <span className="btn-text-wrapper">
+            <span className="btn-text">View All Categories</span>
+            <span className="btn-text-clone">View All Categories</span>
+          </span>
           <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
-            <ArrowUpRight size={15} />
+            <ArrowUpRight size={15} className="btn-arrow" />
           </span>
         </Link>
       </div>

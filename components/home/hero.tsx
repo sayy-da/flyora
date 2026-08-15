@@ -82,10 +82,13 @@ export default function TravelioHero() {
           {/* Plan a Trip CTA */}
           <Link
             href="/customize"
-            className="flex items-center gap-2 rounded-full bg-[#EA2C2A] px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold text-white shadow-lg transition hover:bg-[#D42220] hover:scale-105 active:scale-95"
+            className="btn-hover-slide flex items-center gap-2 rounded-full bg-[#EA2C2A] px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold text-white shadow-lg transition-colors hover:bg-[#D42220]"
           >
-            Plan a Trip
-            <ArrowUpRight size={16} strokeWidth={2.25} />
+            <span className="btn-text-wrapper">
+              <span className="btn-text">Plan a Trip</span>
+              <span className="btn-text-clone">Plan a Trip</span>
+            </span>
+            <ArrowUpRight size={16} strokeWidth={2.25} className="btn-arrow" />
           </Link>
         </header>
 

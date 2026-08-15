@@ -86,10 +86,13 @@ export default function Header({ transparent = false }: HeaderProps) {
           {/* Plan a Trip CTA */}
           <Link
             href="/customize"
-            className="flex items-center gap-2 rounded-full bg-[#EA2C2A] px-4 py-2 text-xs font-bold text-white shadow-md transition hover:bg-[#C82120] sm:px-5 sm:py-2.5 sm:text-sm"
+            className="btn-hover-slide flex items-center gap-2 rounded-full bg-[#EA2C2A] px-4 py-2 text-xs font-bold text-white shadow-md transition-colors hover:bg-[#C82120] sm:px-5 sm:py-2.5 sm:text-sm"
           >
-            <span>Plan a Trip</span>
-            <ArrowUpRight size={15} strokeWidth={2.5} />
+            <span className="btn-text-wrapper">
+              <span className="btn-text">Plan a Trip</span>
+              <span className="btn-text-clone">Plan a Trip</span>
+            </span>
+            <ArrowUpRight size={15} strokeWidth={2.5} className="btn-arrow" />
           </Link>
         </div>
       </header>
