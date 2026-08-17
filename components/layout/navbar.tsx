@@ -40,11 +40,12 @@ export default function Navbar({ onClose }: NavbarProps) {
 
       {/* Top bar */}
       <div className="relative z-10 flex items-center justify-between px-6 pt-6 sm:px-10 sm:pt-8 max-w-[1600px] mx-auto">
-        <Link href="/" onClick={onClose} className="flex items-center gap-1">
-          <span className={`${caveat.className} text-4xl font-bold tracking-wide text-white`}>
-            Flyora
-          </span>
-          <Sparkles size={18} className="text-[#EA2C2A]" fill="currentColor" />
+        <Link href="/" onClick={onClose} className="flex items-center group">
+          <img
+            src="/images/light-logo.png"
+            alt="Flyora"
+            className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+          />
         </Link>
 
         <button

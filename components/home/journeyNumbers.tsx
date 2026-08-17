@@ -64,10 +64,10 @@ export default function JourneyNumbers() {
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px]">
         {/* Top Badge */}
-        <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full border border-slate-300/60 bg-white/90 px-4 py-1 text-xs font-semibold text-slate-800 shadow-xs backdrop-blur-sm">
-          <img src="/images/flowericon.png" alt="" className="h-3.5 w-3.5" />
-          <span>Our Journey in Numbers</span>
-          <img src="/images/flowericon.png" alt="" className="h-3.5 w-3.5" />
+        <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#262A67] border border-[#EA2C2A]/20">
+          <img src="/images/flowericon.png" alt="" width={17} height={17} />
+          Our Journey in Numbers
+          <img src="/images/flowericon.png" alt="" width={17} height={17} />
         </div>
 
         {/* Hero Giant Metric with Floating Avatars */}
@@ -90,7 +90,7 @@ export default function JourneyNumbers() {
           </div>
 
           {/* Giant Number */}
-          <h2 className="text-7xl font-extrabold tracking-tight text-[#0F172A] sm:text-8xl md:text-9xl font-sans leading-none">
+          <h2 className="text-7xl font-extrabold tracking-tight text-[#262A67] sm:text-8xl md:text-9xl font-sans leading-none">
             50,000+
           </h2>
         </div>
@@ -146,10 +146,14 @@ export default function JourneyNumbers() {
           </div>
         </div>
 
-        {/* Horizontal Photo Gallery Ribbon */}
-        <div className="mt-14 sm:mt-20 overflow-x-auto no-scrollbar px-6 pb-4">
-          <div className="flex items-center gap-4 sm:gap-5 min-w-max mx-auto">
-            {galleryPhotos.map((photo, idx) => (
+        {/* Horizontal Photo Gallery Ribbon - Continuous Moving Marquee */}
+        <div className="relative mt-14 sm:mt-20 overflow-hidden py-4">
+          {/* Subtle edge fade overlays for seamless entrance and exit */}
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-r from-[#FFFDEB] via-[#FFFDEB]/80 to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-l from-[#FFFDEB] via-[#FFFDEB]/80 to-transparent" />
+
+          <div className="animate-marquee-infinite flex items-center gap-4 sm:gap-6">
+            {[...galleryPhotos, ...galleryPhotos].map((photo, idx) => (
               <div
                 key={idx}
                 className="relative h-60 w-44 sm:h-72 sm:w-56 shrink-0 overflow-hidden rounded-3xl shadow-lg border border-white/90 transition-transform duration-500 hover:scale-105 hover:shadow-2xl"

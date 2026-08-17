@@ -46,14 +46,14 @@ export default function WhyChooseUs() {
       <div className="relative mx-auto max-w-[1400px]">
         {/* Section Header */}
         <div className="mx-auto mb-16 flex max-w-3xl flex-col items-center text-center">
-          <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-[#EA2C2A]/20 bg-[#FEF2F2] px-4 py-1.5 text-xs font-semibold text-[#EA2C2A] shadow-xs">
-            <img src="/images/flowericon.png" alt="" className="h-3.5 w-3.5" />
-            <span>The Flyora Distinction</span>
-            <img src="/images/flowericon.png" alt="" className="h-3.5 w-3.5" />
+          <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#262A67] border border-[#EA2C2A]/20">
+            <img src="/images/flowericon.png" alt="" width={17} height={17} />
+            The Flyora Distinction
+            <img src="/images/flowericon.png" alt="" width={17} height={17} />
           </div>
 
           <h2
-            className="text-4xl font-bold leading-tight text-[#0F172A] sm:text-5xl lg:text-6xl tracking-tight"
+            className="text-4xl font-bold leading-tight text-[#262A67] sm:text-5xl lg:text-6xl tracking-tight"
             style={{ fontFamily: "var(--font-playfair)" }}
           >
             Why Discerning Travelers{" "}

@@ -61,10 +61,10 @@ export default function PopularDestinations() {
         {/* Section Header */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
           <div>
-            <div className="mb-4 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-4 py-1.5 text-xs font-semibold text-[#EA2C2A] border border-[#EA2C2A]/20">
-              <Sparkles size={13} className="text-[#EA2C2A]" fill="currentColor" />
+            <div className="mb-4 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#262A67] border border-[#EA2C2A]/20">
+              <img src="/images/flowericon.png" alt="icon" width={17} height={17} />
               Popular Destinations
-              <Sparkles size={13} className="text-[#EA2C2A]" fill="currentColor" />
+              <img src="/images/flowericon.png" alt="icon" width={17} height={17} />
             </div>
             <h2
               className="text-4xl leading-tight text-[#262A67] sm:text-5xl lg:text-6xl"
@@ -88,11 +88,10 @@ export default function PopularDestinations() {
                   <button
                     key={category}
                     onClick={() => setActiveCategory(category)}
-                    className={`rounded-full px-4 py-2 text-xs font-semibold transition-all sm:text-sm ${
-                      isActive
-                        ? "bg-[#262A67] text-white shadow-md"
-                        : "bg-white text-slate-700 hover:bg-[#EEF2FF] border border-slate-200"
-                    }`}
+                    className={`rounded-full px-4 py-2 text-xs font-semibold transition-all sm:text-sm ${isActive
+                      ? "bg-[#262A67] text-white shadow-md"
+                      : "bg-white text-slate-700 hover:bg-[#EEF2FF] border border-slate-200"
+                      }`}
                   >
                     {category}
                   </button>
@@ -208,13 +207,16 @@ export default function PopularDestinations() {
               <div className="mt-12 flex items-center justify-center">
                 <Link
                   href="/destinations"
-                  className="btn-hover-slide group inline-flex items-center gap-2 rounded-full bg-[#262A67] px-8 py-3 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#262A67]/90 hover:shadow-lg"
+                  className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
                 >
                   <span className="btn-text-wrapper">
                     <span className="btn-text">View All Destinations</span>
                     <span className="btn-text-clone">View All Destinations</span>
                   </span>
-                  <ArrowUpRight size={16} className="btn-arrow" />
+
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+                    <ArrowUpRight size={15} className="btn-arrow" />
+                  </span>
                 </Link>
               </div>
             </>

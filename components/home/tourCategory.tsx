@@ -55,17 +55,17 @@ export default function TourCategories() {
 
       {/* Heading */}
       <div className="mx-auto max-w-2xl text-center">
-        <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#EA2C2A] border border-[#EA2C2A]/20">
-         <img src="/images/flowericon.png" alt="" />
+        <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#262A67] border border-[#EA2C2A]/20">
+          <img src="/images/flowericon.png" alt="" width={17} height={17} />
           Tour Categories
-          <img src="/images/flowericon.png" alt="" />
+          <img src="/images/flowericon.png" alt="" width={17} height={17} />
         </div>
 
         <h2
-          className="text-4xl leading-tight text-[#1B1B2F] sm:text-5xl"
+          className="text-4xl leading-tight text-[#262A67] sm:text-5xl"
           style={{ fontFamily: "var(--font-playfair)", fontWeight: 700 }}
         >
-          Discover <span className="italic font-medium">Adventures</span>
+          Discover <span className="italic font-medium text-[#EA2C2A]">Adventures</span>
           <br />
           That Fit You
         </h2>
@@ -82,11 +82,10 @@ export default function TourCategories() {
               className="group flex flex-col items-center gap-4"
             >
               <div
-                className={`relative overflow-hidden rounded-[999px] shadow-md transition-all duration-500 group-hover:shadow-2xl ${
-                  isCenter
+                className={`relative overflow-hidden rounded-[999px] shadow-md transition-all duration-500 group-hover:shadow-2xl ${isCenter
                     ? "aspect-[3/4.5] w-48 sm:w-60 lg:w-64"
                     : "aspect-[3/4] w-40 sm:w-52 lg:w-56"
-                }`}
+                  }`}
               >
                 <Image
                   src={cat.image}
@@ -102,9 +101,8 @@ export default function TourCategories() {
                 </div>
               </div>
               <span
-                className={`font-bold text-[#1B1B2F] transition-colors duration-300 group-hover:text-[#EA2C2A] ${
-                  isCenter ? "text-lg" : "text-base"
-                }`}
+                className={`font-bold text-[#1B1B2F] transition-colors duration-300 group-hover:text-[#EA2C2A] ${isCenter ? "text-lg" : "text-base"
+                  }`}
               >
                 {cat.label}
               </span>
@@ -127,10 +125,10 @@ export default function TourCategories() {
       </div>
 
       {/* CTA */}
-      <div className="mt-8 text-center">
+      <div className="mt-12 flex items-center justify-center">
         <Link
           href="/categories"
-          className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#1B1B2F] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors hover:bg-[#EA2C2A]"
+          className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
         >
           <span className="btn-text-wrapper">
             <span className="btn-text">View All Categories</span>

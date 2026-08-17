@@ -1,178 +1,292 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import Image from "next/image";
 import Link from "next/link";
-import { ChevronLeft, ChevronRight, ArrowUpRight, Star } from "lucide-react";
+import { ChevronLeft, ChevronRight, ArrowUpRight, Settings } from "lucide-react";
 
-interface Testimonial {
+interface Destination {
   id: string;
   name: string;
-  role: string;
-  location: string;
-  avatar: string;
-  tourImage: string;
-  rating: number;
-  tourName: string;
-  countryTag: string;
+  description: string;
+  region: string;
+  image: string;
   flag: string;
-  quote: string;
-  highlight: string;
 }
 
-const testimonials: Testimonial[] = [
+const destinations: Destination[] = [
   {
     id: "1",
-    name: "Elena Rostova",
-    role: "Architect & Explorer",
-    location: "Toronto, Canada",
-    avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=400&auto=format&fit=crop",
-    tourImage: "https://images.unsplash.com/photo-1493976040374-85c8e12f0c0e?q=80&w=800&auto=format&fit=crop",
-    rating: 5,
-    tourName: "Japan",
-    countryTag: "Asia · East Asia",
-    flag: "🇯🇵",
-    quote:
-      "Quiet temples, neon-lit streets and seasons shifting in perfect harmony. Flyora curated an absolute dream itinerary for Kyoto. Every boutique tea house and private guide was top-notch.",
-    highlight: "An absolute dream itinerary!",
+    name: "Iceland",
+    description: "Glaciers, black sand coasts and northern lights across skies.",
+    region: "Europe · Nordic Region",
+    image:
+      "https://images.unsplash.com/photo-1531168556467-80aace0d0144?q=80&w=1200&auto=format&fit=crop",
+    flag: "🇮🇸",
   },
   {
     id: "2",
-    name: "Marcus & Sarah Vance",
-    role: "Honeymooners",
-    location: "London, UK",
-    avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=400&auto=format&fit=crop",
-    tourImage: "https://images.unsplash.com/photo-1570077188670-e3a8d69ac5ff?q=80&w=800&auto=format&fit=crop",
-    rating: 5,
-    tourName: "Santorini",
-    countryTag: "Europe · Greece",
-    flag: "🇬🇷",
-    quote:
-      "From the private sunset yacht cruise in Oia to cliffside wine tastings, everything was handled seamlessly without a single stress. The most romantic trip of our lives.",
-    highlight: "Seamless and stress-free honeymoon!",
+    name: "Norway",
+    description: "Fjord-carved coastlines and midnight sun over quiet villages.",
+    region: "Europe · Nordic Region",
+    image:
+      "https://images.unsplash.com/photo-1601439678777-b2b3c56fa42d?q=80&w=1200&auto=format&fit=crop",
+    flag: "🇳🇴",
   },
   {
     id: "3",
-    name: "David K. Mitchell",
-    role: "Adventure Photographer",
-    location: "New York, USA",
-    avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=400&auto=format&fit=crop",
-    tourImage: "https://images.unsplash.com/photo-1539037116277-4db20889f2d4?q=80&w=800&auto=format&fit=crop",
-    rating: 5,
-    tourName: "Morocco",
-    countryTag: "Africa · North Africa",
-    flag: "🇲🇦",
-    quote:
-      "Camping under the Sahara stars and driving through the Atlas mountains was unforgettable. Flyora's local guides were genuine experts who knew every hidden spot.",
-    highlight: "Unforgettable local experiences!",
+    name: "Peru",
+    description: "Ancient citadels above the clouds and Andean trails winding below.",
+    region: "South America · Andes",
+    image:
+      "https://images.unsplash.com/photo-1526392060635-9d6019884377?q=80&w=1200&auto=format&fit=crop",
+    flag: "🇵🇪",
   },
   {
     id: "4",
-    name: "Sophia Chen",
-    role: "Solo Traveler",
-    location: "Singapore",
-    avatar: "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=400&auto=format&fit=crop",
-    tourImage: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=800&auto=format&fit=crop",
-    rating: 5,
-    tourName: "Switzerland",
-    countryTag: "Europe · Swiss Alps",
-    flag: "🇨🇭",
-    quote:
-      "The Glacier Express seat allocation and Zermatt chalet booking were flawless. 10/10 level of luxury travel coordination and solo safety.",
-    highlight: "Flawless luxury coordination!",
+    name: "Morocco",
+    description: "Sahara dunes at dawn and lantern-lit medinas after dark.",
+    region: "Africa · North Africa",
+    image:
+      "https://images.unsplash.com/photo-1489493585363-d69421e0edd3?q=80&w=1200&auto=format&fit=crop",
+    flag: "🇲🇦",
+  },
+  {
+    id: "5",
+    name: "Vietnam",
+    description: "Emerald rice terraces and limestone bays drifting into mist.",
+    region: "Asia · Southeast Asia",
+    image:
+      "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1200&auto=format&fit=crop",
+    flag: "🇻🇳",
   },
 ];
 
-export default function Testimonials() {
+// -----------------------------------------------------------------------
+// Rotating flag ellipse — the dotted ellipse and flags orbit along
+// an elliptical path showing the bottom half of the ellipse across the
+// top background of the section.
+// -----------------------------------------------------------------------
+
+const FLAG_RING = ["🇮🇸", "🇳🇴", "🇵🇪", "🇲🇦", "🇻🇳", "🇯🇵", "🇬🇷", "🇨🇭", "🇰🇷", "🇵🇹"];
+
+const RING_AUTO_SPEED = 12; // degrees per second
+const RING_RESUME_DELAY = 6000; // ms of inactivity before auto-rotate resumes after a click
+const CENTER_Y = 12; // px from top of container — positions the upper half out of view so half ellipse is shown
+
+function RotatingFlagArc() {
+  const containerRef = useRef<HTMLDivElement>(null);
+  const ellipseSvgRef = useRef<SVGEllipseElement>(null);
+  const svgWrapRef = useRef<SVGSVGElement>(null);
+  const flagRefs = useRef<(HTMLDivElement | null)[]>([]);
+
+  const pivotXRef = useRef(0);
+  const radiusXRef = useRef(480);
+  const radiusYRef = useRef(140);
+  const rotationRef = useRef(0);
+  const rafRef = useRef<number | null>(null);
+  const lastTimeRef = useRef<number | null>(null);
+  const pausedRef = useRef(false);
+  const resumeTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  const angleStep = 360 / FLAG_RING.length;
+
+  const layout = useCallback(() => {
+    const container = containerRef.current;
+    if (!container) return;
+    const width = container.offsetWidth;
+    pivotXRef.current = width / 2;
+
+    const rx = Math.min(500, Math.max(160, (width - 40) / 2));
+    const ry = Math.min(150, Math.max(65, rx * 0.32));
+    radiusXRef.current = rx;
+    radiusYRef.current = ry;
+
+    if (svgWrapRef.current) {
+      svgWrapRef.current.style.left = `${pivotXRef.current - rx}px`;
+      svgWrapRef.current.style.top = `${CENTER_Y - ry}px`;
+      svgWrapRef.current.style.width = `${rx * 2}px`;
+      svgWrapRef.current.style.height = `${ry * 2}px`;
+    }
+  }, []);
+
+  const tick = useCallback(
+    (time: number) => {
+      if (lastTimeRef.current == null) lastTimeRef.current = time;
+      const dt = (time - lastTimeRef.current) / 1000;
+      lastTimeRef.current = time;
+
+      if (!pausedRef.current) {
+        rotationRef.current = (rotationRef.current + RING_AUTO_SPEED * dt) % 360;
+      }
+      const rotation = rotationRef.current;
+      const pivotX = pivotXRef.current;
+      const rx = radiusXRef.current;
+      const ry = radiusYRef.current;
+
+      // Sync SVG dashed stroke offset with ellipse rotation
+      if (ellipseSvgRef.current) {
+        const perimeter = Math.PI * (3 * (rx + ry) - Math.sqrt((3 * rx + ry) * (rx + 3 * ry)));
+        ellipseSvgRef.current.style.strokeDashoffset = `${-((rotation / 360) * perimeter)}px`;
+      }
+
+      flagRefs.current.forEach((el, i) => {
+        if (!el) return;
+        const angleDeg = (i * angleStep + rotation) % 360;
+        const rad = (angleDeg * Math.PI) / 180;
+        const x = rx * Math.cos(rad);
+        const y = ry * Math.sin(rad);
+
+        // Position on the ellipse
+        el.style.transform = `translate(${pivotX + x}px, ${CENTER_Y + y}px) translate(-50%, -50%)`;
+
+        // Smoothly fade flags at the top boundary so only the half ellipse arc is prominent
+        if (y < -15) {
+          el.style.opacity = "0";
+          el.style.pointerEvents = "none";
+        } else {
+          const opacity = Math.min(1, (y + 15) / 30);
+          el.style.opacity = String(opacity);
+          el.style.pointerEvents = opacity > 0.5 ? "auto" : "none";
+        }
+
+        // Highlight flag nearest the lowest point of the half ellipse (bottom center, 90 deg)
+        const normalized = ((angleDeg - 90 + 540) % 360) - 180;
+        el.dataset.active = Math.abs(normalized) < angleStep / 2 ? "true" : "false";
+      });
+
+      rafRef.current = requestAnimationFrame(tick);
+    },
+    [angleStep]
+  );
+
+  useEffect(() => {
+    layout();
+    rafRef.current = requestAnimationFrame(tick);
+
+    const handleResize = () => layout();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      if (rafRef.current) cancelAnimationFrame(rafRef.current);
+      if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+      window.removeEventListener("resize", handleResize);
+    };
+  }, [tick, layout]);
+
+  const pauseThenResume = () => {
+    pausedRef.current = true;
+    if (resumeTimeoutRef.current) clearTimeout(resumeTimeoutRef.current);
+    resumeTimeoutRef.current = setTimeout(() => {
+      pausedRef.current = false;
+      lastTimeRef.current = null;
+    }, RING_RESUME_DELAY);
+  };
+
+  return (
+    <div
+      ref={containerRef}
+      className="pointer-events-none absolute left-0 right-0 top-6 z-0 mx-auto max-w-5xl overflow-hidden"
+      style={{ height: 210 }}
+    >
+      {/* Dashed ellipse line */}
+      <svg
+        ref={svgWrapRef}
+        className="absolute opacity-60 pointer-events-none"
+        fill="none"
+      >
+        <ellipse
+          ref={ellipseSvgRef}
+          cx="50%"
+          cy="50%"
+          rx="50%"
+          ry="50%"
+          stroke="#D9BCA6"
+          strokeWidth={1.5}
+          strokeDasharray="4 6"
+        />
+      </svg>
+
+      {/* Orbiting Flags along the ellipse */}
+      {FLAG_RING.map((flag, i) => (
+        <div
+          key={i}
+          ref={(el) => {
+            flagRefs.current[i] = el;
+          }}
+          onClick={pauseThenResume}
+          className="pointer-events-auto absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/60 bg-white text-base shadow-md transition-[width,height,box-shadow,border-color,opacity] duration-300 data-[active=true]:h-11 data-[active=true]:w-11 data-[active=true]:border-2 data-[active=true]:border-[#EA2C2A] data-[active=true]:shadow-lg cursor-pointer select-none"
+        >
+          {flag}
+        </div>
+      ))}
+    </div>
+  );
+}
+
+// -----------------------------------------------------------------------
+// Destination carousel — unrelated to the flag ring above, keeps its own
+// auto-advance + pause/resume-after-6s behavior independently.
+// -----------------------------------------------------------------------
+
+const CAROUSEL_AUTO_INTERVAL = 4500; // ms between automatic advances
+const CAROUSEL_RESUME_DELAY = 6000; // ms of inactivity before auto-advance resumes
+
+export default function TopDestinations() {
   const [activeIndex, setActiveIndex] = useState(0);
+  const autoTimer = useRef<ReturnType<typeof setInterval> | null>(null);
+  const resumeTimer = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const handleNext = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  const startAuto = useCallback(() => {
+    if (autoTimer.current) clearInterval(autoTimer.current);
+    autoTimer.current = setInterval(() => {
+      setActiveIndex((prev) => (prev + 1) % destinations.length);
+    }, CAROUSEL_AUTO_INTERVAL);
+  }, []);
+
+  const pauseThenResume = useCallback(() => {
+    if (autoTimer.current) clearInterval(autoTimer.current);
+    if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    resumeTimer.current = setTimeout(startAuto, CAROUSEL_RESUME_DELAY);
+  }, [startAuto]);
+
+  useEffect(() => {
+    startAuto();
+    return () => {
+      if (autoTimer.current) clearInterval(autoTimer.current);
+      if (resumeTimer.current) clearTimeout(resumeTimer.current);
+    };
+  }, [startAuto]);
+
+  const goTo = (index: number) => {
+    setActiveIndex(((index % destinations.length) + destinations.length) % destinations.length);
+    pauseThenResume();
   };
 
-  const handlePrev = () => {
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
-  };
+  const handleNext = () => goTo(activeIndex + 1);
+  const handlePrev = () => goTo(activeIndex - 1);
 
-  const current = testimonials[activeIndex];
+  const current = destinations[activeIndex];
 
   return (
     <section className="relative overflow-hidden bg-[#FDF0E7] px-6 py-20 sm:px-10 sm:py-28 lg:px-16 text-slate-900 select-none">
-      {/* Curved dotted arc line in top background */}
-      <div className="pointer-events-none absolute left-0 right-0 top-12 z-0 flex justify-center opacity-60">
-        <svg
-          width="1200"
-          height="220"
-          viewBox="0 0 1200 220"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full max-w-5xl"
-        >
-          <path
-            d="M 50 40 Q 600 240 1150 40"
-            stroke="#D9BCA6"
-            strokeWidth="1.5"
-            strokeDasharray="4 6"
-          />
-        </svg>
-      </div>
-
-      {/* Floating country flags along the arc */}
-      <div className="pointer-events-none absolute left-0 right-0 top-14 z-0 mx-auto flex max-w-4xl justify-between px-12 sm:px-24">
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md text-base border border-slate-200/60 -rotate-12 translate-y-2">
-          🇲🇦
-        </div>
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md text-base border border-slate-200/60 rotate-6 translate-y-12">
-          🇮🇸
-        </div>
-        {/* Center Japan flag with red dot ring */}
-        <div className="relative flex h-11 w-11 items-center justify-center rounded-full bg-white shadow-lg border-2 border-[#EA2C2A] translate-y-20">
-          <span className="h-4 w-4 rounded-full bg-[#EA2C2A]" />
-        </div>
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md text-base border border-slate-200/60 -rotate-6 translate-y-12">
-          🇳🇴
-        </div>
-        <div className="flex h-9 w-9 items-center justify-center rounded-full bg-white shadow-md text-base border border-slate-200/60 rotate-12 translate-y-2">
-          🇵🇰
-        </div>
-      </div>
-
-      {/* Decorative Stamp — Bottom Left */}
-      <div className="pointer-events-none absolute left-4 bottom-8 hidden -rotate-12 sm:block lg:left-12 lg:bottom-16 z-10 opacity-90">
-        <Image
-          src="/images/japan-stamp.png"
-          alt="London stamp"
-          width={170}
-          height={120}
-          className="drop-shadow-lg"
-        />
-      </div>
-
-      {/* Decorative Stamp — Right */}
-      <div className="pointer-events-none absolute right-4 top-1/3 hidden rotate-12 sm:block lg:right-12 z-10 opacity-90">
-        <Image
-          src="/images/paris-stamp.png"
-          alt="Arrived stamp"
-          width={150}
-          height={100}
-          className="drop-shadow-lg"
-        />
-      </div>
+      {/* Fixed, continuously rotating flag ring (line + flags rotate together) — independent of the destination cards below */}
+      <RotatingFlagArc />
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px]">
         {/* Section Header */}
         <div className="mx-auto mb-12 max-w-3xl text-center">
-          <div className="mx-auto mb-4 inline-flex items-center gap-2 rounded-full border border-slate-300/70 bg-white/80 px-4 py-1 text-xs font-semibold text-slate-800 shadow-xs backdrop-blur-sm">
-            <img src="/images/flowericon.png" alt="" className="h-3.5 w-3.5" />
-            <span>Traveler Voices</span>
-            <img src="/images/flowericon.png" alt="" className="h-3.5 w-3.5" />
+          <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#262A67] border border-[#EA2C2A]/20">
+            <img src="/images/flowericon.png" alt="" width={17} height={17} />
+            Top Destinations
+            <img src="/images/flowericon.png" alt="" width={17} height={17} />
           </div>
 
           <h2
-            className="text-4xl font-bold leading-tight text-[#0F172A] sm:text-5xl lg:text-6xl tracking-tight"
-            style={{ fontFamily: "var(--font-playfair)" }}
+            className="text-4xl font-bold leading-tight text-[#262A67] sm:text-5xl lg:text-6xl tracking-tight"
+            style={{ fontFamily: "var(--font-playfair)", fontWeight: 700 }}
           >
-            Traveler <span className="italic font-medium text-[#EA2C2A]">Voices</span>
+            Top <span className="italic font-medium text-[#EA2C2A]">Destinations</span>
             <br />
             This Season
           </h2>
@@ -183,7 +297,7 @@ export default function Testimonials() {
           {/* Left Arrow Button */}
           <button
             onClick={handlePrev}
-            aria-label="Previous story"
+            aria-label="Previous destination"
             className="absolute -left-4 sm:-left-6 z-20 flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white text-slate-800 shadow-lg border border-slate-200/80 transition-transform duration-300 hover:scale-110 hover:border-[#EA2C2A] active:scale-95"
           >
             <ChevronLeft size={20} strokeWidth={2.25} />
@@ -195,8 +309,8 @@ export default function Testimonials() {
               {/* Card Image */}
               <div className="relative w-full md:w-1/2 min-h-[260px] md:min-h-[340px] overflow-hidden bg-slate-100">
                 <Image
-                  src={current.tourImage}
-                  alt={current.tourName}
+                  src={current.image}
+                  alt={current.name}
                   fill
                   priority
                   className="object-cover transition-transform duration-700 hover:scale-105"
@@ -207,60 +321,30 @@ export default function Testimonials() {
               <div className="flex w-full md:w-1/2 flex-col justify-between p-6 sm:p-8 lg:p-10 text-left">
                 <div>
                   <h3 className="text-3xl font-bold text-[#0F172A] tracking-tight mb-2">
-                    {current.tourName}
+                    {current.name}
                   </h3>
 
-                  <p className="text-xs sm:text-sm text-slate-600 leading-relaxed mb-4">
-                    {current.quote}
+                  <p className="text-sm text-slate-600 leading-relaxed mb-4">
+                    {current.description}
                   </p>
 
-                  <div className="mb-6 flex items-center justify-between">
-                    <span className="text-xs font-semibold text-slate-500">
-                      {current.countryTag}
-                    </span>
-                    <div className="flex items-center gap-1">
-                      {Array.from({ length: current.rating }).map((_, i) => (
-                        <Star key={i} size={13} className="fill-[#EA2C2A] text-[#EA2C2A]" />
-                      ))}
-                    </div>
-                  </div>
+                  <span className="text-xs font-semibold text-slate-500">{current.region}</span>
                 </div>
 
-                {/* Traveler Info & CTA Button */}
-                <div className="flex flex-col gap-4 pt-4 border-t border-slate-100">
-                  <div className="flex items-center gap-3">
-                    <div className="relative h-10 w-10 overflow-hidden rounded-full border border-[#EA2C2A]/40 shrink-0 shadow-xs">
-                      <Image
-                        src={current.avatar}
-                        alt={current.name}
-                        fill
-                        className="object-cover"
-                      />
-                    </div>
-                    <div>
-                      <h4 className="text-sm font-bold text-[#0F172A] leading-none">
-                        {current.name}
-                      </h4>
-                      <p className="mt-1 text-[11px] text-slate-500 font-medium">
-                        {current.role} · {current.location}
-                      </p>
-                    </div>
-                  </div>
+                <div className="mt-6">
+                  <Link
+                    href={`/tours/${current.id}`}
+                    className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
+                  >
+                    <span className="btn-text-wrapper">
+                      <span className="btn-text">Explore All Tours</span>
+                      <span className="btn-text-clone">Explore All Tours</span>
+                    </span>
 
-                  <div className="mt-2">
-                    <Link
-                      href="/stories"
-                      className="btn-hover-slide inline-flex items-center gap-2 rounded-full bg-[#0F172A] px-5 py-2.5 text-xs font-bold text-white transition-colors hover:bg-[#EA2C2A] shadow-md"
-                    >
-                      <span className="btn-text-wrapper">
-                        <span className="btn-text">Read Traveler Story</span>
-                        <span className="btn-text-clone">Read Traveler Story</span>
-                      </span>
-                      <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-[#0F172A]">
-                        <ArrowUpRight size={13} strokeWidth={2.5} className="btn-arrow" />
-                      </span>
-                    </Link>
-                  </div>
+                    <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+                      <ArrowUpRight size={15} className="btn-arrow" />
+                    </span>
+                  </Link>
                 </div>
               </div>
             </div>
@@ -269,38 +353,45 @@ export default function Testimonials() {
           {/* Right Arrow Button */}
           <button
             onClick={handleNext}
-            aria-label="Next story"
+            aria-label="Next destination"
             className="absolute -right-4 sm:-right-6 z-20 flex h-11 w-11 sm:h-12 sm:w-12 items-center justify-center rounded-full bg-white text-slate-800 shadow-lg border border-slate-200/80 transition-transform duration-300 hover:scale-110 hover:border-[#EA2C2A] active:scale-95"
           >
             <ChevronRight size={20} strokeWidth={2.25} />
           </button>
         </div>
 
+        {/* Dot indicators */}
+        <div className="mt-6 flex items-center justify-center gap-2">
+          {destinations.map((dest, i) => (
+            <button
+              key={dest.id}
+              onClick={() => goTo(i)}
+              aria-label={`Go to ${dest.name}`}
+              className={`h-1.5 rounded-full transition-all duration-300 ${i === activeIndex ? "w-6 bg-[#EA2C2A]" : "w-1.5 bg-slate-300 hover:bg-slate-400"
+                }`}
+            />
+          ))}
+        </div>
+
         {/* Paragraph Description below card */}
-        <p className="mx-auto mt-10 max-w-xl text-center text-xs sm:text-sm text-slate-600 leading-relaxed">
-          From mist-wrapped mountain trails to sun-drenched coastal villages — hand-selected destinations that offer experiences lasting long after you return.
+        <p className="mx-auto mt-8 max-w-xl text-center text-xs sm:text-sm text-slate-600 leading-relaxed">
+          From mist-wrapped mountain trails to sun-drenched coastal villages — hand-selected
+          destinations that offer experiences lasting long after you return.
         </p>
 
-        {/* Bottom CTA Pill Badge with Overlapping Country Flags */}
-        <div className="mt-8 flex justify-center">
+        {/* Bottom CTA Button with overlapping flag avatars */}
+        <div className="mt-10 flex items-center justify-center">
           <Link
-            href="/stories"
-            className="group flex items-center gap-3 rounded-full bg-white px-5 py-2.5 shadow-md border border-slate-200/80 transition-all duration-300 hover:shadow-xl hover:border-[#EA2C2A]/40 hover:scale-105"
+            href="/locations"
+            className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
           >
-            {/* Overlapping flag avatars */}
-            <div className="flex -space-x-2">
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs border border-white shadow-xs">
-                🇺🇸
-              </span>
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs border border-white shadow-xs">
-                🇨🇦
-              </span>
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs border border-white shadow-xs">
-                🇸🇬
-              </span>
-            </div>
-            <span className="text-xs font-bold text-[#0F172A] group-hover:text-[#EA2C2A] transition-colors">
-              View All Traveler Stories
+            <span className="btn-text-wrapper">
+              <span className="btn-text">View All Locations</span>
+              <span className="btn-text-clone">View All Locations</span>
+            </span>
+
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+              <ArrowUpRight size={15} className="btn-arrow" />
             </span>
           </Link>
         </div>
@@ -308,4 +399,3 @@ export default function Testimonials() {
     </section>
   );
 }
-

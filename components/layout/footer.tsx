@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { Instagram, Linkedin } from "lucide-react";
+import { Instagram, Linkedin, ArrowUpRight } from "lucide-react";
 
 const countryBadges = [
   { flag: "🇯🇵", name: "Japan", slug: "japan" },
@@ -55,11 +55,15 @@ export default function Footer() {
             />
             <button
               type="submit"
-              className="btn-hover-slide flex items-center gap-2 rounded-full bg-[#1E293B] px-6 py-2.5 text-xs font-bold text-white shadow-md transition hover:bg-[#0F172A]"
+              className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
             >
               <span className="btn-text-wrapper">
                 <span className="btn-text">Subscribe Now!</span>
                 <span className="btn-text-clone">Subscribe Now!</span>
+              </span>
+
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+                <ArrowUpRight size={15} className="btn-arrow" />
               </span>
             </button>
           </form>
@@ -76,26 +80,12 @@ export default function Footer() {
         <div className="grid grid-cols-1 gap-12 sm:grid-cols-2 lg:grid-cols-5 pb-12">
           {/* Column 1: Brand Info & Country Badges */}
           <div className="lg:col-span-2">
-            <Link href="/" className="select-none flex items-center gap-2 group w-fit">
-              <svg
-                width="28"
-                height="24"
-                viewBox="0 0 32 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="shrink-0 transition-transform group-hover:-translate-y-0.5"
-              >
-                <path d="M 2 24 L 16 3 L 16 26 Z" fill="#FFFFFF" />
-                <path d="M 16 3 L 30 24 L 20 18 Z" fill="#EA2C2A" />
-              </svg>
-              <div className="flex flex-col">
-                <span className="text-3xl font-extrabold tracking-tight text-white font-sans leading-none">
-                  flyora
-                </span>
-                <span className="text-[7.5px] font-bold tracking-[0.28em] text-[#EA2C2A] uppercase mt-0.5">
-                  JOURNEYS BEYOND
-                </span>
-              </div>
+            <Link href="/" className="select-none flex items-center group w-fit">
+              <img
+                src="/images/light-logo.png"
+                alt="Flyora"
+                className="h-11 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+              />
             </Link>
 
             <p className="mt-4 max-w-sm text-xs sm:text-sm text-slate-300 leading-relaxed font-normal">
@@ -120,10 +110,16 @@ export default function Footer() {
             <div className="mt-4">
               <Link
                 href="/locations"
-                className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-1.5 text-xs font-bold text-slate-900 shadow-md transition hover:bg-slate-100 hover:scale-105"
+                className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
               >
-                <span className="h-2 w-2 rounded-full bg-[#EA2C2A]" />
-                <span>View all Locations</span>
+                <span className="btn-text-wrapper">
+                  <span className="btn-text">View All Locations</span>
+                  <span className="btn-text-clone">View All Locations</span>
+                </span>
+
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+                  <ArrowUpRight size={15} className="btn-arrow" />
+                </span>
               </Link>
             </div>
           </div>
@@ -217,27 +213,13 @@ export default function Footer() {
         <div className="my-10 py-10 text-center border-t border-b border-dashed border-white/20 overflow-hidden">
           <Link
             href="/"
-            className="group inline-flex flex-col items-center opacity-50 transition-all duration-700 hover:opacity-100 hover:scale-[1.02]"
+            className="group inline-flex items-center justify-center opacity-60 transition-all duration-700 hover:opacity-100 hover:scale-[1.02]"
           >
-            <div className="flex items-center gap-4 sm:gap-6 md:gap-8">
-              <svg
-                width="64"
-                height="56"
-                viewBox="0 0 32 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="shrink-0 sm:w-20 sm:h-18 md:w-28 md:h-24 transition-transform duration-500 group-hover:-translate-y-1"
-              >
-                <path d="M 2 24 L 16 3 L 16 26 Z" fill="#FFFFFF" />
-                <path d="M 16 3 L 30 24 L 20 18 Z" fill="#EA2C2A" />
-              </svg>
-              <span className="text-6xl sm:text-8xl md:text-9xl lg:text-[10rem] font-extrabold tracking-tight text-white font-sans leading-none">
-                flyora
-              </span>
-            </div>
-            <span className="text-[10px] sm:text-xs md:text-sm font-bold tracking-[0.35em] sm:tracking-[0.45em] text-[#EA2C2A] uppercase mt-3">
-              JOURNEYS BEYOND
-            </span>
+            <img
+              src="/images/light-logo.png"
+              alt="Flyora"
+              className="h-20 sm:h-28 md:h-36 w-auto object-contain"
+            />
           </Link>
         </div>
 

@@ -38,9 +38,10 @@ export default async function ServiceDetailPage({ params }: PageProps) {
 
         <div className="relative mx-auto max-w-[1600px] grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
-            <div className="inline-flex items-center gap-2 rounded-full bg-[#FEF2F2] px-4 py-1.5 text-xs font-semibold text-[#EA2C2A] border border-[#EA2C2A]/20 mb-4">
-              <Sparkles size={14} className="text-[#EA2C2A]" fill="currentColor" />
+            <div className="mb-4 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#262A67] border border-[#EA2C2A]/20">
+              <img src="/images/flowericon.png" alt="" width={17} height={17} />
               Specialized Service
+              <img src="/images/flowericon.png" alt="" width={17} height={17} />
             </div>
             <h1
               className="text-4xl font-extrabold sm:text-6xl text-[#262A67] tracking-tight leading-tight"

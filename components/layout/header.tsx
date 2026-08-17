@@ -21,11 +21,10 @@ export default function Header({ transparent = false }: HeaderProps) {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${
-          transparent
+        className={`sticky top-0 z-40 w-full transition-all duration-300 ${transparent
             ? "bg-transparent text-white"
             : "bg-white/95 backdrop-blur-md border-b border-slate-200/80 text-slate-900 shadow-xs"
-        }`}
+          }`}
       >
         <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 sm:px-10">
           {/* Menu Trigger */}
@@ -38,30 +37,12 @@ export default function Header({ transparent = false }: HeaderProps) {
           </button>
 
           {/* Logo */}
-          <Link href="/" className="select-none flex flex-col items-center group">
-            <div className="flex items-center gap-2">
-              <svg
-                width="24"
-                height="20"
-                viewBox="0 0 32 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="shrink-0 transition-transform group-hover:-translate-y-0.5"
-              >
-                <path d="M 2 24 L 16 3 L 16 26 Z" fill={transparent ? "#FFFFFF" : "#0F172A"} />
-                <path d="M 16 3 L 30 24 L 20 18 Z" fill="#EA2C2A" />
-              </svg>
-              <span
-                className={`text-2xl sm:text-3xl font-extrabold tracking-tight font-sans ${
-                  transparent ? "text-white" : "text-[#0F172A]"
-                }`}
-              >
-                flyora
-              </span>
-            </div>
-            <span className="text-[7.5px] font-bold tracking-[0.28em] text-[#EA2C2A] uppercase -mt-0.5">
-              JOURNEYS BEYOND
-            </span>
+          <Link href="/" className="select-none flex items-center group">
+            <img
+              src={transparent ? "/images/light-logo.png" : "/images/dark-logo.png"}
+              alt="Flyora"
+              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </Link>
 
           {/* Quick Nav Links for Desktop */}
@@ -86,13 +67,16 @@ export default function Header({ transparent = false }: HeaderProps) {
           {/* Plan a Trip CTA */}
           <Link
             href="/customize"
-            className="btn-hover-slide flex items-center gap-2 rounded-full bg-[#EA2C2A] px-4 py-2 text-xs font-bold text-white shadow-md transition-colors hover:bg-[#C82120] sm:px-5 sm:py-2.5 sm:text-sm"
+            className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
           >
             <span className="btn-text-wrapper">
               <span className="btn-text">Plan a Trip</span>
               <span className="btn-text-clone">Plan a Trip</span>
             </span>
-            <ArrowUpRight size={15} strokeWidth={2.5} className="btn-arrow" />
+
+            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+              <ArrowUpRight size={15} className="btn-arrow" />
+            </span>
           </Link>
         </div>
       </header>

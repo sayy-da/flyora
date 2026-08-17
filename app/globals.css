@@ -112,3 +112,24 @@ body {
 .btn-hover-slide:hover .btn-arrow {
   transform: rotate(45deg);
 }
+
+/* ─── Infinite Marquee Scrolling Animation ─── */
+@keyframes marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-50%);
+  }
+}
+
+.animate-marquee-infinite {
+  display: flex;
+  width: max-content;
+  animation: marquee-scroll 35s linear infinite;
+  will-change: transform;
+}
+
+.animate-marquee-infinite:hover {
+  animation-play-state: paused;
+}

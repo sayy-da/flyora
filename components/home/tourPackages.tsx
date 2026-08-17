@@ -62,9 +62,10 @@ export default function TourPackages() {
         {/* Header row */}
         <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
           <div>
-            <div className="mb-4 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-4 py-1.5 text-xs font-semibold text-[#EA2C2A] border border-[#EA2C2A]/20">
-              <Sparkles size={13} fill="currentColor" />
+            <div className="mb-4 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#262A67] border border-[#EA2C2A]/20">
+              <img src="/images/flowericon.png" alt="icon" width={17} height={17} />
               Featured Packages
+              <img src="/images/flowericon.png" alt="icon" width={17} height={17} />
             </div>
             <h2
               className="text-4xl leading-tight text-[#262A67] sm:text-5xl"
@@ -80,18 +81,21 @@ export default function TourPackages() {
             <p className="max-w-xs text-sm leading-relaxed text-slate-600 sm:text-right">
               Each itinerary blends hidden gems with landmark experiences, guided by local destination experts.
             </p>
+
             <Link
-              href="/tours"
-              className="btn-hover-slide flex items-center gap-2 whitespace-nowrap rounded-full bg-[#EA2C2A] px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-[#C82120] shadow-md"
+              href="/destinations"
+              className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
             >
               <span className="btn-text-wrapper">
                 <span className="btn-text">View All Tours</span>
                 <span className="btn-text-clone">View All Tours</span>
               </span>
-              <span className="flex h-6 w-6 items-center justify-center rounded-full bg-white text-[#EA2C2A]">
-                <ArrowUpRight size={13} strokeWidth={2.5} className="btn-arrow" />
+
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+                <ArrowUpRight size={15} className="btn-arrow" />
               </span>
             </Link>
+
           </div>
         </div>
 

@@ -55,50 +55,40 @@ export default function TravelioHero() {
           </button>
 
           {/* Origami Bird / Paper Plane Logo */}
-          <Link href="/" className="select-none flex flex-col items-center group">
-            <div className="flex items-center gap-2">
-              <svg
-                width="26"
-                height="22"
-                viewBox="0 0 32 28"
-                fill="none"
-                xmlns="http://www.w3.org/2000/svg"
-                className="shrink-0 transition-transform group-hover:-translate-y-0.5"
-              >
-                {/* Left dark polygon wing */}
-                <path d="M 2 24 L 16 3 L 16 26 Z" fill="#0F172A" />
-                {/* Right red polygon wing */}
-                <path d="M 16 3 L 30 24 L 20 18 Z" fill="#EA2C2A" />
-              </svg>
-              <span className="text-3xl font-extrabold tracking-tight text-white font-sans">
-                flyora
-              </span>
-            </div>
-            <span className="text-[8px] font-bold tracking-[0.28em] text-[#EA2C2A] uppercase -mt-0.5">
-              JOURNEYS BEYOND
-            </span>
+          <Link href="/" className="select-none flex items-center group">
+            <img
+              src="/images/light-logo.png"
+              alt="Flyora"
+              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+            />
           </Link>
 
           {/* Plan a Trip CTA */}
-          <Link
-            href="/customize"
-            className="btn-hover-slide flex items-center gap-2 rounded-full bg-[#EA2C2A] px-4 py-2 sm:px-5 sm:py-2.5 text-xs sm:text-sm font-bold text-white shadow-lg transition-colors hover:bg-[#D42220]"
-          >
-            <span className="btn-text-wrapper">
-              <span className="btn-text">Plan a Trip</span>
-              <span className="btn-text-clone">Plan a Trip</span>
-            </span>
-            <ArrowUpRight size={16} strokeWidth={2.25} className="btn-arrow" />
-          </Link>
+          {/* Plan a Trip CTA */}
+          <div className="flex items-center justify-center">
+            <Link
+              href="/customize"
+              className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
+            >
+              <span className="btn-text-wrapper">
+                <span className="btn-text">Plan a Trip</span>
+                <span className="btn-text-clone">Plan a Trip</span>
+              </span>
+
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+                <ArrowUpRight size={15} className="btn-arrow" />
+              </span>
+            </Link>
+          </div>
         </header>
 
         {/* Hero Central Content */}
         <section className="mx-auto flex max-w-4xl flex-col items-center text-center my-auto py-6">
           {/* Top Pill Badge */}
-          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-white/95 backdrop-blur-md px-4 py-1.5 text-xs sm:text-sm font-bold tracking-wide text-[#1E293B] shadow-md border border-white/60">
-            <img src="/images/flowericon.png" alt="" />
+          <div className="mb-6 inline-flex items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs sm:text-sm font-semibold text-[#262A67] border border-[#EA2C2A]/20 shadow-sm">
+            <img src="/images/flowericon.png" alt="icon" width={17} height={17} />
             Crafted Journeys Since 2009
-            <img src="/images/flowericon.png" alt="" />
+            <img src="/images/flowericon.png" alt="icon" width={17} height={17} />
           </div>
 
           {/* Main Serif Headline */}

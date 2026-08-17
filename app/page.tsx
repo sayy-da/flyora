@@ -2,6 +2,7 @@ import TravelioHero from "@/components/home/hero";
 import TourCategories from "@/components/home/tourCategory";
 import PopularDestinations from "@/components/home/popularDestinations";
 import TourPackages from "@/components/home/tourPackages";
+import CountryBanner from "@/components/home/countryBanner";
 import WhyChooseUs from "@/components/home/whyChooseUs";
 import JourneyNumbers from "@/components/home/journeyNumbers";
 import Testimonials from "@/components/home/testimonials";
@@ -15,6 +16,7 @@ export default function Home() {
       <TourCategories />
       <PopularDestinations />
       <TourPackages />
+      <CountryBanner />
       <WhyChooseUs />
       <JourneyNumbers />
       <Testimonials />

@@ -1,7 +1,7 @@
 import Header from "@/components/layout/header";
 import Footer from "@/components/layout/footer";
 import Link from "next/link";
-import { Compass, ArrowRight } from "lucide-react";
+import { Compass, ArrowUpRight } from "lucide-react";
 
 export const metadata = {
   title: "404 - Destination Not Found | Flyora Travels",
@@ -41,16 +41,29 @@ export default function NotFound() {
           <div className="pt-4 flex flex-col sm:flex-row items-center justify-center gap-4">
             <Link
               href="/"
-              className="w-full sm:w-auto rounded-full bg-[#262A67] px-6 py-3 text-sm font-bold text-white hover:bg-[#1A1D4A] transition shadow-md"
+              className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
             >
-              Return to Homepage
+              <span className="btn-text-wrapper">
+                <span className="btn-text">Return to Homepage</span>
+                <span className="btn-text-clone">Return to Homepage</span>
+              </span>
+
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+                <ArrowUpRight size={15} className="btn-arrow" />
+              </span>
             </Link>
             <Link
               href="/tours"
-              className="w-full sm:w-auto inline-flex items-center justify-center gap-2 rounded-full bg-[#EA2C2A] px-6 py-3 text-sm font-bold text-white hover:bg-[#C82120] transition shadow-md"
+              className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
             >
-              <span>Explore Tour Packages</span>
-              <ArrowRight size={16} />
+              <span className="btn-text-wrapper">
+                <span className="btn-text">Explore Tour Packages</span>
+                <span className="btn-text-clone">Explore Tour Packages</span>
+              </span>
+
+              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+                <ArrowUpRight size={15} className="btn-arrow" />
+              </span>
             </Link>
           </div>
         </div>

@@ -47,9 +47,10 @@ export default function AboutPage() {
         <div className="pointer-events-none absolute -top-40 right-1/4 w-[500px] h-[500px] bg-[#EA2C2A]/10 blur-[140px] rounded-full" />
 
         <div className="relative mx-auto max-w-[1600px] text-center">
-          <div className="inline-flex items-center gap-2 rounded-full bg-[#FEF2F2] px-4 py-1.5 text-xs font-semibold text-[#EA2C2A] border border-[#EA2C2A]/20 mb-4">
-            <Sparkles size={14} className="text-[#EA2C2A]" fill="currentColor" />
+          <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#262A67] border border-[#EA2C2A]/20">
+            <img src="/images/flowericon.png" alt="" width={17} height={17} />
             Crafting Journeys Since 2009
+            <img src="/images/flowericon.png" alt="" width={17} height={17} />
           </div>
           <h1
             className="text-4xl font-extrabold sm:text-6xl lg:text-7xl text-[#262A67] tracking-tight"
@@ -87,10 +88,16 @@ export default function AboutPage() {
             <div className="pt-4 flex items-center gap-6">
               <Link
                 href="/customize"
-                className="inline-flex items-center gap-2 rounded-full bg-[#EA2C2A] px-6 py-3 text-sm font-bold text-white hover:bg-[#C82120] transition shadow-md"
+                className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
               >
-                <span>Plan Your Custom Journey</span>
-                <ArrowUpRight size={16} />
+                <span className="btn-text-wrapper">
+                  <span className="btn-text">Plan Your Custom Journey</span>
+                  <span className="btn-text-clone">Plan Your Custom Journey</span>
+                </span>
+
+                <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
+                  <ArrowUpRight size={15} className="btn-arrow" />
+                </span>
               </Link>
             </div>
           </div>
@@ -113,7 +120,11 @@ export default function AboutPage() {
       <section className="py-20 px-6 sm:px-10 lg:px-16 bg-white border-t border-slate-200">
         <div className="mx-auto max-w-[1600px]">
           <div className="text-center max-w-2xl mx-auto mb-16">
-            <span className="text-xs font-bold uppercase tracking-wider text-[#EA2C2A]">Expert Leadership</span>
+            <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#262A67] border border-[#EA2C2A]/20">
+              <img src="/images/flowericon.png" alt="" width={17} height={17} />
+              Expert Leadership
+              <img src="/images/flowericon.png" alt="" width={17} height={17} />
+            </div>
             <h2
               className="text-4xl font-bold text-[#262A67] mt-2"
               style={{ fontFamily: "var(--font-playfair)" }}
