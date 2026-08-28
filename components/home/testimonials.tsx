@@ -30,7 +30,7 @@ const destinations: Destination[] = [
     description: "Fjord-carved coastlines and midnight sun over quiet villages.",
     region: "Europe · Nordic Region",
     image:
-      "https://images.unsplash.com/photo-1601439678777-b2b3c56fa42d?q=80&w=1200&auto=format&fit=crop",
+      "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=1200&auto=format&fit=crop",
     flag: "🇳🇴",
   },
   {

@@ -19,7 +19,7 @@ const galleryPhotos = [
     alt: "Red tram city street",
   },
   {
-    src: "https://images.unsplash.com/photo-1583422409516-2895a771deda?q=80&w=600&auto=format&fit=crop",
+    src: "https://images.unsplash.com/photo-1508672019048-805c876b67e2?q=80&w=600&auto=format&fit=crop",
     alt: "Historic architecture park",
   },
   {

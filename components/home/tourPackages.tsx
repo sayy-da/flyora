@@ -57,7 +57,7 @@ const destinations = [
 
 export default function TourPackages() {
   return (
-    <section className="bg-white px-6 py-20 sm:px-10 sm:py-28 lg:px-16 border-b border-slate-100">
+    <section className="bg-white px-6 pt-20 sm:pt-28 pb-8 sm:pb-12 lg:px-16">
       <div className="mx-auto w-full max-w-[1600px]">
         {/* Header row */}
         <div className="flex flex-col justify-between gap-8 sm:flex-row sm:items-end">
