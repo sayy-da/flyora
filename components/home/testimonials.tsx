@@ -10,7 +10,7 @@ interface Destination {
   name: string;
   description: string;
   region: string;
-  image: string;
+
   flag: string;
 }
 
@@ -20,45 +20,35 @@ const destinations: Destination[] = [
     name: "Iceland",
     description: "Glaciers, black sand coasts and northern lights across skies.",
     region: "Europe · Nordic Region",
-    image:
-      "https://images.unsplash.com/photo-1531168556467-80aace0d0144?q=80&w=1200&auto=format&fit=crop",
-    flag: "🇮🇸",
+    flag: "/flags/Iceland.svg.webp",
   },
   {
     id: "2",
     name: "Norway",
     description: "Fjord-carved coastlines and midnight sun over quiet villages.",
     region: "Europe · Nordic Region",
-    image:
-      "https://images.unsplash.com/photo-1601439678777-b2b3c56fa42d?q=80&w=1200&auto=format&fit=crop",
-    flag: "🇳🇴",
+    flag: "/flags/Norway.svg.webp",
   },
   {
     id: "3",
     name: "Peru",
     description: "Ancient citadels above the clouds and Andean trails winding below.",
     region: "South America · Andes",
-    image:
-      "https://images.unsplash.com/photo-1526392060635-9d6019884377?q=80&w=1200&auto=format&fit=crop",
-    flag: "🇵🇪",
+    flag: "/flags/peru.webp",
   },
   {
     id: "4",
     name: "Morocco",
     description: "Sahara dunes at dawn and lantern-lit medinas after dark.",
     region: "Africa · North Africa",
-    image:
-      "https://images.unsplash.com/photo-1489493585363-d69421e0edd3?q=80&w=1200&auto=format&fit=crop",
-    flag: "🇲🇦",
+    flag: "/flags/Morocco.svg.webp",
   },
   {
     id: "5",
     name: "Vietnam",
     description: "Emerald rice terraces and limestone bays drifting into mist.",
     region: "Asia · Southeast Asia",
-    image:
-      "https://images.unsplash.com/photo-1528127269322-539801943592?q=80&w=1200&auto=format&fit=crop",
-    flag: "🇻🇳",
+    flag: "/flags/Vietnam.svg.webp",
   },
 ];
 
@@ -68,11 +58,22 @@ const destinations: Destination[] = [
 // top background of the section.
 // -----------------------------------------------------------------------
 
-const FLAG_RING = ["🇮🇸", "🇳🇴", "🇵🇪", "🇲🇦", "🇻🇳", "🇯🇵", "🇬🇷", "🇨🇭", "🇰🇷", "🇵🇹"];
+const FLAG_RING = [
+  { name: "Iceland", flag: "/flags/Iceland.svg.webp" },
+  { name: "Norway", flag: "/flags/Norway.svg.webp" },
+  { name: "Peru", flag: "/flags/peru.webp" },
+  { name: "Morocco", flag: "/flags/Morocco.svg.webp" },
+  { name: "Vietnam", flag: "/flags/Vietnam.svg.webp" },
+  { name: "Japan", flag: "/flags/Japan.svg.webp" },
+  { name: "Greece", flag: "/flags/Greece.svg.webp" },
+  { name: "Switzerland", flag: "/flags/Switzerland.svg.webp" },
+  { name: "South Korea", flag: "/flags/South_Korea.svg.webp" },
+  { name: "Portugal", flag: "/flags/Portugal.svg.webp" },
+];
 
 const RING_AUTO_SPEED = 12; // degrees per second
 const RING_RESUME_DELAY = 6000; // ms of inactivity before auto-rotate resumes after a click
-const CENTER_Y = 12; // px from top of container — positions the upper half out of view so half ellipse is shown
+const CENTER_Y = 2; // px from top of container — positions the upper half out of view so half ellipse is shown
 
 function RotatingFlagArc() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -82,7 +83,7 @@ function RotatingFlagArc() {
 
   const pivotXRef = useRef(0);
   const radiusXRef = useRef(480);
-  const radiusYRef = useRef(140);
+  const radiusYRef = useRef(120);
   const rotationRef = useRef(0);
   const rafRef = useRef<number | null>(null);
   const lastTimeRef = useRef<number | null>(null);
@@ -97,8 +98,8 @@ function RotatingFlagArc() {
     const width = container.offsetWidth;
     pivotXRef.current = width / 2;
 
-    const rx = Math.min(500, Math.max(160, (width - 40) / 2));
-    const ry = Math.min(150, Math.max(65, rx * 0.32));
+    const rx = Math.min(520, Math.max(160, (width - 40) / 2));
+    const ry = Math.min(125, Math.max(50, rx * 0.25));
     radiusXRef.current = rx;
     radiusYRef.current = ry;
 
@@ -186,8 +187,8 @@ function RotatingFlagArc() {
   return (
     <div
       ref={containerRef}
-      className="pointer-events-none absolute left-0 right-0 top-6 z-0 mx-auto max-w-5xl overflow-hidden"
-      style={{ height: 210 }}
+      className="pointer-events-none absolute left-0 right-0 top-2 z-0 mx-auto max-w-5xl overflow-hidden"
+      style={{ height: 180 }}
     >
       {/* Dashed ellipse line */}
       <svg
@@ -201,25 +202,40 @@ function RotatingFlagArc() {
           cy="50%"
           rx="50%"
           ry="50%"
-          stroke="#D9BCA6"
+          stroke="#F6A19E"
           strokeWidth={1.5}
           strokeDasharray="4 6"
         />
       </svg>
 
       {/* Orbiting Flags along the ellipse */}
-      {FLAG_RING.map((flag, i) => (
-        <div
-          key={i}
-          ref={(el) => {
-            flagRefs.current[i] = el;
-          }}
-          onClick={pauseThenResume}
-          className="pointer-events-auto absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/60 bg-white text-base shadow-md transition-[width,height,box-shadow,border-color,opacity] duration-300 data-[active=true]:h-11 data-[active=true]:w-11 data-[active=true]:border-2 data-[active=true]:border-[#EA2C2A] data-[active=true]:shadow-lg cursor-pointer select-none"
-        >
-          {flag}
-        </div>
-      ))}
+      {FLAG_RING.map((item, i) => {
+        const isImage = item.flag.startsWith("/");
+
+        return (
+          <div
+            key={i}
+            ref={(el) => {
+              flagRefs.current[i] = el;
+            }}
+            onClick={pauseThenResume}
+            className="pointer-events-auto absolute left-0 top-0 flex h-9 w-9 items-center justify-center rounded-full border border-slate-200/60 bg-white text-base shadow-md transition-[width,height,box-shadow,border-color,opacity] duration-300 data-[active=true]:h-11 data-[active=true]:w-11 data-[active=true]:border-2 data-[active=true]:border-[#EC2C27] data-[active=true]:shadow-lg cursor-pointer select-none overflow-hidden"
+          >
+            {isImage ? (
+              <div className="relative h-full w-full overflow-hidden rounded-full p-0.5">
+                <Image
+                  src={item.flag}
+                  alt={item.name}
+                  fill
+                  className="object-cover rounded-full"
+                />
+              </div>
+            ) : (
+              <span>{item.flag}</span>
+            )}
+          </div>
+        );
+      })}
     </div>
   );
 }
@@ -269,24 +285,24 @@ export default function TopDestinations() {
   const current = destinations[activeIndex];
 
   return (
-    <section className="relative overflow-hidden bg-[#FDF0E7] px-6 py-20 sm:px-10 sm:py-28 lg:px-16 text-slate-900 select-none">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#FDE8E7] via-[#FDE8E7] to-white px-6 pt-6 pb-20 sm:px-10 sm:pt-8 sm:pb-28 lg:px-16 text-slate-900 select-none">
       {/* Fixed, continuously rotating flag ring (line + flags rotate together) — independent of the destination cards below */}
       <RotatingFlagArc />
 
       <div className="relative z-10 mx-auto w-full max-w-[1400px]">
         {/* Section Header */}
-        <div className="mx-auto mb-12 max-w-3xl text-center">
-          <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#262A67] border border-[#EA2C2A]/20">
+        <div className="mx-auto mb-8 max-w-3xl text-center">
+          <div className="mx-auto mb-3 flex w-fit items-center gap-2 rounded-full bg-[#FDE8E7] px-5 py-1.5 text-xs font-semibold text-[#262B65] border border-[#EC2C27]/20">
             <img src="/images/flowericon.png" alt="" width={17} height={17} />
             Top Destinations
             <img src="/images/flowericon.png" alt="" width={17} height={17} />
           </div>
 
           <h2
-            className="text-4xl font-bold leading-tight text-[#262A67] sm:text-5xl lg:text-6xl tracking-tight"
+            className="text-4xl font-bold leading-tight text-[#262B65] sm:text-5xl lg:text-6xl tracking-tight"
             style={{ fontFamily: "var(--font-playfair)", fontWeight: 700 }}
           >
-            Top <span className="italic font-medium text-[#EA2C2A]">Destinations</span>
+            Top <span className="italic font-medium text-[#EC2C27]">Destinations</span>
             <br />
             This Season
           </h2>
@@ -308,13 +324,13 @@ export default function TopDestinations() {
             <div className="flex flex-col md:flex-row items-stretch">
               {/* Card Image */}
               <div className="relative w-full md:w-1/2 min-h-[260px] md:min-h-[340px] overflow-hidden bg-slate-100">
-                <Image
+                {/* <Image
                   src={current.image}
                   alt={current.name}
                   fill
                   priority
                   className="object-cover transition-transform duration-700 hover:scale-105"
-                />
+                /> */}
               </div>
 
               {/* Card Content */}

@@ -34,16 +34,7 @@ const tours = [
     price: "$2,600",
     duration: "6D / 5N",
   },
-  {
-    tag: "Luxury",
-    image: "https://images.unsplash.com/photo-1530122037265-a5f1f91d3b99?q=80&w=1000&auto=format&fit=crop",
-    title: "Swiss Alps Express Explorer",
-    slug: "swiss-alps-grand-express-matterhorn",
-    description:
-      "Panoramic Glacier Express railway, Matterhorn views, and 5-star alpine chalets.",
-    price: "$3,450",
-    duration: "9D / 8N",
-  },
+
 ];
 
 const destinations = [
@@ -148,20 +139,7 @@ export default function TourPackages() {
           ))}
         </div>
 
-        {/* Quick Country Pills */}
-        <div className="mt-14 flex flex-wrap items-center justify-center gap-3 pt-6 border-t border-slate-100">
-          <span className="text-xs font-bold uppercase tracking-wider text-slate-400 mr-2">Top Countries:</span>
-          {destinations.map((d) => (
-            <Link
-              key={d.name}
-              href="/locations"
-              className="inline-flex items-center gap-1.5 rounded-full bg-slate-50 px-4 py-2 text-xs font-semibold text-[#262A67] border border-slate-200 hover:border-[#EA2C2A] hover:bg-white transition"
-            >
-              <span>{d.flag}</span>
-              <span>{d.name}</span>
-            </Link>
-          ))}
-        </div>
+
       </div>
     </section>
   );

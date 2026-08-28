@@ -6,27 +6,12 @@ import Link from "next/link";
 import { Sparkles, ArrowUpRight, Star, Heart } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { popularDestinationsQuery } from "@/sanity/lib/queries";
-
-interface Destination {
-  _id: string;
-  name: string;
-  country: string;
-  flag: string;
-  region: string;
-  tag: string;
-  image: string;
-  rating: number;
-  reviewsCount: number;
-  toursCount: number;
-  startingPrice: number;
-  description: string;
-  slug: string;
-}
+import { FALLBACK_DESTINATIONS, type Destination } from "@/sanity/lib/fetchData";
 
 const filterCategories = ["All", "Asia", "Europe", "Tropical", "Americas", "Africa"];
 
 export default function PopularDestinations() {
-  const [destinations, setDestinations] = useState<Destination[]>([]);
+  const [destinations, setDestinations] = useState<Destination[]>(FALLBACK_DESTINATIONS);
   const [loading, setLoading] = useState(true);
   const [activeCategory, setActiveCategory] = useState("All");
   const [favorites, setFavorites] = useState<Record<string, boolean>>({});
@@ -35,9 +20,14 @@ export default function PopularDestinations() {
     const fetchDestinations = async () => {
       try {
         const data = await client.fetch(popularDestinationsQuery);
-        setDestinations(data);
+        if (data && data.length > 0) {
+          setDestinations(data);
+        } else {
+          setDestinations(FALLBACK_DESTINATIONS);
+        }
       } catch (error) {
-        console.error("Error fetching destinations:", error);
+        console.warn("Could not fetch Sanity destinations, using fallback:", error);
+        setDestinations(FALLBACK_DESTINATIONS);
       } finally {
         setLoading(false);
       }
@@ -56,7 +46,7 @@ export default function PopularDestinations() {
       : destinations.filter((dest) => dest.region === activeCategory).slice(0, 3);
 
   return (
-    <section className="relative overflow-hidden bg-[#EEF2FF]/40 px-6 py-20 sm:px-10 sm:py-28 lg:px-16 border-t border-b border-[#C7D2FE]/40">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#E4ECFD] to-white px-6 pt-12 pb-16 sm:px-10 sm:pt-16 sm:pb-24 lg:px-16">
       <div className="mx-auto w-full max-w-[1600px]">
         {/* Section Header */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">

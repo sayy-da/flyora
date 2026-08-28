@@ -18,10 +18,7 @@ const galleryPhotos = [
     src: "https://images.unsplash.com/photo-1527838832700-5059252407fa?q=80&w=600&auto=format&fit=crop",
     alt: "Red tram city street",
   },
-  {
-    src: "https://images.unsplash.com/photo-1583422409516-2895a771deda?q=80&w=600&auto=format&fit=crop",
-    alt: "Historic architecture park",
-  },
+
   {
     src: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=600&auto=format&fit=crop",
     alt: "Happy backpacker group",
@@ -46,25 +43,23 @@ const galleryPhotos = [
 
 export default function JourneyNumbers() {
   return (
-    <section className="relative overflow-hidden bg-[#FFFDEB] pt-16 pb-12 sm:pt-24 sm:pb-20 border-b border-amber-200/50 text-slate-900 select-none">
-      {/* Background World Map Faint Vector */}
-      <div className="pointer-events-none absolute inset-0 flex items-center justify-center opacity-10">
-        <svg
-          width="1000"
-          height="500"
-          viewBox="0 0 1000 500"
-          fill="none"
-          xmlns="http://www.w3.org/2000/svg"
-          className="w-full max-w-6xl"
-        >
-          <ellipse cx="500" cy="250" rx="450" ry="200" stroke="#0F172A" strokeWidth="1" strokeDasharray="4 8" />
-          <ellipse cx="500" cy="250" rx="350" ry="140" stroke="#0F172A" strokeWidth="1" strokeDasharray="3 6" />
-        </svg>
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#E8E9F5] via-[#E8E9F5] to-[#FDE8E7] pt-16 pb-12 sm:pt-24 sm:pb-20 text-slate-900 select-none">
+      {/* Background Dotted World Globe Dome */}
+      <div className="pointer-events-none absolute inset-x-0 top-16 sm:top-24 md:top-28 lg:top-32 mx-auto flex justify-center opacity-60 sm:opacity-70 mix-blend-multiply max-w-6xl px-4 z-0">
+        <div className="relative w-full aspect-[2.2/1] max-w-5xl">
+          <Image
+            src="/images/bg-globe.png"
+            alt="World Globe Background"
+            fill
+            className="object-contain"
+            priority
+          />
+        </div>
       </div>
 
       <div className="relative z-10 mx-auto w-full max-w-[1600px]">
         {/* Top Badge */}
-        <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#262A67] border border-[#EA2C2A]/20">
+        <div className="mx-auto mb-6 flex w-fit items-center gap-2 rounded-full bg-[#FEF2F2] px-5 py-2 text-xs font-semibold text-[#262B65] border border-[#EC2C27]/20">
           <img src="/images/flowericon.png" alt="" width={17} height={17} />
           Our Journey in Numbers
           <img src="/images/flowericon.png" alt="" width={17} height={17} />
@@ -85,28 +80,28 @@ export default function JourneyNumbers() {
           ))}
 
           {/* Floating Slanted "Happy Travelers" Pill */}
-          <div className="absolute right-2 sm:right-12 -top-1 z-20 rotate-6 rounded-full bg-white px-3 py-1 text-[11px] font-bold text-slate-900 shadow-md border border-slate-200">
+          <div className="absolute right-2 sm:right-16 -top-2 z-20 rotate-6 rounded-full bg-white px-3.5 py-1 text-[11px] font-bold text-slate-900 shadow-md border border-slate-200">
             Happy Travelers 👋
           </div>
 
           {/* Giant Number */}
-          <h2 className="text-7xl font-extrabold tracking-tight text-[#262A67] sm:text-8xl md:text-9xl font-sans leading-none">
+          <h2 className="text-7xl font-extrabold tracking-tight text-[#262B65] sm:text-8xl md:text-9xl font-sans leading-none">
             50,000+
           </h2>
         </div>
 
         {/* 3 Secondary Stats Columns */}
-        <div className="mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-8 sm:grid-cols-3 text-center px-6">
+        <div className="relative z-10 mx-auto mt-10 grid max-w-3xl grid-cols-1 gap-8 sm:grid-cols-3 text-center px-6">
           {/* Stat 1 */}
           <div className="flex flex-col items-center">
-            <div className="text-4xl font-extrabold text-[#0F172A] sm:text-5xl font-sans tracking-tight">
+            <div className="text-5xl sm:text-6xl font-bold italic tracking-tight text-[#0F172A]">
               60+
             </div>
-            <span className="my-2 inline-block -rotate-2 rounded-full bg-pink-100/90 px-3 py-0.5 text-[11px] font-bold text-pink-700 border border-pink-200">
+            <span className="my-2.5 inline-block -rotate-2 rounded-full bg-pink-100/90 px-3.5 py-0.5 text-[11px] font-bold text-pink-700 border border-pink-200">
               Unique Tour Packages
             </span>
-            <div className="w-12 border-b border-dashed border-slate-300 my-1" />
-            <p className="text-xs text-slate-500 leading-relaxed max-w-[190px]">
+            <div className="w-16 border-b border-dotted border-slate-400/60 my-1.5" />
+            <p className="text-xs text-slate-600 leading-relaxed max-w-[200px]">
               From budget adventures to private luxury escapes
             </p>
           </div>
@@ -114,16 +109,16 @@ export default function JourneyNumbers() {
           {/* Stat 2 */}
           <div className="flex flex-col items-center">
             <div
-              className="text-4xl font-extrabold text-[#0F172A] sm:text-5xl"
+              className="text-5xl sm:text-6xl font-normal italic text-[#0F172A]"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               15+
             </div>
-            <span className="my-2 inline-block rotate-1 rounded-full bg-amber-100/90 px-3 py-0.5 text-[11px] font-bold text-amber-800 border border-amber-200">
+            <span className="my-2.5 inline-block rotate-1 rounded-full bg-amber-100/90 px-3.5 py-0.5 text-[11px] font-bold text-amber-800 border border-amber-200">
               Years of Experience
             </span>
-            <div className="w-12 border-b border-dashed border-slate-300 my-1" />
-            <p className="text-xs text-slate-500 leading-relaxed max-w-[190px]">
+            <div className="w-16 border-b border-dotted border-slate-400/60 my-1.5" />
+            <p className="text-xs text-slate-600 leading-relaxed max-w-[200px]">
               Perfecting meaningful travel experiences since 2009
             </p>
           </div>
@@ -131,16 +126,16 @@ export default function JourneyNumbers() {
           {/* Stat 3 */}
           <div className="flex flex-col items-center">
             <div
-              className="text-4xl font-extrabold text-[#0F172A] sm:text-5xl"
+              className="text-5xl sm:text-6xl font-normal italic text-[#0F172A]"
               style={{ fontFamily: "var(--font-playfair)" }}
             >
               98%
             </div>
-            <span className="my-2 inline-block -rotate-1 rounded-full bg-sky-100/90 px-3 py-0.5 text-[11px] font-bold text-sky-800 border border-sky-200">
+            <span className="my-2.5 inline-block -rotate-1 rounded-full bg-sky-100/90 px-3.5 py-0.5 text-[11px] font-bold text-sky-800 border border-sky-200">
               Repeat Booking Rate
             </span>
-            <div className="w-12 border-b border-dashed border-slate-300 my-1" />
-            <p className="text-xs text-slate-500 leading-relaxed max-w-[190px]">
+            <div className="w-16 border-b border-dotted border-slate-400/60 my-1.5" />
+            <p className="text-xs text-slate-600 leading-relaxed max-w-[200px]">
               Most travelers come back to plan their next trip
             </p>
           </div>
@@ -149,8 +144,8 @@ export default function JourneyNumbers() {
         {/* Horizontal Photo Gallery Ribbon - Continuous Moving Marquee */}
         <div className="relative mt-14 sm:mt-20 overflow-hidden py-4">
           {/* Subtle edge fade overlays for seamless entrance and exit */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-r from-[#FFFDEB] via-[#FFFDEB]/80 to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-l from-[#FFFDEB] via-[#FFFDEB]/80 to-transparent" />
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-r from-[#E8E9F5] via-[#E8E9F5]/80 to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-l from-[#E8E9F5] via-[#E8E9F5]/80 to-transparent" />
 
           <div className="animate-marquee-infinite flex items-center gap-4 sm:gap-6">
             {[...galleryPhotos, ...galleryPhotos].map((photo, idx) => (

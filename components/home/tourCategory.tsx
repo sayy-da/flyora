@@ -30,7 +30,7 @@ export default function TourCategories() {
   const [active, setActive] = useState(2);
 
   return (
-    <section className="relative overflow-hidden bg-white px-6 pt-14 pb-24 sm:pt-20 sm:pb-32">
+    <section className="relative overflow-hidden bg-white px-6 pt-14  sm:pt-20 ">
       {/* Decorative postcard — top left */}
       <div className="pointer-events-none absolute left-6 top-16 hidden -rotate-12 sm:block lg:left-20 lg:top-20">
         <Image
@@ -83,8 +83,8 @@ export default function TourCategories() {
             >
               <div
                 className={`relative overflow-hidden rounded-[999px] shadow-md transition-all duration-500 group-hover:shadow-2xl ${isCenter
-                    ? "aspect-[3/4.5] w-48 sm:w-60 lg:w-64"
-                    : "aspect-[3/4] w-40 sm:w-52 lg:w-56"
+                  ? "aspect-[3/4.5] w-48 sm:w-60 lg:w-64"
+                  : "aspect-[3/4] w-40 sm:w-52 lg:w-56"
                   }`}
               >
                 <Image

@@ -1,5 +1,6 @@
 import TravelioHero from "@/components/home/hero";
 import TourCategories from "@/components/home/tourCategory";
+import OurPromise from "@/components/home/ourPromise";
 import PopularDestinations from "@/components/home/popularDestinations";
 import TourPackages from "@/components/home/tourPackages";
 import CountryBanner from "@/components/home/countryBanner";
@@ -14,6 +15,7 @@ export default function Home() {
     <main>
       <TravelioHero />
       <TourCategories />
+      <OurPromise />
       <PopularDestinations />
       <TourPackages />
       <CountryBanner />
