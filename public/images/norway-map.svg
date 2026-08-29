@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 160" width="160" height="160" fill="none">
+  <defs>
+    <clipPath id="norway-clip">
+      <path d="M120,20 C130,22 135,30 128,40 C118,55 105,75 92,95 C82,110 70,128 55,145 C48,150 40,146 42,136 C45,120 54,102 65,85 C75,68 90,48 102,32 C110,22 115,18 120,20 Z" />
+    </clipPath>
+  </defs>
+  <g clip-path="url(#norway-clip)">
+    <rect width="160" height="160" fill="#BA0C2F" />
+    <rect x="68" y="0" width="20" height="160" fill="#FFFFFF" />
+    <rect x="0" y="68" width="160" height="20" fill="#FFFFFF" />
+    <rect x="73" y="0" width="10" height="160" fill="#00205B" />
+    <rect x="0" y="73" width="160" height="10" fill="#00205B" />
+  </g>
+</svg>

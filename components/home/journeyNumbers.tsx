@@ -18,7 +18,14 @@ const galleryPhotos = [
     src: "https://images.unsplash.com/photo-1527838832700-5059252407fa?q=80&w=600&auto=format&fit=crop",
     alt: "Red tram city street",
   },
+<<<<<<< HEAD
 
+=======
+  {
+    src: "https://images.unsplash.com/photo-1508672019048-805c876b67e2?q=80&w=600&auto=format&fit=crop",
+    alt: "Historic architecture park",
+  },
+>>>>>>> 1a8336ba1c780b79e3e4754cca902f260c5c85a9
   {
     src: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=600&auto=format&fit=crop",
     alt: "Happy backpacker group",

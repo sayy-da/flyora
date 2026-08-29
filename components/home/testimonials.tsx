@@ -27,7 +27,13 @@ const destinations: Destination[] = [
     name: "Norway",
     description: "Fjord-carved coastlines and midnight sun over quiet villages.",
     region: "Europe · Nordic Region",
+<<<<<<< HEAD
     flag: "/flags/Norway.svg.webp",
+=======
+    image:
+      "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=1200&auto=format&fit=crop",
+    flag: "🇳🇴",
+>>>>>>> 1a8336ba1c780b79e3e4754cca902f260c5c85a9
   },
   {
     id: "3",

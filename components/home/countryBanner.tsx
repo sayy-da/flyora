@@ -1,6 +1,5 @@
 "use client";
 
-import Image from "next/image";
 import { useState } from "react";
 
 interface CountryItem {
@@ -10,23 +9,19 @@ interface CountryItem {
 }
 
 const countryList: CountryItem[] = [
-  { name: "Morocco", mapImage: "/images/morocco-map.png", flag: "🇲🇦" },
-  { name: "Iceland", mapImage: "/images/iceland-map.png", flag: "🇮🇸" },
-  { name: "Japan", mapImage: "/images/japan-map.png", flag: "🇯🇵" },
-  { name: "Norway", mapImage: "/images/norway-map.png", flag: "🇳🇴" },
-  { name: "Switzerland", mapImage: "/images/switzerland-map.png", flag: "🇨🇭" },
-  { name: "Peru", mapImage: "/images/peru-map.png", flag: "🇵🇪" },
-  { name: "Vietnam", mapImage: "/images/vietnam-map.png", flag: "🇻🇳" },
-  { name: "Greece", mapImage: "/images/greece-map.png", flag: "🇬🇷" },
-  { name: "Maldives", mapImage: "/images/maldives-map.png", flag: "🇲🇻" },
-  { name: "Tanzania", mapImage: "/images/tanzania-map.png", flag: "🇹🇿" },
-  { name: "China", mapImage: "/images/china-map.png", flag: "🇨🇳" },
-  { name: "Indonesia", mapImage: "/images/indonesia-map.png", flag: "🇮🇩" },
+  { name: "Japan", mapImage: "/images/japan-map.svg.webp", flag: "🇯🇵" },
+  { name: "Morocco", mapImage: "/images/morocco-map.svg.webp", flag: "🇲🇦" },
+  { name: "Iceland", mapImage: "/images/iceland-map.svg.webp", flag: "🇮🇸" },
+  // { name: "Norway", mapImage: "/images/norway-map.svg.webp", flag: "🇳🇴" },
+  { name: "Switzerland", mapImage: "/images/switzerland-map.svg.webp", flag: "🇨🇭" },
+  { name: "Peru", mapImage: "/images/peru-map.svg.webp", flag: "🇵🇪" },
+  { name: "Greece", mapImage: "/images/greece-map.svg.webp", flag: "🇬🇷" },
+  { name: "Vietnam", mapImage: "/images/vietnam-map.svg.webp", flag: "🇻🇳" },
 ];
 
 function CountryMapDisplay({ item }: { item: CountryItem }) {
   const [imgError, setImgError] = useState(false);
-  const mapSrc = item.mapImage || `/images/${item.name.toLowerCase()}-map.png`;
+  const mapSrc = item.mapImage || `/images/${item.name.toLowerCase()}-map.svg`;
 
   if (!imgError) {
     return (
@@ -35,11 +30,11 @@ function CountryMapDisplay({ item }: { item: CountryItem }) {
         alt={`${item.name} map`}
         onError={() => setImgError(true)}
         className="h-12 sm:h-16 md:h-20 w-auto object-contain shrink-0 drop-shadow-md transition-transform duration-300 group-hover:scale-110"
+        draggable={false}
       />
     );
   }
 
-  // Graceful fallback if country map png is not yet uploaded by user
   return (
     <span className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-white/10 text-2xl sm:text-4xl border border-white/15 shadow-inner shrink-0">
       {item.flag}
@@ -48,23 +43,31 @@ function CountryMapDisplay({ item }: { item: CountryItem }) {
 }
 
 export default function CountryBanner() {
-  const duplicatedCountries = [...countryList, ...countryList];
+  const duplicatedCountries = [...countryList, ...countryList, ...countryList];
 
   return (
-    <section className="relative overflow-hidden bg-white py-10 sm:py-16 select-none z-20">
-      {/* Slanted Marquee Ribbon Track */}
-      <div className="relative w-[130vw] -left-[15vw] -rotate-2 sm:-rotate-[2.5deg] shadow-2xl">
-        {/* Top Stamp Scalloped Border */}
-        <div
-          className="w-full h-4 sm:h-6 bg-repeat-x bg-bottom"
-          style={{
-            backgroundImage: "url('/images/black%20line%20up.png')",
-            backgroundSize: "auto 100%",
-          }}
+    <section className="relative w-full overflow-hidden bg-white select-none z-20 my-0 py-0">
+      {/* Black Slanted Banner Container */}
+      <div
+        className="relative w-full bg-[#14151B] overflow-hidden"
+        style={{
+          clipPath:
+            "polygon(0 calc(100vw * 120 / 2170), 100% 0, 100% calc(100% - calc(100vw * 120 / 2170)), 0 100%)",
+        }}
+      >
+        {/* Top Black Line Stamp (rendered ONCE across full width) */}
+        <img
+          src="/images/black line up.png"
+          alt=""
+          className="absolute top-0 left-0 w-full h-auto pointer-events-none select-none z-20"
+          draggable={false}
         />
 
-        {/* Black Center Banner Body */}
-        <div className="bg-[#14151B] py-4 sm:py-6 overflow-hidden">
+        {/* Marquee Body with aligned slant */}
+        <div
+          className="relative z-10 w-[120%] -left-[10%] py-12 sm:py-16 md:py-20 overflow-hidden"
+          style={{ transform: "rotate(-3.165deg)" }}
+        >
           <div className="animate-marquee-infinite flex items-center gap-12 sm:gap-20">
             {duplicatedCountries.map((country, idx) => (
               <div
@@ -72,7 +75,7 @@ export default function CountryBanner() {
                 className="group flex items-center gap-4 sm:gap-6 shrink-0 transition-transform duration-300 hover:scale-105 cursor-pointer"
               >
                 <CountryMapDisplay item={country} />
-                <span className="text-3xl sm:text-5xl lg:text-6xl font-black text-white tracking-tight font-sans">
+                <span className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight font-sans">
                   {country.name}
                 </span>
               </div>
@@ -80,13 +83,12 @@ export default function CountryBanner() {
           </div>
         </div>
 
-        {/* Bottom Stamp Scalloped Border */}
-        <div
-          className="w-full h-4 sm:h-6 bg-repeat-x bg-top"
-          style={{
-            backgroundImage: "url('/images/black%20line%20down.png')",
-            backgroundSize: "auto 100%",
-          }}
+        {/* Bottom Black Line Stamp (rendered ONCE across full width) */}
+        <img
+          src="/images/black line down.png"
+          alt=""
+          className="absolute bottom-0 left-0 w-full h-auto pointer-events-none select-none z-20"
+          draggable={false}
         />
       </div>
     </section>

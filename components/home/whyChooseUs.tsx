@@ -38,7 +38,7 @@ const stats = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative bg-white py-20 px-6 sm:px-10 lg:px-16 text-slate-900 overflow-hidden">
+    <section className="relative bg-white pt-8 sm:pt-12 pb-20 px-6 sm:px-10 lg:px-16 text-slate-900 overflow-hidden">
       {/* Soft background ambient glow */}
       <div className="pointer-events-none absolute top-0 right-1/4 h-96 w-96 rounded-full bg-[#EA2C2A]/5 blur-[120px]" />
       <div className="pointer-events-none absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-[#1B1B2F]/5 blur-[120px]" />
