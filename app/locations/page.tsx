@@ -106,26 +106,20 @@ export default async function LocationsPage() {
                   </p>
 
                   <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100">
-                    <div>
-                      <span className="text-xs text-slate-400 font-bold uppercase tracking-wider block">Starting from</span>
-                      <div className="flex items-baseline gap-1">
-                        <span className="text-2xl font-black text-[#262A67]">${dest.startingPrice}</span>
-                        <span className="text-xs text-slate-500 font-medium">/ traveler</span>
-                      </div>
-                    </div>
+                    <span className="text-xs font-bold text-[#262A67] bg-[#EEF2FF] px-3.5 py-1.5 rounded-full border border-[#C7D2FE]">
+                      {dest.toursCount} Tours Available
+                    </span>
 
-                    <div className="flex items-center gap-3">
-                      <span className="text-xs font-bold text-[#262A67] bg-[#EEF2FF] px-3 py-1.5 rounded-full border border-[#C7D2FE]">
-                        {dest.toursCount} Tours
+                    <Link
+                      href={`/locations/${dest.slug}`}
+                      className="inline-flex items-center gap-2 text-xs font-bold text-[#EA2C2A] group-hover:text-[#C82120] transition-colors"
+                      aria-label={`Explore ${dest.name}`}
+                    >
+                      <span>Explore Destination</span>
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#EA2C2A] text-white transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#C82120] shadow-md">
+                        <ArrowUpRight size={16} strokeWidth={2.5} />
                       </span>
-                      <Link
-                        href={`/locations/${dest.slug}`}
-                        className="flex h-10 w-10 items-center justify-center rounded-full bg-[#EA2C2A] text-white transition-transform duration-300 hover:scale-110 hover:bg-[#C82120] shadow-md"
-                        aria-label={`Explore ${dest.name}`}
-                      >
-                        <ArrowUpRight size={17} strokeWidth={2.5} />
-                      </Link>
-                    </div>
+                    </Link>
                   </div>
                 </div>
               </article>

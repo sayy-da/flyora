@@ -150,29 +150,21 @@ export default async function ToursPage() {
                     </div>
                   )}
 
-                  {/* Footer Price & Action */}
+                  {/* Footer Action */}
                   <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100">
-                    <div>
-                      <span className="text-xs text-slate-400 uppercase tracking-wider block font-semibold">Starting from</span>
-                      <div className="flex items-baseline gap-2">
-                        {tour.discountPrice ? (
-                          <>
-                            <span className="text-2xl font-black text-[#262A67]">${tour.discountPrice}</span>
-                            <span className="text-sm text-slate-400 line-through">${tour.price}</span>
-                          </>
-                        ) : (
-                          <span className="text-2xl font-black text-[#262A67]">${tour.price}</span>
-                        )}
-                        <span className="text-xs text-slate-500 font-medium">/ person</span>
-                      </div>
-                    </div>
+                    <span className="text-xs font-bold text-[#262A67] bg-[#EEF2FF] px-3.5 py-1.5 rounded-full border border-[#C7D2FE]">
+                      {tour.customizable ? 'Customizable Itinerary' : 'Curated Itinerary'}
+                    </span>
 
                     <Link
                       href={`/tours/${tour.slug}`}
-                      className="flex h-11 w-11 items-center justify-center rounded-full bg-[#EA2C2A] text-white transition-transform duration-300 hover:scale-110 hover:bg-[#C82120] shadow-md"
+                      className="inline-flex items-center gap-2 text-xs font-bold text-[#EA2C2A] group-hover:text-[#C82120] transition-colors"
                       aria-label="View Tour Details"
                     >
-                      <ArrowUpRight size={18} strokeWidth={2.5} />
+                      <span>Explore Itinerary</span>
+                      <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#EA2C2A] text-white transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#C82120] shadow-md">
+                        <ArrowUpRight size={16} strokeWidth={2.5} />
+                      </span>
                     </Link>
                   </div>
                 </div>

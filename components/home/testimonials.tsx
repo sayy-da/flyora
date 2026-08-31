@@ -27,13 +27,7 @@ const destinations: Destination[] = [
     name: "Norway",
     description: "Fjord-carved coastlines and midnight sun over quiet villages.",
     region: "Europe · Nordic Region",
-<<<<<<< HEAD
-    flag: "/flags/Norway.svg.webp",
-=======
-    image:
-      "https://images.unsplash.com/photo-1506703719100-a0f3a48c0f86?q=80&w=1200&auto=format&fit=crop",
-    flag: "🇳🇴",
->>>>>>> 1a8336ba1c780b79e3e4754cca902f260c5c85a9
+    flag: "/flags/Norway.svg.webp"
   },
   {
     id: "3",
@@ -291,7 +285,7 @@ export default function TopDestinations() {
   const current = destinations[activeIndex];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#FDE8E7] via-[#FDE8E7] to-white px-6 pt-6 pb-20 sm:px-10 sm:pt-8 sm:pb-28 lg:px-16 text-slate-900 select-none">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#FCD5D3] via-[#FCD5D3] to-white px-6 pt-6 pb-20 sm:px-10 sm:pt-8 sm:pb-28 lg:px-16 text-slate-900 select-none">
       {/* Fixed, continuously rotating flag ring (line + flags rotate together) — independent of the destination cards below */}
       <RotatingFlagArc />
 

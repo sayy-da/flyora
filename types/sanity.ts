@@ -2,8 +2,6 @@ export interface TourPackage {
   _id: string
   title: string
   slug: string
-  price: number
-  discountPrice?: number
   duration?: {
     days?: number
     nights?: number
@@ -29,7 +27,6 @@ export interface Destination {
   rating?: number
   reviewsCount?: number
   toursCount?: number
-  startingPrice?: number
   description?: string
 }
 

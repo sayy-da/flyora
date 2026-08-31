@@ -34,17 +34,6 @@ export default defineType({
       to: [{ type: 'destination' }],
     }),
     defineField({
-      name: 'price',
-      title: 'Price per person ($)',
-      type: 'number',
-      validation: (Rule) => Rule.required().min(0),
-    }),
-    defineField({
-      name: 'discountPrice',
-      title: 'Discounted Price per person ($)',
-      type: 'number',
-    }),
-    defineField({
       name: 'duration',
       title: 'Duration',
       type: 'object',

@@ -38,10 +38,10 @@ const stats = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative bg-white pt-8 sm:pt-12 pb-20 px-6 sm:px-10 lg:px-16 text-slate-900 overflow-hidden">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#FCD5D3] via-[#FCD5D3] to-[#D9E2FC] pt-10 sm:pt-14 pb-20 px-6 sm:px-10 lg:px-16 text-slate-900">
       {/* Soft background ambient glow */}
-      <div className="pointer-events-none absolute top-0 right-1/4 h-96 w-96 rounded-full bg-[#EA2C2A]/5 blur-[120px]" />
-      <div className="pointer-events-none absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-[#1B1B2F]/5 blur-[120px]" />
+      <div className="pointer-events-none absolute top-0 right-1/4 h-96 w-96 rounded-full bg-[#EA2C2A]/10 blur-[100px]" />
+      <div className="pointer-events-none absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-[#262A67]/10 blur-[100px]" />
 
       <div className="relative mx-auto max-w-[1400px]">
         {/* Section Header */}
@@ -74,7 +74,7 @@ export default function WhyChooseUs() {
             return (
               <div
                 key={idx}
-                className="group relative rounded-3xl bg-slate-50/70 border border-slate-200/80 p-8 transition-all duration-500 hover:-translate-y-2 hover:bg-white hover:border-[#EA2C2A]/30 hover:shadow-xl hover:shadow-[#EA2C2A]/5"
+                className="group relative rounded-3xl bg-white border border-slate-200/80 p-8 shadow-xs transition-all duration-500 hover:-translate-y-2 hover:bg-white hover:border-[#EA2C2A]/30 hover:shadow-xl hover:shadow-[#EA2C2A]/5"
               >
                 {/* Subtle top pill badge */}
                 <div className="mb-6 flex items-center justify-between">

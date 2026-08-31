@@ -18,14 +18,10 @@ const galleryPhotos = [
     src: "https://images.unsplash.com/photo-1527838832700-5059252407fa?q=80&w=600&auto=format&fit=crop",
     alt: "Red tram city street",
   },
-<<<<<<< HEAD
-
-=======
   {
     src: "https://images.unsplash.com/photo-1508672019048-805c876b67e2?q=80&w=600&auto=format&fit=crop",
     alt: "Historic architecture park",
   },
->>>>>>> 1a8336ba1c780b79e3e4754cca902f260c5c85a9
   {
     src: "https://images.unsplash.com/photo-1539571696357-5a69c17a67c6?q=80&w=600&auto=format&fit=crop",
     alt: "Happy backpacker group",
@@ -50,9 +46,15 @@ const galleryPhotos = [
 
 export default function JourneyNumbers() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#E8E9F5] via-[#E8E9F5] to-[#FDE8E7] pt-16 pb-12 sm:pt-24 sm:pb-20 text-slate-900 select-none">
+    <section className="relative overflow-hidden bg-gradient-to-b from-[#D9E2FC] via-[#D9E2FC] to-[#FCD5D3] pt-16 pb-12 sm:pt-24 sm:pb-20 text-slate-900 select-none">
       {/* Background Dotted World Globe Dome */}
-      <div className="pointer-events-none absolute inset-x-0 top-16 sm:top-24 md:top-28 lg:top-32 mx-auto flex justify-center opacity-60 sm:opacity-70 mix-blend-multiply max-w-6xl px-4 z-0">
+      <div
+        className="pointer-events-none absolute inset-x-0 top-16 sm:top-24 md:top-28 lg:top-32 mx-auto flex justify-center opacity-60 sm:opacity-70 mix-blend-multiply max-w-6xl px-4 z-0"
+        style={{
+          WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
+          maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
+        }}
+      >
         <div className="relative w-full aspect-[2.2/1] max-w-5xl">
           <Image
             src="/images/bg-globe.png"
@@ -151,8 +153,8 @@ export default function JourneyNumbers() {
         {/* Horizontal Photo Gallery Ribbon - Continuous Moving Marquee */}
         <div className="relative mt-14 sm:mt-20 overflow-hidden py-4">
           {/* Subtle edge fade overlays for seamless entrance and exit */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-r from-[#E8E9F5] via-[#E8E9F5]/80 to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-l from-[#E8E9F5] via-[#E8E9F5]/80 to-transparent" />
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-r from-[#FDE8E7] via-[#FDE8E7]/80 to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-l from-[#FDE8E7] via-[#FDE8E7]/80 to-transparent" />
 
           <div className="animate-marquee-infinite flex items-center gap-4 sm:gap-6">
             {[...galleryPhotos, ...galleryPhotos].map((photo, idx) => (

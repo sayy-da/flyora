@@ -46,7 +46,7 @@ export default function PopularDestinations() {
       : destinations.filter((dest) => dest.region === activeCategory).slice(0, 3);
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#E4ECFD] to-white px-6 pt-12 pb-16 sm:px-10 sm:pt-16 sm:pb-24 lg:px-16">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#D9E2FC] to-white px-6 pt-12 pb-16 sm:px-10 sm:pt-16 sm:pb-24 lg:px-16">
       <div className="mx-auto w-full max-w-[1600px]">
         {/* Section Header */}
         <div className="flex flex-col gap-6 lg:flex-row lg:items-end lg:justify-between">
@@ -166,28 +166,20 @@ export default function PopularDestinations() {
                       </p>
 
                       <div className="mt-6 flex items-center justify-between border-t border-slate-100 pt-4">
-                        <div>
-                          <span className="text-[11px] font-bold uppercase tracking-wider text-slate-400">
-                            Starting from
-                          </span>
-                          <p className="text-xl font-extrabold text-[#262A67]">
-                            ${item.startingPrice}
-                            <span className="text-xs font-normal text-slate-500"> / person</span>
-                          </p>
-                        </div>
+                        <span className="rounded-full bg-[#EEF2FF] px-3.5 py-1.5 text-xs font-bold text-[#262A67]">
+                          {item.toursCount} Tours Available
+                        </span>
 
-                        <div className="flex items-center gap-3">
-                          <span className="rounded-full bg-[#EEF2FF] px-3 py-1 text-xs font-bold text-[#262A67]">
-                            {item.toursCount} Tours
+                        <Link
+                          href={`/locations/${item.slug}`}
+                          className="inline-flex items-center gap-2 text-xs font-bold text-[#EA2C2A] group-hover:text-[#C82120] transition-colors"
+                          aria-label={`Explore ${item.name}`}
+                        >
+                          <span>Explore</span>
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#EA2C2A] text-white transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#C82120] shadow-sm">
+                            <ArrowUpRight size={15} strokeWidth={2.5} />
                           </span>
-                          <Link
-                            href={`/locations/${item.slug}`}
-                            className="flex h-10 w-10 items-center justify-center rounded-full bg-[#EA2C2A] text-white transition-transform duration-300 group-hover:scale-110 hover:bg-[#C82120] shadow-md"
-                            aria-label={`Explore ${item.name}`}
-                          >
-                            <ArrowUpRight size={17} strokeWidth={2.5} />
-                          </Link>
-                        </div>
+                        </Link>
                       </div>
                     </div>
                   </div>

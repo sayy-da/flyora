@@ -36,7 +36,7 @@ function CountryMapDisplay({ item }: { item: CountryItem }) {
   }
 
   return (
-    <span className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-white/10 text-2xl sm:text-4xl border border-white/15 shadow-inner shrink-0">
+    <span className="flex h-12 w-12 sm:h-16 sm:w-16 items-center justify-center rounded-2xl bg-white text-2xl sm:text-4xl border border-slate-200 shadow-xs shrink-0">
       {item.flag}
     </span>
   );
@@ -46,50 +46,24 @@ export default function CountryBanner() {
   const duplicatedCountries = [...countryList, ...countryList, ...countryList];
 
   return (
-    <section className="relative w-full overflow-hidden bg-white select-none z-20 my-0 py-0">
-      {/* Black Slanted Banner Container */}
-      <div
-        className="relative w-full bg-[#14151B] overflow-hidden"
-        style={{
-          clipPath:
-            "polygon(0 calc(100vw * 120 / 2170), 100% 0, 100% calc(100% - calc(100vw * 120 / 2170)), 0 100%)",
-        }}
-      >
-        {/* Top Black Line Stamp (rendered ONCE across full width) */}
-        <img
-          src="/images/black line up.png"
-          alt=""
-          className="absolute top-0 left-0 w-full h-auto pointer-events-none select-none z-20"
-          draggable={false}
-        />
+    <section className="relative w-full overflow-hidden bg-gradient-to-b from-white to-[#FCD5D3] select-none z-20 py-8 sm:py-12">
+      {/* Edge gradient fade masks for smooth entrance & exit */}
+      <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-28 bg-gradient-to-r from-white via-white/80 to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-28 bg-gradient-to-l from-white via-white/80 to-transparent" />
 
-        {/* Marquee Body with aligned slant */}
-        <div
-          className="relative z-10 w-[120%] -left-[10%] py-12 sm:py-16 md:py-20 overflow-hidden"
-          style={{ transform: "rotate(-3.165deg)" }}
-        >
-          <div className="animate-marquee-infinite flex items-center gap-12 sm:gap-20">
-            {duplicatedCountries.map((country, idx) => (
-              <div
-                key={idx}
-                className="group flex items-center gap-4 sm:gap-6 shrink-0 transition-transform duration-300 hover:scale-105 cursor-pointer"
-              >
-                <CountryMapDisplay item={country} />
-                <span className="text-4xl sm:text-6xl lg:text-7xl font-black text-white tracking-tight font-sans">
-                  {country.name}
-                </span>
-              </div>
-            ))}
+      {/* Marquee Body */}
+      <div className="animate-marquee-infinite flex items-center gap-12 sm:gap-20">
+        {duplicatedCountries.map((country, idx) => (
+          <div
+            key={idx}
+            className="group flex items-center gap-4 sm:gap-6 shrink-0 transition-transform duration-300 hover:scale-105 cursor-pointer"
+          >
+            <CountryMapDisplay item={country} />
+            <span className="text-4xl sm:text-6xl lg:text-7xl font-black text-[#262A67] tracking-tight font-sans">
+              {country.name}
+            </span>
           </div>
-        </div>
-
-        {/* Bottom Black Line Stamp (rendered ONCE across full width) */}
-        <img
-          src="/images/black line down.png"
-          alt=""
-          className="absolute bottom-0 left-0 w-full h-auto pointer-events-none select-none z-20"
-          draggable={false}
-        />
+        ))}
       </div>
     </section>
   );

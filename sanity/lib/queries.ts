@@ -14,7 +14,6 @@ export const popularDestinationsQuery = groq`
     rating,
     reviewsCount,
     toursCount,
-    startingPrice,
     description
   }
 `
@@ -33,7 +32,6 @@ export const allDestinationsQuery = groq`
     rating,
     reviewsCount,
     toursCount,
-    startingPrice,
     description,
     isPopular
   }
@@ -53,7 +51,6 @@ export const destinationBySlugQuery = groq`
     rating,
     reviewsCount,
     toursCount,
-    startingPrice,
     description,
     isPopular
   }
@@ -65,8 +62,6 @@ export const featuredToursQuery = groq`
     _id,
     title,
     "slug": slug.current,
-    price,
-    discountPrice,
     duration,
     tag,
     overview,
@@ -86,8 +81,6 @@ export const allToursQuery = groq`
     _id,
     title,
     "slug": slug.current,
-    price,
-    discountPrice,
     duration,
     tag,
     overview,
@@ -110,8 +103,6 @@ export const tourBySlugQuery = groq`
     _id,
     title,
     "slug": slug.current,
-    price,
-    discountPrice,
     duration,
     tag,
     overview,
@@ -135,8 +126,6 @@ export const toursByDestinationQuery = groq`
     _id,
     title,
     "slug": slug.current,
-    price,
-    discountPrice,
     duration,
     tag,
     overview,
@@ -152,8 +141,6 @@ export const toursByCategoryQuery = groq`
     _id,
     title,
     "slug": slug.current,
-    price,
-    discountPrice,
     duration,
     tag,
     overview,

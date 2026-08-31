@@ -102,16 +102,18 @@ export default async function CategoryDetailPage({ params }: PageProps) {
                     </p>
 
                     <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100">
-                      <div>
-                        <span className="text-xs text-slate-400 uppercase tracking-wider block font-semibold">Price per person</span>
-                        <span className="text-2xl font-black text-[#262A67]">${tour.discountPrice || tour.price}</span>
-                      </div>
+                      <span className="text-xs font-bold text-[#262A67] bg-[#EEF2FF] px-3.5 py-1.5 rounded-full">
+                        {tour.duration?.days ? `${tour.duration.days}D / ${tour.duration.nights}N` : 'Custom Days'}
+                      </span>
 
                       <Link
                         href={`/tours/${tour.slug}`}
-                        className="flex h-10 w-10 items-center justify-center rounded-full bg-[#EA2C2A] text-white transition-transform hover:scale-110 hover:bg-[#C82120] shadow-md"
+                        className="inline-flex items-center gap-2 text-xs font-bold text-[#EA2C2A] group-hover:text-[#C82120] transition-colors"
                       >
-                        <ArrowUpRight size={17} strokeWidth={2.5} />
+                        <span>View Details</span>
+                        <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#EA2C2A] text-white transition-transform hover:scale-110 hover:bg-[#C82120] shadow-md">
+                          <ArrowUpRight size={16} strokeWidth={2.5} />
+                        </span>
                       </Link>
                     </div>
                   </div>

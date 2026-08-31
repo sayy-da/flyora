@@ -17,8 +17,6 @@ export interface TourPackage {
   _id: string
   title: string
   slug: string
-  price: number
-  discountPrice?: number
   duration: { days: number; nights: number }
   tag?: string
   overview: string
@@ -47,7 +45,6 @@ export interface Destination {
   rating: number
   reviewsCount: number
   toursCount: number
-  startingPrice: number
   description: string
   isPopular?: boolean
 }
@@ -99,7 +96,6 @@ export const FALLBACK_DESTINATIONS: Destination[] = [
     rating: 4.95,
     reviewsCount: 142,
     toursCount: 18,
-    startingPrice: 1850,
     description: 'Immerse in ancient temples, bamboo groves, tea ceremonies, and exquisite traditional ryokan hospitality.',
     isPopular: true,
   },
@@ -115,7 +111,6 @@ export const FALLBACK_DESTINATIONS: Destination[] = [
     rating: 4.92,
     reviewsCount: 210,
     toursCount: 24,
-    startingPrice: 2200,
     description: 'Whitewashed cliffside villas, unforgettable Aegean sunsets, and volcanic vineyard wine tours.',
     isPopular: true,
   },
@@ -131,7 +126,6 @@ export const FALLBACK_DESTINATIONS: Destination[] = [
     rating: 4.88,
     reviewsCount: 189,
     toursCount: 32,
-    startingPrice: 1250,
     description: 'Cascading rice terraces, sacred water temples, surf beaches, and holistic wellness retreats.',
     isPopular: true,
   },
@@ -147,7 +141,6 @@ export const FALLBACK_DESTINATIONS: Destination[] = [
     rating: 4.97,
     reviewsCount: 96,
     toursCount: 14,
-    startingPrice: 3400,
     description: 'Panoramic mountain railways, glacier peaks, Zermatt chalets, and world-class alpine adventures.',
     isPopular: true,
   },
@@ -163,7 +156,6 @@ export const FALLBACK_DESTINATIONS: Destination[] = [
     rating: 4.86,
     reviewsCount: 115,
     toursCount: 16,
-    startingPrice: 1450,
     description: 'Vibrant medina souks, ornate luxury riads, spice markets, and Sahara desert stargazing.',
     isPopular: true,
   },
@@ -179,7 +171,6 @@ export const FALLBACK_DESTINATIONS: Destination[] = [
     rating: 4.91,
     reviewsCount: 178,
     toursCount: 20,
-    startingPrice: 2800,
     description: 'Volcanic craters, scenic Road to Hana, golden sand beaches, and seasonal humpback whale watching.',
     isPopular: false,
   },
@@ -190,8 +181,6 @@ export const FALLBACK_TOURS: TourPackage[] = [
     _id: 'tour-1',
     title: 'Kyoto Zen & Heritage Odyssey',
     slug: 'kyoto-zen-heritage-odyssey',
-    price: 2450,
-    discountPrice: 2150,
     duration: { days: 8, nights: 7 },
     tag: 'Best Seller',
     overview: 'Experience the soul of traditional Japan with private tea master sessions, guided visits to UNESCO temples, bullet train journeys, and traditional kaiseki dining in Arashiyama.',
@@ -224,8 +213,6 @@ export const FALLBACK_TOURS: TourPackage[] = [
     _id: 'tour-2',
     title: 'Santorini Sunset & Volcanic Wine Escape',
     slug: 'santorini-sunset-volcanic-wine-escape',
-    price: 2950,
-    discountPrice: 2600,
     duration: { days: 6, nights: 5 },
     tag: 'Honeymoon Choice',
     overview: 'Sail across the Aegean Sea on a private luxury catamaran, stay in cliffside cave suites in Oia, and sample world-famous Assyrtiko wines produced from volcanic soils.',
@@ -255,8 +242,6 @@ export const FALLBACK_TOURS: TourPackage[] = [
     _id: 'tour-3',
     title: 'Bali Tropical Wellness & Temple Sanctuary',
     slug: 'bali-tropical-wellness-temple-sanctuary',
-    price: 1650,
-    discountPrice: 1420,
     duration: { days: 7, nights: 6 },
     tag: 'Trending',
     overview: 'Rejuvenate body and mind in Ubud’s lush rainforest luxury villas, explore sacred water temples, and soak in the sun along Seminyak’s golden sunset beaches.',
@@ -286,8 +271,6 @@ export const FALLBACK_TOURS: TourPackage[] = [
     _id: 'tour-4',
     title: 'Swiss Alps Grand Express & Matterhorn Explorer',
     slug: 'swiss-alps-grand-express-matterhorn',
-    price: 3800,
-    discountPrice: 3450,
     duration: { days: 9, nights: 8 },
     tag: 'Alpine Luxury',
     overview: 'Travel onboard the glacier express train across snow-capped peaks, stay in iconic Zermatt chalets facing the Matterhorn, and sail on Lake Geneva.',

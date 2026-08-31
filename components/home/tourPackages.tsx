@@ -11,7 +11,6 @@ const tours = [
     title: "Cherry Blossoms of Kyoto & Nara",
     slug: "kyoto-zen-heritage-odyssey",
     description: "Explore cherry blossoms of kyoto & nara with curated experiences.",
-    price: "$2,150",
     duration: "8D / 7N",
   },
   {
@@ -21,7 +20,6 @@ const tours = [
     slug: "marrakech-desert-atlas-journey",
     description:
       "Journey through Morocco's vibrant cities, mountain landscapes, and vast desert horizons.",
-    price: "$1,550",
     duration: "6D / 5N",
   },
   {
@@ -31,7 +29,6 @@ const tours = [
     slug: "santorini-sunset-volcanic-wine-escape",
     description:
       "Unwind in Santorini with clear waters, cliffside cave suites, and Aegean sunsets.",
-    price: "$2,600",
     duration: "6D / 5N",
   },
 
@@ -124,15 +121,19 @@ export default function TourPackages() {
                 <div className="my-4 border-t border-dashed border-slate-200" />
 
                 <div className="flex items-center justify-between">
-                  <p className="text-base font-extrabold text-[#262A67]">
-                    {tour.price}{" "}
-                    <span className="text-xs font-normal text-slate-500">
-                      /person
-                    </span>
-                  </p>
                   <span className="rounded-full bg-[#EEF2FF] px-3 py-1 text-xs font-bold text-[#262A67]">
                     {tour.duration}
                   </span>
+
+                  <Link
+                    href={`/tours/${tour.slug}`}
+                    className="inline-flex items-center gap-1.5 text-xs font-bold text-[#EA2C2A] group-hover:text-[#C82120] transition-colors"
+                  >
+                    <span>View Itinerary</span>
+                    <span className="flex h-7 w-7 items-center justify-center rounded-full bg-[#EA2C2A] text-white transition-transform duration-300 group-hover:scale-110 group-hover:bg-[#C82120] shadow-sm">
+                      <ArrowUpRight size={13} strokeWidth={2.5} />
+                    </span>
+                  </Link>
                 </div>
               </div>
             </div>

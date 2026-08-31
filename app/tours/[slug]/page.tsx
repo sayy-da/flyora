@@ -244,24 +244,19 @@ export default async function TourDetailPage({ params }: PageProps) {
 
           </div>
 
-          {/* Right Column - Price Card & Inquiry Form */}
+          {/* Right Column - Booking & Inquiry Form Card */}
           <div className="space-y-8">
             <div className="sticky top-28 rounded-3xl bg-slate-50 border border-slate-200 p-8 shadow-xl space-y-6">
               
-              {/* Pricing */}
+              {/* Card Header */}
               <div>
-                <span className="text-xs font-bold uppercase tracking-wider text-slate-400">Total Price Per Traveler</span>
-                <div className="mt-1 flex items-baseline gap-3">
-                  {tour.discountPrice ? (
-                    <>
-                      <span className="text-4xl font-black text-[#262A67]">${tour.discountPrice}</span>
-                      <span className="text-lg text-slate-400 line-through">${tour.price}</span>
-                    </>
-                  ) : (
-                    <span className="text-4xl font-black text-[#262A67]">${tour.price}</span>
-                  )}
-                  <span className="text-xs text-slate-500 font-medium">USD / person</span>
-                </div>
+                <span className="text-xs font-bold uppercase tracking-wider text-[#EA2C2A]">Custom Itinerary</span>
+                <h3 className="text-2xl font-bold text-[#262A67] mt-1" style={{ fontFamily: "var(--font-playfair)" }}>
+                  Personalized Itinerary & Quote
+                </h3>
+                <p className="text-xs text-slate-600 mt-1.5 leading-relaxed">
+                  Tailored to your dates, travelers, and preferred accommodations.
+                </p>
               </div>
 
               {/* Customizable CTA Banner */}

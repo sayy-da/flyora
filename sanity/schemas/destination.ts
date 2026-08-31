@@ -91,11 +91,6 @@ export default defineType({
       description: 'e.g. 24',
     }),
     defineField({
-      name: 'startingPrice',
-      title: 'Starting Price ($)',
-      type: 'number',
-    }),
-    defineField({
       name: 'description',
       title: 'Short Description',
       type: 'text',
