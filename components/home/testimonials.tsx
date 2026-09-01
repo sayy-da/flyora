@@ -285,7 +285,7 @@ export default function TopDestinations() {
   const current = destinations[activeIndex];
 
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#FCD5D3] via-[#FCD5D3] to-white px-6 pt-6 pb-20 sm:px-10 sm:pt-8 sm:pb-28 lg:px-16 text-slate-900 select-none">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#FEF2F2] to-white px-6 pt-10 pb-20 sm:px-10 sm:pt-14 sm:pb-28 lg:px-16 text-slate-900 select-none">
       {/* Fixed, continuously rotating flag ring (line + flags rotate together) — independent of the destination cards below */}
       <RotatingFlagArc />
 

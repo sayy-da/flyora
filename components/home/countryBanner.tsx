@@ -46,10 +46,10 @@ export default function CountryBanner() {
   const duplicatedCountries = [...countryList, ...countryList, ...countryList];
 
   return (
-    <section className="relative w-full overflow-hidden bg-gradient-to-b from-white to-[#FCD5D3] select-none z-20 py-8 sm:py-12">
+    <section className="relative w-full overflow-hidden bg-white select-none z-20 py-10 sm:py-14">
       {/* Edge gradient fade masks for smooth entrance & exit */}
-      <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-28 bg-gradient-to-r from-white via-white/80 to-transparent" />
-      <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-28 bg-gradient-to-l from-white via-white/80 to-transparent" />
+      <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-28 bg-gradient-to-r from-white via-white/90 to-transparent" />
+      <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-28 bg-gradient-to-l from-white via-white/90 to-transparent" />
 
       {/* Marquee Body */}
       <div className="animate-marquee-infinite flex items-center gap-12 sm:gap-20">

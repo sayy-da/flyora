@@ -48,10 +48,12 @@ export default function TravelioHero() {
           {/* Menu Button */}
           <button
             onClick={() => setMenuOpen(true)}
-            className="flex items-center gap-2 rounded-full bg-white/95 px-4 py-2 text-xs sm:text-sm font-bold text-[#1E293B] shadow-lg transition hover:bg-white hover:scale-105 active:scale-95 backdrop-blur-md"
+            className="flex items-center gap-2.5 rounded-full bg-white/95 px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold text-[#121629] shadow-lg transition hover:bg-white hover:scale-105 active:scale-95 backdrop-blur-md cursor-pointer"
           >
-            <LayoutGrid size={16} strokeWidth={2.25} />
-            Menu
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#121629] text-white">
+              <LayoutGrid size={13} strokeWidth={2.5} />
+            </div>
+            <span>Menu</span>
           </button>
 
           {/* Origami Bird / Paper Plane Logo */}
@@ -64,19 +66,18 @@ export default function TravelioHero() {
           </Link>
 
           {/* Plan a Trip CTA */}
-          {/* Plan a Trip CTA */}
           <div className="flex items-center justify-center">
             <Link
               href="/customize"
-              className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
+              className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#FDE8E7] py-1.5 pl-4 pr-1.5 sm:py-2 sm:pl-5 sm:pr-2 text-xs sm:text-sm font-semibold text-[#121629] transition-all duration-300 hover:bg-[#EA2C2A] hover:text-white border border-[#EA2C2A]/20 shadow-lg"
             >
               <span className="btn-text-wrapper">
                 <span className="btn-text">Plan a Trip</span>
                 <span className="btn-text-clone">Plan a Trip</span>
               </span>
 
-              <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
-                <ArrowUpRight size={15} className="btn-arrow" />
+              <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#121629] shadow-xs">
+                <ArrowUpRight size={14} className="btn-arrow" />
               </span>
             </Link>
           </div>
@@ -133,15 +134,7 @@ export default function TravelioHero() {
 
       {/* Cloud positioned at the bottom of the hero, revealed when scrolling down */}
       <div className="pointer-events-none absolute inset-x-0 bottom-0 z-20 select-none w-full leading-none">
-        <div className="relative w-full h-[180px] sm:h-[280px] md:h-[360px] lg:h-[440px]">
-          <Image
-            src="/images/cloud.png"
-            alt="Cloud transition"
-            fill
-            priority
-            className="object-cover object-bottom"
-          />
-        </div>
+
         {/* Soft bottom white wash to ensure 100% seamless transition into Tour Categories */}
         <div className="absolute inset-x-0 bottom-0 h-20 sm:h-32 bg-gradient-to-t from-white via-white/80 to-transparent" />
       </div>

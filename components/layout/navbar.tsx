@@ -17,7 +17,7 @@ const primaryLinks = [
   { label: "Home", href: "/" },
   { label: "Tours", href: "/tours" },
   { label: "Destinations", href: "/locations" },
-  { label: "Services", href: "/services" },
+  { label: "Blog", href: "/blog" },
 ];
 
 const secondaryLinks = [

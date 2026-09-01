@@ -2,14 +2,8 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { LayoutGrid, ArrowUpRight, Sparkles } from "lucide-react";
-import { Caveat } from "next/font/google";
+import { LayoutGrid, ArrowUpRight } from "lucide-react";
 import Navbar from "./navbar";
-
-const caveat = Caveat({
-  subsets: ["latin"],
-  weight: ["400", "600", "700"],
-});
 
 interface HeaderProps {
   transparent?: boolean;
@@ -21,18 +15,20 @@ export default function Header({ transparent = false }: HeaderProps) {
   return (
     <>
       <header
-        className={`sticky top-0 z-40 w-full transition-all duration-300 ${transparent
-            ? "bg-transparent text-white"
-            : "bg-white/95 backdrop-blur-md border-b border-slate-200/80 text-slate-900 shadow-xs"
-          }`}
+        className={`relative z-40 w-full bg-transparent transition-all duration-300 ${
+          transparent ? "text-white" : "text-slate-900"
+        }`}
       >
-        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 py-4 sm:px-10">
-          {/* Menu Trigger */}
+        <div className="mx-auto flex max-w-[1600px] items-center justify-between px-6 pt-6 pb-2 sm:px-10 sm:pt-8 sm:pb-3">
+          
+          {/* Menu Button with Black Circle Icon */}
           <button
             onClick={() => setMenuOpen(true)}
-            className="flex items-center gap-2 rounded-full bg-[#EEF2FF] px-4 py-2 text-xs font-semibold text-[#262A67] transition hover:bg-[#E0E7FF] sm:text-sm border border-[#C7D2FE]"
+            className="flex items-center gap-2.5 rounded-full bg-white px-3.5 py-1.5 sm:px-4 sm:py-2 text-xs sm:text-sm font-bold text-[#121629] shadow-xs transition hover:scale-105 active:scale-95 border border-slate-200/80 cursor-pointer"
           >
-            <LayoutGrid size={15} strokeWidth={2.2} />
+            <div className="flex h-6 w-6 items-center justify-center rounded-full bg-[#121629] text-white">
+              <LayoutGrid size={13} strokeWidth={2.5} />
+            </div>
             <span>Menu</span>
           </button>
 
@@ -41,47 +37,29 @@ export default function Header({ transparent = false }: HeaderProps) {
             <img
               src={transparent ? "/images/light-logo.png" : "/images/dark-logo.png"}
               alt="Flyora"
-              className="h-10 sm:h-12 w-auto object-contain transition-transform group-hover:scale-105"
+              className="h-9 sm:h-11 w-auto object-contain transition-transform group-hover:scale-105"
             />
           </Link>
 
-          {/* Quick Nav Links for Desktop */}
-          <nav className="hidden lg:flex items-center gap-7 text-xs font-bold uppercase tracking-wider text-[#262A67]">
-            <Link href="/tours" className="hover:text-[#EA2C2A] transition">
-              Tours
-            </Link>
-            <Link href="/locations" className="hover:text-[#EA2C2A] transition">
-              Destinations
-            </Link>
-            <Link href="/services" className="hover:text-[#EA2C2A] transition">
-              Services
-            </Link>
-            <Link href="/stories" className="hover:text-[#EA2C2A] transition">
-              Stories
-            </Link>
-            <Link href="/about" className="hover:text-[#EA2C2A] transition">
-              About
-            </Link>
-          </nav>
-
-          {/* Plan a Trip CTA */}
+          {/* Plan a Trip CTA Button */}
           <Link
             href="/customize"
-            className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#262A67] py-2.5 pl-6 pr-2.5 text-sm font-semibold text-white transition-colors duration-300 hover:bg-[#EA2C2A] hover:shadow-lg"
+            className="btn-hover-slide inline-flex items-center gap-3 rounded-full bg-[#FDE8E7] py-1.5 pl-4 pr-1.5 sm:py-2 sm:pl-5 sm:pr-2 text-xs sm:text-sm font-semibold text-[#121629] transition-all duration-300 hover:bg-[#EA2C2A] hover:text-white border border-[#EA2C2A]/20 shadow-xs"
           >
             <span className="btn-text-wrapper">
               <span className="btn-text">Plan a Trip</span>
               <span className="btn-text-clone">Plan a Trip</span>
             </span>
 
-            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/15">
-              <ArrowUpRight size={15} className="btn-arrow" />
+            <span className="flex h-7 w-7 items-center justify-center rounded-full bg-white text-[#121629] shadow-xs">
+              <ArrowUpRight size={14} className="btn-arrow" />
             </span>
           </Link>
+
         </div>
       </header>
 
-      {/* Fullscreen Mobile/Overlay Menu */}
+      {/* Fullscreen Overlay Navigation Menu */}
       {menuOpen && <Navbar onClose={() => setMenuOpen(false)} />}
     </>
   );

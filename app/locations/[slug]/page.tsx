@@ -1,190 +1,254 @@
-import Header from "@/components/layout/header";
-import Footer from "@/components/layout/footer";
-import { getDestinationBySlug, getDestinations, getToursByDestination } from "@/sanity/lib/fetchData";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
-import { Star, ArrowUpRight, Calendar } from "lucide-react";
-import { Caveat } from "next/font/google";
+import Header from "@/components/layout/header";
+import Footer from "@/components/layout/footer";
+import { ArrowUpRight, MapPin } from "lucide-react";
+import { Playfair_Display } from "next/font/google";
+import { getDestinationBySlug, getToursByDestination } from "@/sanity/lib/fetchData";
 
-const caveat = Caveat({
+const playfair = Playfair_Display({
   subsets: ["latin"],
-  weight: ["400", "600", "700"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
+  variable: "--font-playfair",
 });
 
 interface PageProps {
   params: Promise<{ slug: string }>;
 }
 
-export async function generateStaticParams() {
-  const destinations = await getDestinations();
-  return destinations.map((d) => ({ slug: d.slug }));
-}
-
 export default async function LocationDetailPage({ params }: PageProps) {
-  const resolvedParams = await params;
-  const destination = await getDestinationBySlug(resolvedParams.slug);
+  const { slug } = await params;
+  const dest = await getDestinationBySlug(slug);
 
-  if (!destination) {
+  if (!dest) {
     notFound();
   }
 
-  const tours = await getToursByDestination(resolvedParams.slug);
+  const tours = await getToursByDestination(slug);
 
   return (
-    <div className="min-h-screen bg-white text-slate-900 flex flex-col font-sans">
+    <div className={`${playfair.variable} min-h-screen bg-white text-slate-900 flex flex-col font-sans selection:bg-[#EA2C2A] selection:text-white`}>
       <Header />
 
-      {/* Hero Banner */}
-      <section className="relative h-[55vh] min-h-[450px] w-full overflow-hidden bg-[#262A67]">
-        <Image
-          src={destination.image}
-          alt={destination.name}
-          fill
-          priority
-          className="object-cover"
-        />
-        <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/30 to-black/20" />
-
-        <div className="relative mx-auto flex h-full max-w-[1600px] flex-col justify-end px-6 pb-12 sm:px-10 lg:px-16">
-          <div className="flex items-center gap-3 mb-3">
-            <span className="text-3xl drop-shadow-md">{destination.flag}</span>
-            <span className="rounded-full bg-[#EA2C2A] px-3.5 py-1 text-xs font-bold text-white shadow-md">
-              {destination.region}
-            </span>
-            {destination.tag && (
-              <span className="rounded-full bg-white/20 backdrop-blur-md px-3.5 py-1 text-xs font-semibold text-white border border-white/20">
-                {destination.tag}
-              </span>
-            )}
-          </div>
-
-          <h1
-            className="text-4xl font-extrabold sm:text-6xl lg:text-7xl text-white tracking-tight"
-            style={{ fontFamily: "var(--font-playfair)" }}
-          >
-            {destination.name}, {destination.country}
-          </h1>
-
-          <div className="mt-4 flex items-center gap-6 text-sm text-slate-200">
-            <div className="flex items-center gap-1.5 font-bold text-[#EA2C2A]">
-              <Star size={16} fill="currentColor" />
-              <span className="text-white">{destination.rating} rating ({destination.reviewsCount} reviews)</span>
+      <main className="flex-1 pb-20 sm:pb-28">
+        
+        {/* Section 1: Hero Split (Image Left + Dark Card Right) */}
+        <section className="mx-auto max-w-[1500px] px-6 sm:px-10 lg:px-16 pt-8 sm:pt-12">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+            
+            {/* Left: Big Hero Image */}
+            <div className="lg:col-span-7 relative min-h-[380px] sm:min-h-[460px] lg:min-h-[540px] w-full overflow-hidden rounded-[28px] sm:rounded-[36px] bg-slate-100 shadow-md">
+              <Image
+                src={dest.image}
+                alt={dest.name}
+                fill
+                priority
+                sizes="(max-width: 1024px) 100vw, 60vw"
+                className="object-cover"
+              />
             </div>
-            <span>•</span>
-            <div className="font-medium text-slate-200">{destination.toursCount || tours.length} Curated Itineraries</div>
-          </div>
-        </div>
-      </section>
 
-      {/* Destination Overview */}
-      <main className="flex-1 py-16 px-6 sm:px-10 lg:px-16 bg-white">
-        <div className="mx-auto max-w-[1600px] space-y-16">
-          
-          <div className="max-w-3xl space-y-4">
-            <h2
-              className="text-3xl font-bold text-[#262A67]"
-              style={{ fontFamily: "var(--font-playfair)" }}
-            >
-              About {destination.name}
-            </h2>
-            <p className="text-base text-slate-600 leading-relaxed">
-              {destination.description}
-            </p>
-          </div>
-
-          {/* Available Tours */}
-          <div>
-            <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-10">
+            {/* Right: Dark Card Info Box */}
+            <div className="lg:col-span-5 flex flex-col justify-between rounded-[28px] sm:rounded-[36px] bg-[#121629] p-8 sm:p-10 text-white shadow-xl border border-slate-800">
+              
               <div>
-                <h2
-                  className="text-3xl font-bold text-[#262A67]"
-                  style={{ fontFamily: "var(--font-playfair)" }}
-                >
-                  Featured Tours in {destination.name}
-                </h2>
-                <p className="text-sm text-slate-500 mt-1">
-                  Handcrafted tour packages featuring 5-star accommodations, private guides, and seamless transfers.
-                </p>
+                {/* Region & Title with Map Icon */}
+                <div className="flex items-start justify-between gap-4 mb-6">
+                  <div>
+                    <span className="text-xs font-semibold uppercase tracking-wider text-slate-400">
+                      {dest.region}
+                    </span>
+                    <h1
+                      className="text-4xl sm:text-5xl font-bold tracking-tight text-white mt-1"
+                      style={{ fontFamily: "var(--font-playfair)" }}
+                    >
+                      {dest.name}
+                    </h1>
+                  </div>
+
+                  {/* Outline map shape representation */}
+                  <div className="flex h-12 w-12 items-center justify-center rounded-2xl bg-white/10 text-white border border-white/15">
+                    <MapPin size={22} className="text-[#EA2C2A]" />
+                  </div>
+                </div>
+
+                {/* Metadata List */}
+                <div className="space-y-4 text-xs sm:text-sm">
+                  <div className="flex items-center justify-between py-2 border-b border-white/10">
+                    <span className="text-slate-400 font-medium">Country</span>
+                    <span className="font-semibold text-white text-right">{dest.country}</span>
+                  </div>
+
+                  <div className="flex items-center justify-between py-2 border-b border-white/10">
+                    <span className="text-slate-400 font-medium">Guest Rating</span>
+                    <span className="font-semibold text-white">{dest.rating} / 5.0 ({dest.reviewsCount} reviews)</span>
+                  </div>
+
+                  <div className="flex items-center justify-between py-2 border-b border-white/10">
+                    <span className="text-slate-400 font-medium">Available Tours</span>
+                    <span className="font-semibold text-white text-right">{dest.toursCount || tours.length} Curated Itineraries</span>
+                  </div>
+
+                  <div className="flex items-center justify-between py-2">
+                    <span className="text-slate-400 font-medium">Region</span>
+                    <span className="font-semibold text-white">{dest.region}</span>
+                  </div>
+                </div>
               </div>
 
-              <Link
-                href={`/customize?destination=${destination.name}`}
-                className="inline-flex items-center gap-2 rounded-full bg-[#EA2C2A] px-5 py-2.5 text-xs font-bold text-white transition hover:bg-[#C82120] shrink-0 shadow-md"
-              >
-                <span>Customize a {destination.name} Trip</span>
-                <ArrowUpRight size={15} />
-              </Link>
-            </div>
-
-            {tours.length > 0 ? (
-              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {tours.map((tour) => (
-                  <article
-                    key={tour._id}
-                    className="group relative flex flex-col rounded-3xl bg-white border border-slate-200/90 overflow-hidden shadow-xs transition-all duration-300 hover:-translate-y-2 hover:border-[#262A67]/40 hover:shadow-xl"
-                  >
-                    <div className="relative h-60 w-full overflow-hidden bg-slate-100">
-                      <Image
-                        src={tour.coverImage}
-                        alt={tour.title}
-                        fill
-                        className="object-cover transition-transform duration-700 group-hover:scale-105"
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent opacity-80" />
-                      
-                      <div className="absolute bottom-4 left-4 inline-flex items-center gap-1.5 rounded-full bg-white/95 backdrop-blur-md px-3 py-1 text-xs font-semibold text-[#262A67] shadow-sm">
-                        <Calendar size={13} className="text-[#EA2C2A]" />
-                        {tour.duration?.days} Days / {tour.duration?.nights} Nights
-                      </div>
-                    </div>
-
-                    <div className="flex flex-1 flex-col p-6">
-                      <h3
-                        className="text-2xl font-bold text-[#262A67] group-hover:text-[#EA2C2A] transition-colors mb-2"
-                        style={{ fontFamily: "var(--font-playfair)" }}
-                      >
-                        <Link href={`/tours/${tour.slug}`}>{tour.title}</Link>
-                      </h3>
-                      <p className="text-sm text-slate-600 line-clamp-2 leading-relaxed mb-6">
-                        {tour.overview}
-                      </p>
-
-                      <div className="mt-auto flex items-center justify-between pt-4 border-t border-slate-100">
-                        <span className="text-xs font-bold text-[#262A67] bg-[#EEF2FF] px-3 py-1.5 rounded-full">
-                          Customizable
-                        </span>
-
-                        <Link
-                          href={`/tours/${tour.slug}`}
-                          className="inline-flex items-center gap-2 text-xs font-bold text-[#EA2C2A] group-hover:text-[#C82120] transition-colors"
-                        >
-                          <span>View Details</span>
-                          <span className="flex h-9 w-9 items-center justify-center rounded-full bg-[#EA2C2A] text-white transition-transform hover:scale-110 hover:bg-[#C82120] shadow-md">
-                            <ArrowUpRight size={16} strokeWidth={2.5} />
-                          </span>
-                        </Link>
-                      </div>
-                    </div>
-                  </article>
-                ))}
-              </div>
-            ) : (
-              <div className="rounded-3xl bg-slate-50 border border-slate-200 p-12 text-center">
-                <p className="text-slate-600 text-base">
-                  No standard preset tours available for {destination.name} right now.
-                </p>
+              {/* Action Button */}
+              <div className="pt-8">
                 <Link
-                  href={`/customize?destination=${destination.name}`}
-                  className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#EA2C2A] px-6 py-3 text-sm font-bold text-white hover:bg-[#C82120]"
+                  href={`/customize?destination=${dest.name}`}
+                  className="group flex w-full items-center justify-between rounded-full bg-white px-7 py-4 text-sm font-bold text-[#121629] transition-all duration-300 hover:bg-[#EA2C2A] hover:text-white shadow-lg"
                 >
-                  Request a Custom {destination.name} Itinerary
+                  <span>Explore {dest.name} Tours</span>
+                  <span className="flex h-8 w-8 items-center justify-center rounded-full bg-[#FEF2F2] text-[#EA2C2A] transition-colors group-hover:bg-white group-hover:text-[#EA2C2A]">
+                    <ArrowUpRight size={16} strokeWidth={2.5} />
+                  </span>
                 </Link>
               </div>
-            )}
+
+            </div>
+
+          </div>
+        </section>
+
+        {/* Section 2: About the Destination */}
+        <section className="mx-auto max-w-[1500px] px-6 sm:px-10 lg:px-16 pt-20 sm:pt-28">
+          
+          <div className="border-b border-dotted border-slate-200 pb-4 mb-8">
+            <h2
+              className="text-3xl sm:text-4xl font-bold text-[#0F172A] tracking-tight"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              About the Destination
+            </h2>
           </div>
 
-        </div>
+          <div className="space-y-6 text-sm sm:text-base text-slate-600 leading-relaxed font-normal max-w-4xl">
+            <p>{dest.description}</p>
+          </div>
+
+          {/* 2-Column Gallery Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 sm:gap-8 mt-12">
+            <div className="relative aspect-[4/3] sm:aspect-[1/1] lg:aspect-[4/3] w-full overflow-hidden rounded-[28px] sm:rounded-[36px] bg-slate-100 shadow-md">
+              <Image
+                src={dest.image}
+                alt={`${dest.name} highlight moment`}
+                fill
+                sizes="(max-width: 640px) 100vw, 50vw"
+                className="object-cover"
+              />
+            </div>
+            {tours[0]?.coverImage ? (
+              <div className="relative aspect-[4/3] sm:aspect-[1/1] lg:aspect-[4/3] w-full overflow-hidden rounded-[28px] sm:rounded-[36px] bg-slate-100 shadow-md">
+                <Image
+                  src={tours[0].coverImage}
+                  alt={`${dest.name} tour experience`}
+                  fill
+                  sizes="(max-width: 640px) 100vw, 50vw"
+                  className="object-cover"
+                />
+              </div>
+            ) : null}
+          </div>
+
+        </section>
+
+        {/* Section 3: Destination Tour Packages */}
+        <section className="mx-auto max-w-[1500px] px-6 sm:px-10 lg:px-16 pt-20 sm:pt-28">
+          
+          <div className="mb-10">
+            <h2
+              className="text-4xl sm:text-5xl font-bold text-[#0F172A] tracking-tight"
+              style={{ fontFamily: "var(--font-playfair)" }}
+            >
+              {dest.name} <span className="italic font-medium text-[#0F172A]">Tour</span> Packages
+            </h2>
+          </div>
+
+          {/* 3-Column Tour Packages Grid */}
+          {tours && tours.length > 0 ? (
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+              {tours.map((tour) => (
+                <Link
+                  key={tour._id || tour.slug}
+                  href={`/tours/${tour.slug}`}
+                  className="group flex flex-col rounded-[28px] sm:rounded-[32px] overflow-hidden bg-white border border-slate-200/90 shadow-sm transition-all duration-500 hover:-translate-y-1.5 hover:shadow-xl"
+                >
+                  {/* Photo */}
+                  <div className="relative aspect-[16/11] w-full overflow-hidden bg-slate-100">
+                    <Image
+                      src={tour.coverImage}
+                      alt={tour.title}
+                      fill
+                      sizes="(max-width: 768px) 100vw, 33vw"
+                      className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    />
+                    {/* Badges */}
+                    <div className="absolute top-4 left-4 z-10 flex items-center gap-2">
+                      {tour.tag && (
+                        <span className="rounded-full bg-[#121629]/90 px-3 py-1 text-xs font-bold text-white shadow-xs backdrop-blur-md">
+                          {tour.tag}
+                        </span>
+                      )}
+                      {tour.categoryName && (
+                        <span className="rounded-full bg-white/95 px-3 py-1 text-xs font-bold text-[#262B65] shadow-xs backdrop-blur-md">
+                          {tour.categoryName}
+                        </span>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Content */}
+                  <div className="flex flex-1 flex-col justify-between p-6 sm:p-7">
+                    <div>
+                      <h3 className="text-xl font-bold text-[#0F172A] tracking-tight mb-2 transition-colors group-hover:text-[#EA2C2A]">
+                        {tour.title}
+                      </h3>
+                      <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal line-clamp-2">
+                        {tour.overview}
+                      </p>
+                    </div>
+
+                    {/* Dotted Divider & Price Row */}
+                    <div>
+                      <div className="my-5 border-t border-dotted border-slate-200" />
+                      <div className="flex items-center justify-between">
+                        <div className="flex items-baseline gap-1">
+                          <span className="text-xl font-black text-[#0F172A]">
+                            {tour.duration?.days ? `$${(tour.duration.days * 450).toLocaleString()}` : "$2,490"}
+                          </span>
+                          <span className="text-xs text-slate-500 font-medium">/person</span>
+                        </div>
+                        <span className="rounded-full bg-[#121629] px-3.5 py-1 text-xs font-bold text-white shadow-xs">
+                          {tour.duration?.days ? `${tour.duration.days}D/${tour.duration.nights}N` : "7D/6N"}
+                        </span>
+                      </div>
+                    </div>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          ) : (
+            <div className="rounded-3xl bg-slate-50 border border-slate-200 p-12 text-center">
+              <p className="text-slate-600 text-base">
+                No preset itineraries currently listed for {dest.name}.
+              </p>
+              <Link
+                href={`/customize?destination=${dest.name}`}
+                className="mt-4 inline-flex items-center gap-2 rounded-full bg-[#EA2C2A] px-6 py-3 text-sm font-bold text-white hover:bg-[#C82120]"
+              >
+                Request a Custom {dest.name} Itinerary
+              </Link>
+            </div>
+          )}
+
+        </section>
+
       </main>
 
       <Footer />

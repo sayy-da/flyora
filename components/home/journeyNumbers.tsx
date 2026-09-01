@@ -46,13 +46,13 @@ const galleryPhotos = [
 
 export default function JourneyNumbers() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#D9E2FC] via-[#D9E2FC] to-[#FCD5D3] pt-16 pb-12 sm:pt-24 sm:pb-20 text-slate-900 select-none">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#EEF2FF] to-white pt-16 pb-12 sm:pt-24 sm:pb-20 text-slate-900 select-none">
       {/* Background Dotted World Globe Dome */}
       <div
-        className="pointer-events-none absolute inset-x-0 top-16 sm:top-24 md:top-28 lg:top-32 mx-auto flex justify-center opacity-60 sm:opacity-70 mix-blend-multiply max-w-6xl px-4 z-0"
+        className="pointer-events-none absolute inset-x-0 top-10 sm:top-14 md:top-16 lg:top-20 mx-auto flex justify-center opacity-90 sm:opacity-95 max-w-6xl px-4 z-0"
         style={{
-          WebkitMaskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
-          maskImage: "radial-gradient(ellipse 70% 70% at 50% 50%, black 30%, transparent 100%)",
+          WebkitMaskImage: "radial-gradient(ellipse 95% 85% at 50% 45%, black 65%, transparent 100%)",
+          maskImage: "radial-gradient(ellipse 95% 85% at 50% 45%, black 65%, transparent 100%)",
         }}
       >
         <div className="relative w-full aspect-[2.2/1] max-w-5xl">
@@ -60,7 +60,7 @@ export default function JourneyNumbers() {
             src="/images/bg-globe.png"
             alt="World Globe Background"
             fill
-            className="object-contain"
+            className="object-contain drop-shadow-sm"
             priority
           />
         </div>
@@ -153,8 +153,8 @@ export default function JourneyNumbers() {
         {/* Horizontal Photo Gallery Ribbon - Continuous Moving Marquee */}
         <div className="relative mt-14 sm:mt-20 overflow-hidden py-4">
           {/* Subtle edge fade overlays for seamless entrance and exit */}
-          <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-r from-[#FDE8E7] via-[#FDE8E7]/80 to-transparent" />
-          <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-l from-[#FDE8E7] via-[#FDE8E7]/80 to-transparent" />
+          <div className="pointer-events-none absolute left-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-r from-white via-white/80 to-transparent" />
+          <div className="pointer-events-none absolute right-0 top-0 bottom-0 z-10 w-16 sm:w-32 bg-gradient-to-l from-white via-white/80 to-transparent" />
 
           <div className="animate-marquee-infinite flex items-center gap-4 sm:gap-6">
             {[...galleryPhotos, ...galleryPhotos].map((photo, idx) => (

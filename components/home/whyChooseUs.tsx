@@ -38,10 +38,10 @@ const stats = [
 
 export default function WhyChooseUs() {
   return (
-    <section className="relative overflow-hidden bg-gradient-to-b from-[#FCD5D3] via-[#FCD5D3] to-[#D9E2FC] pt-10 sm:pt-14 pb-20 px-6 sm:px-10 lg:px-16 text-slate-900">
+    <section className="relative overflow-hidden bg-gradient-to-b from-white via-[#FEF2F2] to-white pt-12 sm:pt-16 pb-20 px-6 sm:px-10 lg:px-16 text-slate-900">
       {/* Soft background ambient glow */}
-      <div className="pointer-events-none absolute top-0 right-1/4 h-96 w-96 rounded-full bg-[#EA2C2A]/10 blur-[100px]" />
-      <div className="pointer-events-none absolute bottom-0 left-1/4 h-96 w-96 rounded-full bg-[#262A67]/10 blur-[100px]" />
+      <div className="pointer-events-none absolute top-1/4 right-1/4 h-96 w-96 rounded-full bg-[#EA2C2A]/8 blur-[120px]" />
+      <div className="pointer-events-none absolute bottom-1/4 left-1/4 h-96 w-96 rounded-full bg-[#262A67]/5 blur-[120px]" />
 
       <div className="relative mx-auto max-w-[1400px]">
         {/* Section Header */}
